@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  web:
+    image: caddy:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./www:/usr/share/caddy:ro
+    labels:
+      caddy: www.dev.bpmspace.net
+      caddy.reverse_proxy: "{{upstreams 80}}"

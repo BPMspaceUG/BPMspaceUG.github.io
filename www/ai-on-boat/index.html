@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI on Boat (Open Source)</title>
+<style>
+body { font-family: sans-serif; margin: 0; line-height: 1.6; color: #222; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+h1 { font-size: 2.2rem; margin-bottom: 1rem; }
+h2 { margin-top: 2rem; }
+.btn { display: inline-block; background: #0055aa; color: #fff; padding: 0.6rem 1rem; border-radius: 4px; text-decoration: none; }
+.btn:hover { background: #003f80; }
+footer { margin-top: 4rem; font-size: 0.9rem; text-align: center; color: #777; }
+</style>
+</head>
+<body>
+<main class="container">
+  <h1>AI on Boat (Open Source)</h1>
+  <p>Build a robust, privacy-first onboard data and automation platform with <strong>open-source</strong> components — and add AI where it truly helps.</p>
+
+  <h2>What's included (MVP)</h2>
+  <ul>
+    <li><strong>Data bus & integrations:</strong> NMEA 2000/0183 via CAN + Signal K; MQTT messaging</li>
+    <li><strong>Apps & dashboards:</strong> OpenCPN (nav), Grafana + InfluxDB (telemetry), Node-RED (automations), optional Home Assistant</li>
+    <li><strong>AI touchpoints:</strong> log triage, checklists, anomaly detection (on-device or edge)</li>
+    <li><strong>Hardware profile:</strong> Raspberry Pi 4/5, CAN/N2K interface, LTE/WiFi router, GNSS, IMU</li>
+    <li><strong>Remote access:</strong> WireGuard or Tailscale (optional)</li>
+  </ul>
+
+  <h2>Why this approach?</h2>
+  <ul>
+    <li>No vendor lock-in — standard protocols (Signal K / MQTT)</li>
+    <li>Offline-first — full control on board</li>
+    <li>Maintainable — reproducible playbooks & images</li>
+  </ul>
+
+  <h2>Delivery options</h2>
+  <ul>
+    <li>Scoping call (30–45 min) — free</li>
+    <li>Fixed-price install — hardened Pi image + dashboards</li>
+    <li>Add-ons: router config, remote support, alerting, AI checklist packs</li>
+  </ul>
+
+  <p><a class="btn" href="/#contact">Book a scoping call</a> or <a href="mailto:info@bpmspace.com">info@bpmspace.com</a></p>
+
+  <h2>Bill of Materials</h2>
+  <ul>
+    <li>Raspberry Pi 4/5 + 32–64GB SD</li>
+    <li>USB2CAN / MCP2515 + NMEA2000 cabling</li>
+    <li>LTE/WiFi router (e.g., Teltonika)</li>
+    <li>GNSS puck, IMU</li>
+    <li>12V→5V converter + fuses</li>
+  </ul>
+
+  <h2>Risks & mitigations</h2>
+  <ul>
+    <li><strong>PGN quirks:</strong> validate with canboat tools</li>
+    <li><strong>Power quality:</strong> brownout protection</li>
+    <li><strong>RF noise:</strong> proper cable shielding</li>
+  </ul>
+
+  <footer>© BPM Space — AI on Boat (Open Source)</footer>
+</main>
+</body>
+</html>
