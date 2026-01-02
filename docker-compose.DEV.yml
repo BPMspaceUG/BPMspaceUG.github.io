@@ -1,0 +1,21 @@
+services:
+  www:
+    build: .
+    hostname: training
+    container_name: training
+    restart: always
+    volumes:
+      - './www/:/var/www/html/'
+    working_dir: /var/www/html/
+    networks:
+      - training
+      - caddy
+    labels:
+      caddy: training.dev.bpmspace.net
+      caddy.reverse_proxy: "{{upstreams http}}"
+
+networks:
+  training:
+    driver: bridge
+  caddy:
+    external: true

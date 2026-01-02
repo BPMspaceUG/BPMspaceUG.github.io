@@ -10,7 +10,9 @@ This is a GitHub Pages static website for BPMspace GmbH, a Munich-based business
 
 ### Main Website Structure
 
-- **index.html**: Single-page application (SPA) with Bootstrap 4 template
+**Important**: All website content lives in the `/www` directory, which is the only directory published to GitHub Pages.
+
+- **www/index.html**: Single-page application (SPA) with Bootstrap 4 template
   - Header with sticky navigation using custom `u-header` components
   - Multiple sections: Home (carousel), About, Developer (job posting), Partners, Contact
   - Uses Unify template framework (custom CSS classes prefixed with `g-` and `u-`)
@@ -18,40 +20,49 @@ This is a GitHub Pages static website for BPMspace GmbH, a Munich-based business
 
 ### Asset Organization
 
-- **assets/css/**: Stylesheets organized by purpose
+- **www/assets/css/**: Stylesheets organized by purpose
   - `styles.op-business.css`: Main template styles
   - `custom.css`: Site-specific customizations
   - Third-party: Bootstrap, Font Awesome, Slick carousel, hamburgers menu
 
-- **assets/js/**: JavaScript modules
+- **www/assets/js/**: JavaScript modules
   - `hs.*.js`: Unify "HTML Stream" component modules (header, carousel, scroll navigation, etc.)
   - Third-party: jQuery, Bootstrap, Slick, GMaps
   - No custom application logic - all functionality is template-driven
 
 ### Sub-sections
 
-- **SOE/**: SecureOnlineExam product demo
+- **www/SOE/**: SecureOnlineExam product demo
   - Contains video player (`SOE_player.html`) with TechSmith Smart Player
   - Self-contained video presentation with config XML
 
-- **3756635456442343545444325323/**: Photo gallery (ChrisCraft boat images)
-  - `ChrisCraft.html`: Bootstrap carousel gallery
-  - `createhtml.php`: Generator script for carousel HTML from images
-  - Uses Docker command: `docker run -v $(pwd):/app/ php:8.0-cli php /app/createhtml.php > ChrisCraft.html`
+- **www/3756635456442343545444325323/**: Photo gallery (ChrisCraft boat images)
+  - `ChrisCraft.html`: Bootstrap carousel gallery (static HTML)
+  - `createhtml.php`: **Local-only** generator script for carousel HTML from images
+  - Script runs locally via Docker to generate static HTML: `docker run -v $(pwd):/app/ php:8.0-cli php /app/createhtml.php > ChrisCraft.html`
+  - **Important**: GitHub Pages serves only static files (HTML/CSS/JS), no server-side execution
 
 ## Development Workflow
 
 ### Publishing Changes
 
-This is a GitHub Pages site hosted directly from the master branch. Any commits pushed to master are automatically published to the live site.
+This is a **GitHub Pages static site** using GitHub Actions for deployment.
+
+**Critical**:
+- GitHub Pages only serves static files (HTML, CSS, JavaScript, images)
+- No server-side code (PHP, Python, etc.) runs in production
+- **Only the `/www` directory is published** to GitHub Pages (configured in `.github/workflows/pages.yml`)
+- Any dynamic content must be pre-generated locally before committing
 
 ```bash
-# Make changes to HTML/CSS/assets
-git add .
+# Make changes to files in /www directory
+git add www/
 git commit -m "Description of changes"
 git push origin master
-# Changes go live automatically
+# GitHub Actions workflow automatically deploys /www to GitHub Pages
 ```
+
+The workflow is triggered on every push to master and publishes only the `www/` directory content.
 
 ### Regenerating Photo Gallery
 
@@ -68,15 +79,58 @@ git push origin master
 
 ### Testing Locally
 
-Since this is a static site, you can test by:
+This project uses **Caddy** as a reverse proxy with Docker Compose. There are two environments:
+
+#### Development Environment (DEV)
+Uses mounted volumes for live editing:
 
 ```bash
-# Simple HTTP server
-python3 -m http.server 8000
-# Then visit http://localhost:8000
+# Start DEV environment with mounted volumes
+docker compose -f docker-compose.DEV.yml up -d --build
+
+# Access via Caddy reverse proxy
+# URL: https://training.dev.bpmspace.net
 ```
 
-Or open `index.html` directly in a browser (some features like Google Maps may require a server).
+#### Test Environment (TEST)
+Uses files baked into the image (no mounted volumes):
+
+```bash
+# Start TEST environment without mounted volumes
+docker compose -f docker-compose.TEST.yml up -d --build
+
+# Access via Caddy reverse proxy
+# URL: https://training.test.bpmspace.net
+```
+
+To stop either environment:
+
+```bash
+# Stop DEV
+docker compose -f docker-compose.DEV.yml down
+
+# Stop TEST
+docker compose -f docker-compose.TEST.yml down
+```
+
+**Important**: Both environments connect to an external Caddy network that handles SSL/TLS termination and routing based on Docker labels. Do NOT start a separate Caddy server - there is already a Caddy reverse proxy running externally.
+
+### Docker Setup Details
+
+The project uses:
+- **Dockerfile**: Builds an nginx:alpine image with the website files
+- **docker-compose.DEV.yml**: DEV environment with mounted volumes (`./www/:/var/www/html/`) for live editing
+- **docker-compose.TEST.yml**: TEST environment with files baked into the image (no volumes)
+
+Both compose files:
+- Build the same Dockerfile
+- Use hostname `training` and container name `training`
+- Connect to two networks: `training` (bridge) and `caddy` (external)
+- Set Caddy labels for automatic routing:
+  - DEV: `training.dev.bpmspace.net`
+  - TEST: `training.test.bpmspace.net`
+
+The external Caddy server reads these labels and automatically routes HTTPS traffic to the container.
 
 ## Key Technical Details
 

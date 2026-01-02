@@ -1,66 +1,766 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI on Boat (Open Source)</title>
-<style>
-body { font-family: sans-serif; margin: 0; line-height: 1.6; color: #222; }
-.container { max-width: 900px; margin: 0 auto; padding: 2rem; }
-h1 { font-size: 2.2rem; margin-bottom: 1rem; }
-h2 { margin-top: 2rem; }
-.btn { display: inline-block; background: #0055aa; color: #fff; padding: 0.6rem 1rem; border-radius: 4px; text-decoration: none; }
-.btn:hover { background: #003f80; }
-footer { margin-top: 4rem; font-size: 0.9rem; text-align: center; color: #777; }
-</style>
+    <!-- Title -->
+    <title>AI on Boat - Smart Maritime Assistant | BPMspace</title>
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="AI-powered maritime assistant for private boats - integrating local sensors, global data, and proactive safety alerts">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../assets/img/favicon/favicon.ico">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/simple-line-icons.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/hamburgers.min.css">
+    <link rel="stylesheet" href="../assets/css/animate.css">
+    <link rel="stylesheet" href="../assets/css/slick.css">
+    <!-- CSS Template -->
+    <link rel="stylesheet" href="../assets/css/styles.op-business.css">
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="../assets/css/custom.css">
 </head>
+
 <body>
-<main class="container">
-  <h1>AI on Boat (Open Source)</h1>
-  <p>Build a robust, privacy-first onboard data and automation platform with <strong>open-source</strong> components — and add AI where it truly helps.</p>
+    <main>
+        <!-- Header v1 -->
+        <header id="js-header" class="u-header u-header--sticky-top u-header--change-appearance" data-header-fix-moment="100">
+            <div class="u-header__section g-theme-bg-blue-dark-v1-opacity-0_9 g-transition-0_3 g-py-25" data-header-fix-moment-exclude="g-py-25" data-header-fix-moment-classes="g-py-20">
+                <nav class="navbar navbar-expand-lg py-0">
+                    <div class="container g-pos-rel">
+                        <!-- Logo -->
+                        <a href="/#!" class="js-go-to navbar-brand u-header__logo" data-type="static">
+                            <img class="img-fluid u-header__logo-img u-header__logo-img--main" src="../assets/img/bpmspace_weblogo.png" alt="BPMspace Logo">
+                        </a>
+                        <!-- End Logo -->
+                        <!-- Navigation -->
+                        <div class="collapse navbar-collapse align-items-center flex-sm-row" id="navBar">
+                            <ul class="navbar-nav text-uppercase g-letter-spacing-2 g-font-size-11 g-pt-20 g-pt-0--lg ml-auto">
+                                <li class="nav-item g-mr-10--lg g-mr-15--xl g-mb-7 g-mb-0--lg">
+                                    <a href="/" class="nav-link g-color-white p-0">Home</a>
+                                </li>
+                                <li class="nav-item g-mx-10--lg g-mx-15--xl g-mb-7 g-mb-0--lg active">
+                                    <a href="/ai-on-boat/" class="nav-link g-color-white p-0">AI on Boat <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item g-mx-10--lg g-mx-15--xl g-mb-7 g-mb-0--lg">
+                                    <a href="/#contact" class="nav-link g-color-white p-0">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End Navigation -->
+                        <!-- Responsive Toggle Button -->
+                        <button class="navbar-toggler btn g-line-height-1 g-brd-none g-pa-0 g-pos-abs g-top-10 g-right-0" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
+                     <span class="hamburger hamburger--slider">
+                     <span class="hamburger-box">
+                     <span class="hamburger-inner"></span>
+                     </span>
+                     </span>
+                     </button>
+                        <!-- End Responsive Toggle Button -->
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- End Header v1 -->
 
-  <h2>What's included (MVP)</h2>
-  <ul>
-    <li><strong>Data bus & integrations:</strong> NMEA 2000/0183 via CAN + Signal K; MQTT messaging</li>
-    <li><strong>Apps & dashboards:</strong> OpenCPN (nav), Grafana + InfluxDB (telemetry), Node-RED (automations), optional Home Assistant</li>
-    <li><strong>AI touchpoints:</strong> log triage, checklists, anomaly detection (on-device or edge)</li>
-    <li><strong>Hardware profile:</strong> Raspberry Pi 4/5, CAN/N2K interface, LTE/WiFi router, GNSS, IMU</li>
-    <li><strong>Remote access:</strong> WireGuard or Tailscale (optional)</li>
-  </ul>
+        <!-- Hero Section -->
+        <section id="home" class="g-pos-rel g-theme-bg-blue-dark-v1">
+            <div class="g-bg-img-hero g-min-height-500 g-flex-centered" style="background-image: linear-gradient(135deg, rgba(0,60,136,0.95) 0%, rgba(0,100,200,0.85) 100%); min-height: 60vh;">
+                <div class="container text-center g-width-780">
+                    <div class="g-pos-rel g-z-index-3 g-pa-40 g-pa-60--md">
+                        <h3 class="h3 text-uppercase g-letter-spacing-3 g-font-size-default g-color-white-opacity-0_8 g-mb-15">
+                            <i class="fas fa-anchor g-mr-10"></i>Smart Maritime Technology
+                        </h3>
+                        <h1 class="h1 g-color-white g-letter-spacing-3 g-font-weight-600 g-font-size-35 g-font-size-50--md g-mb-25">
+                            AI on Boat
+                        </h1>
+                        <p class="g-line-height-2 g-letter-spacing-1 g-color-white g-font-size-16 g-mb-35">
+                            Your intelligent maritime companion - integrating local sensors, global weather data, and proactive safety alerts to keep you informed, safe, and in control on every voyage.
+                        </p>
+                        <a href="#features" class="btn u-btn-primary g-font-weight-600 g-font-size-12 text-uppercase g-px-30 g-py-15 g-mr-10 g-mb-10">
+                            Explore Features
+                        </a>
+                        <a href="#contact-section" class="btn u-btn-white g-font-weight-600 g-font-size-12 text-uppercase g-px-30 g-py-15 g-mb-10">
+                            Book Scoping Call
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Hero Section -->
 
-  <h2>Why this approach?</h2>
-  <ul>
-    <li>No vendor lock-in — standard protocols (Signal K / MQTT)</li>
-    <li>Offline-first — full control on board</li>
-    <li>Maintainable — reproducible playbooks & images</li>
-  </ul>
+        <!-- Overview Section -->
+        <section id="overview" class="g-theme-bg-blue-dark-v2 g-py-80">
+            <div class="container text-center g-width-780 g-color-gray-light-v2 g-mb-60">
+                <div class="text-uppercase u-heading-v2-4--bottom g-brd-primary g-mb-40">
+                    <h4 class="h6 g-font-weight-800 g-font-size-12 g-letter-spacing-2 g-color-primary g-mb-20">What We Offer</h4>
+                    <h2 class="h1 u-heading-v2__title g-line-height-1_3 g-font-weight-600 g-font-size-40 g-color-white g-mb-minus-10">
+                        Your Personal Maritime AI Assistant
+                    </h2>
+                </div>
+                <p class="g-color-gray-light-v2 g-font-size-16 g-mb-0">
+                    Build a robust, privacy-first onboard data and automation platform with open-source components — and add AI where it truly helps. From real-time sensor monitoring to weather forecasting and intelligent alerts, keep your crew safe and your vessel running smoothly.
+                </p>
+            </div>
+        </section>
+        <!-- End Overview Section -->
 
-  <h2>Delivery options</h2>
-  <ul>
-    <li>Scoping call (30–45 min) — free</li>
-    <li>Fixed-price install — hardened Pi image + dashboards</li>
-    <li>Add-ons: router config, remote support, alerting, AI checklist packs</li>
-  </ul>
+        <!-- Features Section -->
+        <section id="features" class="g-theme-bg-blue-dark-v1 g-py-80">
+            <div class="container text-center g-width-780 g-color-gray-light-v2 g-mb-60">
+                <div class="text-uppercase u-heading-v2-4--bottom g-brd-primary g-mb-40">
+                    <h4 class="h6 g-font-weight-800 g-font-size-12 g-letter-spacing-2 g-color-primary g-mb-20">Capabilities</h4>
+                    <h2 class="h1 u-heading-v2__title g-line-height-1_3 g-font-weight-600 g-font-size-40 g-color-white g-mb-minus-10">
+                        Comprehensive AI-Powered Features
+                    </h2>
+                </div>
+            </div>
 
-  <p><a class="btn" href="/#contact">Book a scoping call</a> or <a href="mailto:info@bpmspace.com">info@bpmspace.com</a></p>
+            <div class="container">
+                <!-- Local Sensor Integration -->
+                <div class="row g-mb-50">
+                    <div class="col-12 g-mb-40">
+                        <h3 class="h4 text-uppercase g-font-size-20 g-color-primary g-mb-30 text-center">
+                            <i class="fas fa-broadcast-tower g-mr-10"></i>Local Sensor Integration
+                        </h3>
+                    </div>
+                    <div class="col-lg-4 g-px-30 g-mb-40">
+                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm h-100">
+                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
+                                <div class="g-pull-50x-left">
+                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-rounded-50x">
+                                        <i class="fas fa-tachometer-alt"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">Engine Monitoring</h3>
+                            <p class="g-color-gray-light-v2 mb-0">Real-time RPM, temperature, oil pressure, and fuel consumption tracking via NMEA 2000/CAN bus integration.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 g-px-30 g-mb-40">
+                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm h-100">
+                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
+                                <div class="g-pull-50x-left">
+                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-rounded-50x">
+                                        <i class="fas fa-location-arrow"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">GPS & Navigation</h3>
+                            <p class="g-color-gray-light-v2 mb-0">Precise positioning, speed over ground, course tracking, and automatic waypoint logging with GNSS integration.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 g-px-30 g-mb-40">
+                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm h-100">
+                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
+                                <div class="g-pull-50x-left">
+                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-rounded-50x">
+                                        <i class="fas fa-water"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">Hull & Environment</h3>
+                            <p class="g-color-gray-light-v2 mb-0">Bilge level, battery voltage, water/fuel tank levels, depth sounder, and ambient temperature/humidity sensors.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 g-px-30 g-mb-40">
+                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm h-100">
+                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
+                                <div class="g-pull-50x-left">
+                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-rounded-50x">
+                                        <i class="fas fa-wifi"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">Connectivity Status</h3>
+                            <p class="g-color-gray-light-v2 mb-0">LTE/4G signal strength, WiFi status, mobile router diagnostics, and automatic failover management.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 g-px-30 g-mb-40">
+                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm h-100">
+                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
+                                <div class="g-pull-50x-left">
+                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-rounded-50x">
+                                        <i class="fas fa-compass"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">Motion & Stability</h3>
+                            <p class="g-color-gray-light-v2 mb-0">IMU (Inertial Measurement Unit) for pitch, roll, yaw detection and sea state analysis.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 g-px-30 g-mb-40">
+                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm h-100">
+                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
+                                <div class="g-pull-50x-left">
+                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-rounded-50x">
+                                        <i class="fas fa-chart-line"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">Data Logging & Trends</h3>
+                            <p class="g-color-gray-light-v2 mb-0">InfluxDB time-series storage with Grafana dashboards for historical analysis and predictive maintenance.</p>
+                        </div>
+                    </div>
+                </div>
 
-  <h2>Bill of Materials</h2>
-  <ul>
-    <li>Raspberry Pi 4/5 + 32–64GB SD</li>
-    <li>USB2CAN / MCP2515 + NMEA2000 cabling</li>
-    <li>LTE/WiFi router (e.g., Teltonika)</li>
-    <li>GNSS puck, IMU</li>
-    <li>12V→5V converter + fuses</li>
-  </ul>
+                <!-- Global Data Integration -->
+                <div class="row g-mb-50">
+                    <div class="col-12 g-mb-40">
+                        <h3 class="h4 text-uppercase g-font-size-20 g-color-primary g-mb-30 text-center">
+                            <i class="fas fa-globe-americas g-mr-10"></i>Global Data Integration
+                        </h3>
+                    </div>
+                    <div class="col-lg-4 g-px-30 g-mb-40">
+                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm h-100">
+                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
+                                <div class="g-pull-50x-left">
+                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-rounded-50x">
+                                        <i class="fas fa-cloud-sun"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">Weather Forecasting</h3>
+                            <p class="g-color-gray-light-v2 mb-0">Multi-day marine weather forecasts, wind speed/direction, wave height, visibility, and storm tracking for your route.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 g-px-30 g-mb-40">
+                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm h-100">
+                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
+                                <div class="g-pull-50x-left">
+                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-rounded-50x">
+                                        <i class="fas fa-water"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">Tide & Current Data</h3>
+                            <p class="g-color-gray-light-v2 mb-0">Tidal predictions, current forecasts, and optimal departure time calculations for your marina and destination.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 g-px-30 g-mb-40">
+                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm h-100">
+                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
+                                <div class="g-pull-50x-left">
+                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-rounded-50x">
+                                        <i class="fas fa-anchor"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">Marina & POI Info</h3>
+                            <p class="g-color-gray-light-v2 mb-0">Nearby marinas, fuel docks, restaurants, anchorages, with reviews, facilities, and availability information.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 g-px-30 g-mb-40">
+                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm h-100">
+                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
+                                <div class="g-pull-50x-left">
+                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-rounded-50x">
+                                        <i class="fas fa-file-alt"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">Maritime Regulations</h3>
+                            <p class="g-color-gray-light-v2 mb-0">Permit requirements, customs procedures, navigation restrictions, and local boating regulations by region.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 g-px-30 g-mb-40">
+                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm h-100">
+                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
+                                <div class="g-pull-50x-left">
+                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-rounded-50x">
+                                        <i class="fas fa-traffic-light"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">AIS & Traffic</h3>
+                            <p class="g-color-gray-light-v2 mb-0">Live vessel traffic, collision avoidance alerts, and commercial shipping lane awareness.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 g-px-30 g-mb-40">
+                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm h-100">
+                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
+                                <div class="g-pull-50x-left">
+                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-rounded-50x">
+                                        <i class="fas fa-fish"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">Environmental Data</h3>
+                            <p class="g-color-gray-light-v2 mb-0">Water temperature maps, fishing hotspots, marine wildlife alerts, and protected area notifications.</p>
+                        </div>
+                    </div>
+                </div>
 
-  <h2>Risks & mitigations</h2>
-  <ul>
-    <li><strong>PGN quirks:</strong> validate with canboat tools</li>
-    <li><strong>Power quality:</strong> brownout protection</li>
-    <li><strong>RF noise:</strong> proper cable shielding</li>
-  </ul>
+                <!-- Proactive AI Alerts -->
+                <div class="row">
+                    <div class="col-12 g-mb-40">
+                        <h3 class="h4 text-uppercase g-font-size-20 g-color-primary g-mb-30 text-center">
+                            <i class="fas fa-bell g-mr-10"></i>Proactive AI Alerts & Automation
+                        </h3>
+                    </div>
+                    <div class="col-lg-4 g-px-30 g-mb-40">
+                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm h-100">
+                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
+                                <div class="g-pull-50x-left">
+                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-rounded-50x">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">Safety Warnings</h3>
+                            <p class="g-color-gray-light-v2 mb-0">Critical alerts for high engine temp, low fuel, bilge pump activation, battery drain, and hull breach detection.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 g-px-30 g-mb-40">
+                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm h-100">
+                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
+                                <div class="g-pull-50x-left">
+                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-rounded-50x">
+                                        <i class="fas fa-wind"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">Weather Alerts</h3>
+                            <p class="g-color-gray-light-v2 mb-0">Storm warnings, sudden wind shifts, fog advisories, and recommendations to seek safe harbor.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 g-px-30 g-mb-40">
+                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm h-100">
+                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
+                                <div class="g-pull-50x-left">
+                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-rounded-50x">
+                                        <i class="fas fa-route"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">Navigation Assistance</h3>
+                            <p class="g-color-gray-light-v2 mb-0">Optimal route suggestions, shallow water warnings, restricted area alerts, and drift/anchor drag detection.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 g-px-30 g-mb-40">
+                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm h-100">
+                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
+                                <div class="g-pull-50x-left">
+                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-rounded-50x">
+                                        <i class="fas fa-wrench"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">Maintenance Reminders</h3>
+                            <p class="g-color-gray-light-v2 mb-0">Engine hour tracking, oil change intervals, battery checks, safety equipment expiration, and seasonal prep checklists.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 g-px-30 g-mb-40">
+                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm h-100">
+                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
+                                <div class="g-pull-50x-left">
+                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-rounded-50x">
+                                        <i class="fas fa-passport"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">Documentation Alerts</h3>
+                            <p class="g-color-gray-light-v2 mb-0">Permit expiration warnings, customs deadline reminders, registration renewals, and insurance notifications.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 g-px-30 g-mb-40">
+                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm h-100">
+                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
+                                <div class="g-pull-50x-left">
+                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-rounded-50x">
+                                        <i class="fas fa-utensils"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">Smart Recommendations</h3>
+                            <p class="g-color-gray-light-v2 mb-0">Best anchorages based on conditions, nearby restaurant suggestions, fuel stop optimization, and activity planning.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Features Section -->
 
-  <footer>© BPM Space — AI on Boat (Open Source)</footer>
-</main>
+        <!-- Use Cases Section -->
+        <section id="use-cases" class="g-theme-bg-blue-v1 g-py-80">
+            <div class="container text-center g-width-780 g-color-gray-light-v2 g-mb-60">
+                <div class="text-uppercase u-heading-v2-4--bottom g-brd-primary g-mb-40">
+                    <h4 class="h6 g-font-weight-800 g-font-size-12 g-letter-spacing-2 g-color-primary g-mb-20">Real-World Scenarios</h4>
+                    <h2 class="h1 u-heading-v2__title g-line-height-1_3 g-font-weight-600 g-font-size-40 g-color-gray-light-v2 g-mb-minus-10">
+                        How AI on Boat Helps You
+                    </h2>
+                </div>
+            </div>
+
+            <div class="container g-width-900">
+                <div class="row">
+                    <div class="col-lg-6 g-mb-30">
+                        <div class="g-theme-bg-blue-dark-v2 g-pa-30 h-100">
+                            <div class="g-mb-20">
+                                <i class="fas fa-3x fa-cloud-showers-heavy g-color-primary"></i>
+                            </div>
+                            <h4 class="h5 g-color-white g-mb-15">Storm Avoidance</h4>
+                            <p class="g-color-gray-light-v2 g-font-size-14 mb-0">
+                                <strong>Scenario:</strong> You're planning a weekend cruise. The AI analyzes weather patterns along your route and alerts you: "Storm system approaching your destination in 18 hours with 35kt winds. Recommend delaying departure or changing course to alternate anchorage."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 g-mb-30">
+                        <div class="g-theme-bg-blue-dark-v2 g-pa-30 h-100">
+                            <div class="g-mb-20">
+                                <i class="fas fa-3x fa-temperature-high g-color-primary"></i>
+                            </div>
+                            <h4 class="h5 g-color-white g-mb-15">Engine Overheating Prevention</h4>
+                            <p class="g-color-gray-light-v2 g-font-size-14 mb-0">
+                                <strong>Scenario:</strong> While underway, coolant temperature rises above normal. The AI immediately alerts you: "Engine temp 15°F above baseline. Possible impeller failure or cooling system blockage. Reduce RPM and check raw water intake." Preventing costly engine damage.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 g-mb-30">
+                        <div class="g-theme-bg-blue-dark-v2 g-pa-30 h-100">
+                            <div class="g-mb-20">
+                                <i class="fas fa-3x fa-gas-pump g-color-primary"></i>
+                            </div>
+                            <h4 class="h5 g-color-white g-mb-15">Smart Fuel Planning</h4>
+                            <p class="g-color-gray-light-v2 g-font-size-14 mb-0">
+                                <strong>Scenario:</strong> Planning a long passage, the AI calculates: "Current fuel: 65%. Distance to destination: 120nm. Estimated consumption: 72%. Nearest fuel dock at Marina Bay (30nm off course) has diesel at $3.89/gal. Recommend refueling before departure."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 g-mb-30">
+                        <div class="g-theme-bg-blue-dark-v2 g-pa-30 h-100">
+                            <div class="g-mb-20">
+                                <i class="fas fa-3x fa-anchor g-color-primary"></i>
+                            </div>
+                            <h4 class="h5 g-color-white g-mb-15">Perfect Anchorage Finder</h4>
+                            <p class="g-color-gray-light-v2 g-font-size-14 mb-0">
+                                <strong>Scenario:</strong> Evening approaches and you need to anchor. The AI suggests: "Recommended: Hidden Cove (2.3nm NE). Protection from SW winds, 12-15ft depth, good holding in mud. Nearby: Waterfront Grill (4.5★, fresh seafood). No anchoring restrictions."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 g-mb-30">
+                        <div class="g-theme-bg-blue-dark-v2 g-pa-30 h-100">
+                            <div class="g-mb-20">
+                                <i class="fas fa-3x fa-file-signature g-color-primary"></i>
+                            </div>
+                            <h4 class="h5 g-color-white g-mb-15">Permit Compliance</h4>
+                            <p class="g-color-gray-light-v2 g-font-size-14 mb-0">
+                                <strong>Scenario:</strong> Crossing into new waters, the AI reminds you: "Entering County Water District. Pump-out permit required ($45, valid 30 days). Your current permit expires in 3 days. Nearest purchase location: Harbormaster Office, Pier 12."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 g-mb-30">
+                        <div class="g-theme-bg-blue-dark-v2 g-pa-30 h-100">
+                            <div class="g-mb-20">
+                                <i class="fas fa-3x fa-battery-quarter g-color-primary"></i>
+                            </div>
+                            <h4 class="h5 g-color-white g-mb-15">Battery Management</h4>
+                            <p class="g-color-gray-light-v2 g-font-size-14 mb-0">
+                                <strong>Scenario:</strong> At anchor overnight, the AI monitors power: "House battery at 68% (11.9V). Current consumption: 4.2A. Projected runtime: 14 hours. Refrigerator and navigation lights consuming 85% of power. Consider starting generator or reducing load."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Use Cases Section -->
+
+        <!-- Technical Stack Section -->
+        <section id="technical" class="g-theme-bg-blue-dark-v1 g-py-80">
+            <div class="container text-center g-width-780 g-color-gray-light-v2 g-mb-60">
+                <div class="text-uppercase u-heading-v2-4--bottom g-brd-primary g-mb-40">
+                    <h4 class="h6 g-font-weight-800 g-font-size-12 g-letter-spacing-2 g-color-primary g-mb-20">Open Source Platform</h4>
+                    <h2 class="h1 u-heading-v2__title g-line-height-1_3 g-font-weight-600 g-font-size-40 g-color-white g-mb-minus-10">
+                        What's Included (MVP)
+                    </h2>
+                </div>
+            </div>
+
+            <div class="container g-width-900">
+                <div class="row">
+                    <div class="col-lg-6 g-mb-40">
+                        <div class="g-theme-bg-blue-dark-v2 g-pa-30">
+                            <h4 class="h5 g-color-primary g-mb-20">
+                                <i class="fas fa-microchip g-mr-10"></i>Data Bus & Integrations
+                            </h4>
+                            <ul class="g-color-gray-light-v2 g-font-size-14">
+                                <li>NMEA 2000/0183 via CAN bus</li>
+                                <li>Signal K server (open marine data standard)</li>
+                                <li>MQTT messaging for real-time updates</li>
+                                <li>RESTful API for third-party integrations</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 g-mb-40">
+                        <div class="g-theme-bg-blue-dark-v2 g-pa-30">
+                            <h4 class="h5 g-color-primary g-mb-20">
+                                <i class="fas fa-desktop g-mr-10"></i>Apps & Dashboards
+                            </h4>
+                            <ul class="g-color-gray-light-v2 g-font-size-14">
+                                <li>OpenCPN for navigation & charts</li>
+                                <li>Grafana + InfluxDB for telemetry</li>
+                                <li>Node-RED for automation workflows</li>
+                                <li>Optional: Home Assistant integration</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 g-mb-40">
+                        <div class="g-theme-bg-blue-dark-v2 g-pa-30">
+                            <h4 class="h5 g-color-primary g-mb-20">
+                                <i class="fas fa-robot g-mr-10"></i>AI Touchpoints
+                            </h4>
+                            <ul class="g-color-gray-light-v2 g-font-size-14">
+                                <li>Automated log triage and summarization</li>
+                                <li>Pre-departure safety checklists</li>
+                                <li>Anomaly detection (on-device or edge)</li>
+                                <li>Natural language queries and alerts</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 g-mb-40">
+                        <div class="g-theme-bg-blue-dark-v2 g-pa-30">
+                            <h4 class="h5 g-color-primary g-mb-20">
+                                <i class="fas fa-tools g-mr-10"></i>Hardware Profile
+                            </h4>
+                            <ul class="g-color-gray-light-v2 g-font-size-14">
+                                <li>Raspberry Pi 4/5 (8GB recommended)</li>
+                                <li>CAN/NMEA2000 interface (MCP2515/USB2CAN)</li>
+                                <li>LTE/WiFi router (e.g., Teltonika)</li>
+                                <li>GNSS module, IMU, environmental sensors</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-mt-30">
+                    <div class="col-12">
+                        <div class="g-theme-bg-blue-dark-v2 g-pa-40 text-center">
+                            <h4 class="h5 g-color-white g-mb-20">
+                                <i class="fas fa-shield-alt g-mr-10"></i>Why This Approach?
+                            </h4>
+                            <div class="row">
+                                <div class="col-md-4 g-mb-20 g-mb-0--md">
+                                    <i class="fas fa-2x fa-unlock g-color-primary g-mb-15"></i>
+                                    <h5 class="h6 g-color-gray-light-v2 g-mb-10">No Vendor Lock-in</h5>
+                                    <p class="g-color-gray-light-v2 g-font-size-13 mb-0">Standard protocols (Signal K / MQTT)</p>
+                                </div>
+                                <div class="col-md-4 g-mb-20 g-mb-0--md">
+                                    <i class="fas fa-2x fa-plug g-color-primary g-mb-15"></i>
+                                    <h5 class="h6 g-color-gray-light-v2 g-mb-10">Offline-First</h5>
+                                    <p class="g-color-gray-light-v2 g-font-size-13 mb-0">Full control on board, no cloud dependency</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <i class="fas fa-2x fa-cogs g-color-primary g-mb-15"></i>
+                                    <h5 class="h6 g-color-gray-light-v2 g-mb-10">Maintainable</h5>
+                                    <p class="g-color-gray-light-v2 g-font-size-13 mb-0">Reproducible playbooks & images</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Technical Stack Section -->
+
+        <!-- BOM & Pricing Section -->
+        <section id="pricing" class="g-theme-bg-blue-dark-v2 g-py-80">
+            <div class="container text-center g-width-780 g-color-gray-light-v2 g-mb-60">
+                <div class="text-uppercase u-heading-v2-4--bottom g-brd-primary g-mb-40">
+                    <h4 class="h6 g-font-weight-800 g-font-size-12 g-letter-spacing-2 g-color-primary g-mb-20">Get Started</h4>
+                    <h2 class="h1 u-heading-v2__title g-line-height-1_3 g-font-weight-600 g-font-size-40 g-color-white g-mb-minus-10">
+                        Delivery Options & Bill of Materials
+                    </h2>
+                </div>
+            </div>
+
+            <div class="container g-width-900">
+                <div class="row g-mb-50">
+                    <div class="col-lg-4 g-mb-30">
+                        <div class="g-theme-bg-blue-dark-v1 g-pa-30 text-center h-100 g-brd-around g-brd-primary">
+                            <i class="fas fa-3x fa-phone-volume g-color-primary g-mb-20"></i>
+                            <h4 class="h5 g-color-white g-mb-15">Scoping Call</h4>
+                            <p class="g-color-gray-light-v2 g-font-size-14 g-mb-20">30–45 minute consultation to assess your boat's needs and existing systems</p>
+                            <div class="h2 g-color-primary g-mb-10">FREE</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 g-mb-30">
+                        <div class="g-theme-bg-blue-dark-v1 g-pa-30 text-center h-100 g-brd-around g-brd-primary">
+                            <i class="fas fa-3x fa-box-open g-color-primary g-mb-20"></i>
+                            <h4 class="h5 g-color-white g-mb-15">Fixed-Price Install</h4>
+                            <p class="g-color-gray-light-v2 g-font-size-14 g-mb-20">Hardened Raspberry Pi image + pre-configured dashboards + installation support</p>
+                            <div class="h2 g-color-primary g-mb-10">Contact</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 g-mb-30">
+                        <div class="g-theme-bg-blue-dark-v1 g-pa-30 text-center h-100 g-brd-around g-brd-primary">
+                            <i class="fas fa-3x fa-puzzle-piece g-color-primary g-mb-20"></i>
+                            <h4 class="h5 g-color-white g-mb-15">Add-Ons</h4>
+                            <p class="g-color-gray-light-v2 g-font-size-14 g-mb-20">Router config, remote support, custom alerting, AI checklist packs, ongoing maintenance</p>
+                            <div class="h2 g-color-primary g-mb-10">À la carte</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="g-theme-bg-blue-dark-v1 g-pa-40">
+                            <h4 class="h5 g-color-primary g-mb-30 text-center">
+                                <i class="fas fa-shopping-cart g-mr-10"></i>Bill of Materials (Estimated)
+                            </h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="g-color-gray-light-v2 g-font-size-14">
+                                        <li><strong>Raspberry Pi 4/5 (8GB)</strong> + 32–64GB SD card</li>
+                                        <li><strong>USB2CAN adapter</strong> or MCP2515 HAT</li>
+                                        <li><strong>NMEA2000 cabling & connectors</strong></li>
+                                        <li><strong>LTE/WiFi router</strong> (e.g., Teltonika RUT240/RUT950)</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="g-color-gray-light-v2 g-font-size-14">
+                                        <li><strong>GNSS module</strong> (GPS antenna/puck)</li>
+                                        <li><strong>IMU sensor</strong> (pitch/roll/yaw detection)</li>
+                                        <li><strong>12V→5V DC converter</strong> + fuses & wiring</li>
+                                        <li><strong>Enclosure</strong> (marine-rated, IP65+)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p class="text-center g-color-gray-light-v2 g-font-size-13 g-mt-20 mb-0">
+                                <em>Total hardware cost: approx. $400–800 depending on components selected</em>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End BOM & Pricing Section -->
+
+        <!-- Risk Mitigation Section -->
+        <section id="risks" class="g-theme-bg-blue-v1 g-py-60">
+            <div class="container g-width-900">
+                <div class="g-theme-bg-blue-dark-v2 g-pa-40">
+                    <h4 class="h5 g-color-primary g-mb-30 text-center">
+                        <i class="fas fa-hard-hat g-mr-10"></i>Risks & Mitigations
+                    </h4>
+                    <div class="row">
+                        <div class="col-md-4 g-mb-20 g-mb-0--md">
+                            <div class="text-center">
+                                <i class="fas fa-2x fa-network-wired g-color-primary g-mb-15"></i>
+                                <h5 class="h6 g-color-white g-mb-10">PGN Quirks</h5>
+                                <p class="g-color-gray-light-v2 g-font-size-13 mb-0">Validate NMEA messages with canboat tools and device-specific testing</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 g-mb-20 g-mb-0--md">
+                            <div class="text-center">
+                                <i class="fas fa-2x fa-bolt g-color-primary g-mb-15"></i>
+                                <h5 class="h6 g-color-white g-mb-10">Power Quality</h5>
+                                <p class="g-color-gray-light-v2 g-font-size-13 mb-0">Brownout protection, surge suppression, proper fusing & wire gauge</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <i class="fas fa-2x fa-broadcast-tower g-color-primary g-mb-15"></i>
+                                <h5 class="h6 g-color-white g-mb-10">RF Noise</h5>
+                                <p class="g-color-gray-light-v2 g-font-size-13 mb-0">Proper cable shielding, grounding, ferrite cores on data lines</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Risk Mitigation Section -->
+
+        <!-- Contact Section -->
+        <section id="contact-section" class="g-theme-bg-blue-dark-v1 g-py-80">
+            <div class="container text-center g-width-780 g-color-gray-light-v2 g-mb-40">
+                <div class="text-uppercase u-heading-v2-4--bottom g-brd-primary g-mb-40">
+                    <h4 class="h6 g-font-weight-800 g-font-size-12 g-letter-spacing-2 g-color-primary g-mb-20">Get in Touch</h4>
+                    <h2 class="h1 u-heading-v2__title g-line-height-1_3 g-font-weight-600 g-font-size-40 g-color-white g-mb-minus-10">
+                        Ready to Get Started?
+                    </h2>
+                </div>
+                <p class="g-color-gray-light-v2 g-font-size-16 g-mb-40">
+                    Book a free scoping call to discuss your boat's specific needs, or reach out directly to learn more about AI on Boat.
+                </p>
+                <div class="g-mb-30">
+                    <a href="/#contact" class="btn u-btn-primary g-font-weight-600 g-font-size-13 text-uppercase g-px-30 g-py-15 g-mr-10 g-mb-10">
+                        <i class="fas fa-calendar-check g-mr-10"></i>Book a Scoping Call
+                    </a>
+                    <a href="mailto:info@bpmspace.com" class="btn u-btn-white g-font-weight-600 g-font-size-13 text-uppercase g-px-30 g-py-15 g-mb-10">
+                        <i class="fas fa-envelope g-mr-10"></i>info@bpmspace.com
+                    </a>
+                </div>
+            </div>
+
+            <div class="container g-width-600">
+                <div class="row text-center">
+                    <div class="col-md-6 g-mb-30 g-mb-0--md">
+                        <div class="g-theme-bg-blue-dark-v2 g-pa-25">
+                            <i class="fas fa-2x fa-map-marker-alt g-color-primary g-mb-15"></i>
+                            <h5 class="h6 g-color-white g-mb-10">Address</h5>
+                            <p class="g-color-gray-light-v2 g-font-size-14 mb-0">Landaubogen 1<br>81373 München</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="g-theme-bg-blue-dark-v2 g-pa-25">
+                            <i class="fas fa-2x fa-phone g-color-primary g-mb-15"></i>
+                            <h5 class="h6 g-color-white g-mb-10">Phone</h5>
+                            <p class="g-color-gray-light-v2 g-font-size-14 mb-0">+49 (89) 80926631</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Contact Section -->
+
+        <!-- Footer -->
+        <footer class="text-center g-color-gray-light-v2 g-theme-bg-blue-dark-v2 g-py-40">
+            <div class="container">
+                <p class="g-font-size-13 mb-0">© 2025 BPMspace GmbH — AI on Boat (Open Source) | <a href="/#contact" class="g-color-primary">Legal / Impressum</a></p>
+            </div>
+        </footer>
+        <!-- End Footer -->
+
+        <!-- Go to Top Button -->
+        <a class="js-go-to u-go-to-v1" href="#!" data-type="fixed" data-position='{
+            "bottom": 15,
+            "right": 15
+            }' data-offset-top="400" data-compensation="#js-header" data-show-effect="zoomIn">
+            <i class="hs-icon hs-icon-arrow-top"></i>
+        </a>
+    </main>
+
+    <!-- JS Global Compulsory -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/jquery-migrate.min.js"></script>
+    <script src="../assets/js/popper.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <!-- JS Implementing Plugins -->
+    <script src="../assets/js/appear.js"></script>
+    <script src="../assets/js/slick.js"></script>
+    <!-- JS Unify -->
+    <script src="../assets/js/hs.core.js"></script>
+    <script src="../assets/js/hs.header.js"></script>
+    <script src="../assets/js/hs.hamburgers.js"></script>
+    <script src="../assets/js/hs.go-to.js"></script>
+    <!-- JS Plugins Init. -->
+    <script>
+        $(document).on('ready', function() {
+            // initialization of go to section
+            $.HSCore.components.HSGoTo.init('.js-go-to');
+
+            // initialization of header
+            $.HSCore.components.HSHeader.init($('#js-header'));
+            $.HSCore.helpers.HSHamburgers.init('.hamburger');
+        });
+    </script>
 </body>
+
 </html>
