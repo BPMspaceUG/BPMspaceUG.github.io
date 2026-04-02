@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="BPMspace - KI-gesteuerte unbemannte Wasserfahrzeuge für Aufklärung, Umweltschutz und Sicherheit. Autonome Überwasser- und Unterwasser-Drohnen.">
+    <meta name="keywords" content="USV, UUV, AUV, unbemannte Wasserfahrzeuge, autonome Drohnen, KI, Aufklärung, Umweltmonitoring, Sicherheit">
+    <title>BPMspace - Autonome Wasserfahrzeuge | AI Maritime Reconnaissance</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon-16x16.png">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body class="lang-de">
+
+    <!-- ========== HEADER ========== -->
+    <header class="site-header" id="header">
+        <a href="#hero">
+            <img class="header-logo" src="../assets/img/bpmspace_weblogo.png" alt="BPMspace Logo">
+        </a>
+
+        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="header-nav" id="navMenu">
+            <button class="mobile-menu-close" onclick="toggleMenu()" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="#vehicles" onclick="closeMenu()">
+                <span class="lang-de">Fahrzeuge</span>
+                <span class="lang-en">Vehicles</span>
+            </a>
+            <a href="#applications" onclick="closeMenu()">
+                <span class="lang-de">Einsatzbereiche</span>
+                <span class="lang-en">Applications</span>
+            </a>
+            <a href="#technology" onclick="closeMenu()">
+                <span class="lang-de">Technologie</span>
+                <span class="lang-en">Technology</span>
+            </a>
+            <a href="#contact" onclick="closeMenu()">
+                <span class="lang-de">Kontakt</span>
+                <span class="lang-en">Contact</span>
+            </a>
+            <button class="lang-toggle" onclick="toggleLang()">EN</button>
+        </nav>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+        <div class="wave-container">
+            <div class="wave-line"></div>
+            <div class="wave-line"></div>
+            <div class="wave-line"></div>
+        </div>
+        <div class="hero-content">
+            <h1>
+                <span class="lang-de">Autonome Intelligenz<br><span class="highlight">auf und unter Wasser</span></span>
+                <span class="lang-en">Autonomous Intelligence<br><span class="highlight">Above &amp; Below the Surface</span></span>
+            </h1>
+            <p class="subtitle">
+                <span class="lang-de">KI-gesteuerte unbemannte Wasserfahrzeuge für Aufklärung, Umweltschutz und Sicherheit</span>
+                <span class="lang-en">AI-powered unmanned water vehicles for reconnaissance, environmental protection and security</span>
+            </p>
+            <a href="#vehicles" class="cta-btn">
+                <span class="lang-de">Mehr erfahren</span>
+                <span class="lang-en">Learn More</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- ========== VEHICLES ========== -->
+    <section class="section vehicles-section" id="vehicles">
+        <div class="container">
+            <div class="section-title">
+                <div class="section-label">
+                    <span class="lang-de">// Systeme</span>
+                    <span class="lang-en">// Systems</span>
+                </div>
+                <h2>
+                    <span class="lang-de">Unbemannte Wasserfahrzeuge</span>
+                    <span class="lang-en">Unmanned Water Vehicles</span>
+                </h2>
+                <div class="accent-line"></div>
+            </div>
+
+            <div class="vehicles-grid">
+                <!-- USV Card -->
+                <div class="vehicle-card">
+                    <div class="card-icon"><i class="fas fa-ship"></i></div>
+                    <h3>
+                        <span class="lang-de">Überwasser-Drohnen</span>
+                        <span class="lang-en">Surface Drones</span>
+                    </h3>
+                    <div class="card-subtitle">USV — Unmanned Surface Vehicle</div>
+                    <ul>
+                        <li>
+                            <span class="lang-de">Autonome Oberflächenaufklärung</span>
+                            <span class="lang-en">Autonomous surface reconnaissance</span>
+                        </li>
+                        <li>
+                            <span class="lang-de">Gewässer- &amp; Küstenüberwachung</span>
+                            <span class="lang-en">Water &amp; coastal monitoring</span>
+                        </li>
+                        <li>
+                            <span class="lang-de">Echtzeit-Sensorik &amp; Datenübertragung</span>
+                            <span class="lang-en">Real-time sensors &amp; data transmission</span>
+                        </li>
+                        <li>
+                            <span class="lang-de">KI-gesteuerte Routenplanung</span>
+                            <span class="lang-en">AI-powered route planning</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- UUV Card -->
+                <div class="vehicle-card">
+                    <div class="card-icon"><i class="fas fa-water"></i></div>
+                    <h3>
+                        <span class="lang-de">Unterwasser-Drohnen</span>
+                        <span class="lang-en">Underwater Drones</span>
+                    </h3>
+                    <div class="card-subtitle">UUV / AUV — Unmanned Underwater Vehicle</div>
+                    <ul>
+                        <li>
+                            <span class="lang-de">Unterwasserkartierung &amp; Sonar</span>
+                            <span class="lang-en">Underwater mapping &amp; sonar</span>
+                        </li>
+                        <li>
+                            <span class="lang-de">Pipeline- &amp; Kabel-Inspektion</span>
+                            <span class="lang-en">Pipeline &amp; cable inspection</span>
+                        </li>
+                        <li>
+                            <span class="lang-de">Meeresforschung &amp; Datenerhebung</span>
+                            <span class="lang-en">Marine research &amp; data collection</span>
+                        </li>
+                        <li>
+                            <span class="lang-de">Autonome Tiefennavigation</span>
+                            <span class="lang-en">Autonomous deep-water navigation</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== APPLICATIONS ========== -->
+    <section class="section applications-section" id="applications">
+        <div class="container">
+            <div class="section-title">
+                <div class="section-label">
+                    <span class="lang-de">// Einsatz</span>
+                    <span class="lang-en">// Deploy</span>
+                </div>
+                <h2>
+                    <span class="lang-de">Einsatzbereiche</span>
+                    <span class="lang-en">Applications</span>
+                </h2>
+                <div class="accent-line"></div>
+            </div>
+
+            <div class="applications-grid">
+                <div class="app-card">
+                    <div class="app-icon"><i class="fas fa-leaf"></i></div>
+                    <h4>
+                        <span class="lang-de">Umwelt&shy;monitoring</span>
+                        <span class="lang-en">Environmental Monitoring</span>
+                    </h4>
+                    <p>
+                        <span class="lang-de">Gewässerqualität, Meeresschutz und Klimadatenerhebung in Echtzeit</span>
+                        <span class="lang-en">Water quality, marine protection and real-time climate data collection</span>
+                    </p>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>
+                        <span class="lang-de">Sicherheit</span>
+                        <span class="lang-en">Security</span>
+                    </h4>
+                    <p>
+                        <span class="lang-de">Hafenüberwachung, Küstenschutz und Infrastrukturschutz</span>
+                        <span class="lang-en">Port surveillance, coastal protection and infrastructure security</span>
+                    </p>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon"><i class="fas fa-life-ring"></i></div>
+                    <h4>
+                        <span class="lang-de">Katastrophen&shy;schutz</span>
+                        <span class="lang-en">Disaster Response</span>
+                    </h4>
+                    <p>
+                        <span class="lang-de">Hochwasser-Erkennung, Schadensbewertung und Such- &amp; Rettungseinsätze</span>
+                        <span class="lang-en">Flood detection, damage assessment and search &amp; rescue operations</span>
+                    </p>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon"><i class="fas fa-microscope"></i></div>
+                    <h4>
+                        <span class="lang-de">Forschung</span>
+                        <span class="lang-en">Research</span>
+                    </h4>
+                    <p>
+                        <span class="lang-de">Ozeankartierung, Unterwasser-Archäologie und wissenschaftliche Datenerhebung</span>
+                        <span class="lang-en">Ocean mapping, underwater archaeology and scientific data collection</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TECHNOLOGY ========== -->
+    <section class="section tech-section" id="technology">
+        <div class="container">
+            <div class="section-title">
+                <div class="section-label">
+                    <span class="lang-de">// Kern</span>
+                    <span class="lang-en">// Core</span>
+                </div>
+                <h2>
+                    <span class="lang-de">Technologie</span>
+                    <span class="lang-en">Technology</span>
+                </h2>
+                <div class="accent-line"></div>
+            </div>
+
+            <div class="tech-features">
+                <div class="tech-feature">
+                    <div class="tech-icon"><i class="fas fa-brain"></i></div>
+                    <h4>
+                        <span class="lang-de">KI-Navigation</span>
+                        <span class="lang-en">AI Navigation</span>
+                    </h4>
+                    <p>
+                        <span class="lang-de">Selbstlernende Algorithmen für autonome Routenplanung und Hinderniserkennung</span>
+                        <span class="lang-en">Self-learning algorithms for autonomous route planning and obstacle detection</span>
+                    </p>
+                </div>
+
+                <div class="tech-feature">
+                    <div class="tech-icon"><i class="fas fa-satellite-dish"></i></div>
+                    <h4>
+                        <span class="lang-de">Echtzeit-Sensorik</span>
+                        <span class="lang-en">Real-time Sensors</span>
+                    </h4>
+                    <p>
+                        <span class="lang-de">Multi-Sensor-Fusion mit Sonar, LIDAR, Kamera und Umweltsensoren</span>
+                        <span class="lang-en">Multi-sensor fusion with sonar, LIDAR, camera and environmental sensors</span>
+                    </p>
+                </div>
+
+                <div class="tech-feature">
+                    <div class="tech-icon"><i class="fas fa-network-wired"></i></div>
+                    <h4>
+                        <span class="lang-de">Schwarm&shy;intelligenz</span>
+                        <span class="lang-en">Swarm Intelligence</span>
+                    </h4>
+                    <p>
+                        <span class="lang-de">Koordinierter Einsatz mehrerer Fahrzeuge für maximale Abdeckung</span>
+                        <span class="lang-en">Coordinated deployment of multiple vehicles for maximum coverage</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <div class="section-label">// Contact</div>
+                <h2>
+                    <span class="lang-de">Kontakt</span>
+                    <span class="lang-en">Contact</span>
+                </h2>
+                <div class="accent-line"></div>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="label">
+                        <span class="lang-de">Adresse</span>
+                        <span class="lang-en">Address</span>
+                    </div>
+                    <div class="value">Mühlthaler Straße 63a<br>81375 München</div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div class="label">
+                        <span class="lang-de">Telefon</span>
+                        <span class="lang-en">Phone</span>
+                    </div>
+                    <div class="value"><a href="tel:+498980926631">+49 (89) 80926631</a></div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div class="label">E-Mail</div>
+                    <div class="value"><a href="mailto:office@bpmspace.com">office@bpmspace.com</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER / IMPRESSUM ========== -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="../assets/img/bpmspace_weblogo.png" alt="BPMspace" style="height: 30px;">
+                <p>
+                    <span class="lang-de">KI-gesteuerte autonome Wasserfahrzeuge</span>
+                    <span class="lang-en">AI-powered autonomous water vehicles</span>
+                </p>
+            </div>
+
+            <button class="impressum-toggle" onclick="toggleImpressum()">
+                <span class="lang-de">Impressum &amp; Rechtliches</span>
+                <span class="lang-en">Legal Notice</span>
+                <i class="fas fa-chevron-down" style="margin-left: 0.5rem; font-size: 0.7rem;"></i>
+            </button>
+
+            <div class="impressum-content" id="impressum">
+                <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
+                <p>BPMspace GmbH<br>Mühlthaler Straße 63a<br>81375 München</p>
+                <p>Handelsregister: 204660<br>Registergericht: München</p>
+                <p><strong>Vertreten durch die Geschäftsführer:</strong><br>Dipl.-Inf. Robert Kuhlig</p>
+
+                <h2>Kontakt</h2>
+                <p>Telefon: +49 (89) 80926631<br>Telefax: +49 (89) 80926631<br>E-Mail: office@bpmspace.com</p>
+
+                <h2>Umsatzsteuer</h2>
+                <p>Umsatzsteuer-Identifikationsnummer gem&auml;&szlig; &sect;27 a Umsatzsteuergesetz:<br>DE289331112</p>
+
+                <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+                <h3>Haftung f&uuml;r Inhalte</h3>
+                <p>Als Diensteanbieter sind wir gem&auml;&szlig; &sect; 7 Abs.1 TMG f&uuml;r eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect; 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, &uuml;bermittelte oder gespeicherte fremde Informationen zu &uuml;berwachen oder nach Umst&auml;nden zu forschen, die auf eine rechtswidrige T&auml;tigkeit hinweisen.</p>
+                <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unber&uuml;hrt. Eine diesbez&uuml;gliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+
+                <h3>Haftung f&uuml;r Links</h3>
+                <p>Unser Angebot enth&auml;lt Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen. F&uuml;r die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf m&ouml;gliche Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.</p>
+                <p>Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+
+                <h3>Urheberrecht</h3>
+                <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielf&auml;ltigung, Bearbeitung, Verbreitung und jede Art der Verwertung au&szlig;erhalb der Grenzen des Urheberrechtes bed&uuml;rfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur f&uuml;r den privaten, nicht kommerziellen Gebrauch gestattet.</p>
+                <p>Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
+            </div>
+
+            <div class="footer-bottom">
+                &copy; 2024 BPMspace GmbH, München.
+                <span class="lang-de">Alle Rechte vorbehalten.</span>
+                <span class="lang-en">All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // Language Toggle
+        function toggleLang() {
+            const body = document.body;
+            const btn = document.querySelector('.lang-toggle');
+            if (body.classList.contains('lang-de')) {
+                body.classList.remove('lang-de');
+                body.classList.add('lang-en');
+                btn.textContent = 'DE';
+            } else {
+                body.classList.remove('lang-en');
+                body.classList.add('lang-de');
+                btn.textContent = 'EN';
+            }
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 80) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('open');
+        }
+
+        function closeMenu() {
+            document.getElementById('navMenu').classList.remove('open');
+        }
+
+        // Impressum toggle
+        function toggleImpressum() {
+            const imp = document.getElementById('impressum');
+            imp.classList.toggle('open');
+            const icon = document.querySelector('.impressum-toggle .fa-chevron-down');
+            if (icon) {
+                icon.style.transform = imp.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0)';
+            }
+        }
+    </script>
+</body>
+</html>
