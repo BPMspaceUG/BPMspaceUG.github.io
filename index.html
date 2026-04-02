@@ -1,417 +1,348 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="BPMspace - KI-gesteuerte unbemannte Wasserfahrzeuge für Aufklärung, Umweltschutz und Sicherheit. Autonome Überwasser- und Unterwasser-Drohnen.">
-    <meta name="keywords" content="USV, UUV, AUV, unbemannte Wasserfahrzeuge, autonome Drohnen, KI, Aufklärung, Umweltmonitoring, Sicherheit">
-    <title>BPMspace - Autonome Wasserfahrzeuge | AI Maritime Reconnaissance</title>
-
-    <!-- Favicon -->
+    <meta name="description" content="BPMspace — AI-powered unmanned water vehicles for maritime reconnaissance, environmental protection and security.">
+    <title>BPMspace — Autonomous Maritime Intelligence</title>
     <link rel="icon" type="image/png" sizes="96x96" href="./assets/img/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/img/favicon-16x16.png">
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-    <!-- CSS -->
     <link rel="stylesheet" href="./assets/css/custom.css">
 </head>
+<body class="lang-en">
 
-<body class="lang-de">
+<!-- HEADER -->
+<header class="site-header" id="header">
+    <a href="#hero"><img class="header-logo" src="./assets/img/bpmspace_weblogo.png" alt="BPMspace"></a>
+    <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    <nav class="header-nav" id="navMenu">
+        <button class="mobile-menu-close" onclick="toggleMenu()" aria-label="Close"><i class="fas fa-times"></i></button>
+        <a href="#why" onclick="closeMenu()"><span class="lang-en">Why</span><span class="lang-de">Warum</span></a>
+        <a href="#vehicles" onclick="closeMenu()"><span class="lang-en">Systems</span><span class="lang-de">Systeme</span></a>
+        <a href="#applications" onclick="closeMenu()"><span class="lang-en">Missions</span><span class="lang-de">Einsatz</span></a>
+        <a href="#legacy" onclick="closeMenu()"><span class="lang-en">Heritage</span><span class="lang-de">Projekte</span></a>
+        <a href="#contact" onclick="closeMenu()"><span class="lang-en">Contact</span><span class="lang-de">Kontakt</span></a>
+        <button class="lang-toggle" onclick="toggleLang()">DE</button>
+    </nav>
+</header>
 
-    <!-- ========== HEADER ========== -->
-    <header class="site-header" id="header">
-        <a href="#hero">
-            <img class="header-logo" src="./assets/img/bpmspace_weblogo.png" alt="BPMspace Logo">
-        </a>
-
-        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu">
-            <i class="fas fa-bars"></i>
-        </button>
-
-        <nav class="header-nav" id="navMenu">
-            <button class="mobile-menu-close" onclick="toggleMenu()" aria-label="Close">
-                <i class="fas fa-times"></i>
-            </button>
-            <a href="#vehicles" onclick="closeMenu()">
-                <span class="lang-de">Fahrzeuge</span>
-                <span class="lang-en">Vehicles</span>
-            </a>
-            <a href="#applications" onclick="closeMenu()">
-                <span class="lang-de">Einsatzbereiche</span>
-                <span class="lang-en">Applications</span>
-            </a>
-            <a href="#technology" onclick="closeMenu()">
-                <span class="lang-de">Technologie</span>
-                <span class="lang-en">Technology</span>
-            </a>
-            <a href="#contact" onclick="closeMenu()">
-                <span class="lang-de">Kontakt</span>
-                <span class="lang-en">Contact</span>
-            </a>
-            <button class="lang-toggle" onclick="toggleLang()">EN</button>
-        </nav>
-    </header>
-
-    <!-- ========== HERO ========== -->
-    <section class="hero" id="hero">
-        <div class="wave-container">
-            <div class="wave-line"></div>
-            <div class="wave-line"></div>
-            <div class="wave-line"></div>
-        </div>
-        <div class="hero-content">
+<!-- HERO -->
+<section class="hero" id="hero">
+    <div class="hero-inner">
+        <div class="hero-text">
+            <div class="hero-tag">
+                <span class="lang-en">// Autonomous Maritime Intelligence</span>
+                <span class="lang-de">// Autonome Maritime Intelligenz</span>
+            </div>
             <h1>
-                <span class="lang-de">Autonome Intelligenz<br><span class="highlight">auf und unter Wasser</span></span>
-                <span class="lang-en">Autonomous Intelligence<br><span class="highlight">Above &amp; Below the Surface</span></span>
+                <span class="lang-en">The Future Operates<br><em>Above &amp; Below the Surface</em></span>
+                <span class="lang-de">Die Zukunft operiert<br><em>über und unter Wasser</em></span>
             </h1>
-            <p class="subtitle">
-                <span class="lang-de">KI-gesteuerte unbemannte Wasserfahrzeuge für Aufklärung, Umweltschutz und Sicherheit</span>
-                <span class="lang-en">AI-powered unmanned water vehicles for reconnaissance, environmental protection and security</span>
+            <p class="hero-desc">
+                <span class="lang-en">Oceans cover 71% of our planet — yet most of it remains unmonitored. Our AI-powered unmanned water vehicles bring persistent intelligence to the world's most critical and inaccessible waterways. No crew at risk. No blind spots.</span>
+                <span class="lang-de">71% unseres Planeten sind von Wasser bedeckt — doch der größte Teil bleibt unüberwacht. Unsere KI-gesteuerten unbemannten Wasserfahrzeuge bringen dauerhafte Aufklärung in die kritischsten und unzugänglichsten Gewässer der Welt. Keine Crew in Gefahr. Keine toten Winkel.</span>
             </p>
-            <a href="#vehicles" class="cta-btn">
-                <span class="lang-de">Mehr erfahren</span>
-                <span class="lang-en">Learn More</span>
-            </a>
-        </div>
-    </section>
-
-    <!-- ========== VEHICLES ========== -->
-    <section class="section vehicles-section" id="vehicles">
-        <div class="container">
-            <div class="section-title">
-                <div class="section-label">
-                    <span class="lang-de">// Systeme</span>
-                    <span class="lang-en">// Systems</span>
-                </div>
-                <h2>
-                    <span class="lang-de">Unbemannte Wasserfahrzeuge</span>
-                    <span class="lang-en">Unmanned Water Vehicles</span>
-                </h2>
-                <div class="accent-line"></div>
-            </div>
-
-            <div class="vehicles-grid">
-                <!-- USV Card -->
-                <div class="vehicle-card">
-                    <div class="card-icon"><i class="fas fa-ship"></i></div>
-                    <h3>
-                        <span class="lang-de">Überwasser-Drohnen</span>
-                        <span class="lang-en">Surface Drones</span>
-                    </h3>
-                    <div class="card-subtitle">USV — Unmanned Surface Vehicle</div>
-                    <ul>
-                        <li>
-                            <span class="lang-de">Autonome Oberflächenaufklärung</span>
-                            <span class="lang-en">Autonomous surface reconnaissance</span>
-                        </li>
-                        <li>
-                            <span class="lang-de">Gewässer- &amp; Küstenüberwachung</span>
-                            <span class="lang-en">Water &amp; coastal monitoring</span>
-                        </li>
-                        <li>
-                            <span class="lang-de">Echtzeit-Sensorik &amp; Datenübertragung</span>
-                            <span class="lang-en">Real-time sensors &amp; data transmission</span>
-                        </li>
-                        <li>
-                            <span class="lang-de">KI-gesteuerte Routenplanung</span>
-                            <span class="lang-en">AI-powered route planning</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- UUV Card -->
-                <div class="vehicle-card">
-                    <div class="card-icon"><i class="fas fa-water"></i></div>
-                    <h3>
-                        <span class="lang-de">Unterwasser-Drohnen</span>
-                        <span class="lang-en">Underwater Drones</span>
-                    </h3>
-                    <div class="card-subtitle">UUV / AUV — Unmanned Underwater Vehicle</div>
-                    <ul>
-                        <li>
-                            <span class="lang-de">Unterwasserkartierung &amp; Sonar</span>
-                            <span class="lang-en">Underwater mapping &amp; sonar</span>
-                        </li>
-                        <li>
-                            <span class="lang-de">Pipeline- &amp; Kabel-Inspektion</span>
-                            <span class="lang-en">Pipeline &amp; cable inspection</span>
-                        </li>
-                        <li>
-                            <span class="lang-de">Meeresforschung &amp; Datenerhebung</span>
-                            <span class="lang-en">Marine research &amp; data collection</span>
-                        </li>
-                        <li>
-                            <span class="lang-de">Autonome Tiefennavigation</span>
-                            <span class="lang-en">Autonomous deep-water navigation</span>
-                        </li>
-                    </ul>
-                </div>
+            <div class="cta-group">
+                <a href="#vehicles" class="cta-primary">
+                    <span class="lang-en">Explore Systems</span>
+                    <span class="lang-de">Systeme entdecken</span>
+                </a>
+                <a href="#why" class="cta-secondary">
+                    <span class="lang-en">Why Unmanned?</span>
+                    <span class="lang-de">Warum unbemannt?</span>
+                </a>
             </div>
         </div>
-    </section>
+        <div class="jellyfish">
+            <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+                <path class="jelly-body" d="M40,120 Q40,30 100,25 Q160,30 160,120 Q150,135 130,140 Q110,142 100,142 Q90,142 70,140 Q50,135 40,120Z"/>
+                <path class="jelly-body-inner" d="M55,115 Q55,50 100,45 Q145,50 145,115 Q135,125 120,128 Q110,130 100,130 Q90,130 80,128 Q65,125 55,115Z"/>
+                <circle class="jelly-dots" cx="80" cy="75" r="2"/>
+                <circle class="jelly-dots" cx="100" cy="65" r="2.5"/>
+                <circle class="jelly-dots" cx="120" cy="78" r="2"/>
+                <circle class="jelly-dots" cx="90" cy="95" r="1.5"/>
+                <circle class="jelly-dots" cx="112" cy="92" r="1.8"/>
+                <circle class="jelly-dots" cx="75" cy="108" r="1.5"/>
+                <circle class="jelly-dots" cx="125" cy="105" r="1.5"/>
+                <path class="jelly-tentacle" d="M70,140 Q65,180 72,210 Q78,240 68,275"/>
+                <path class="jelly-tentacle" d="M85,142 Q82,185 88,220 Q92,250 85,285"/>
+                <path class="jelly-tentacle" d="M100,142 Q100,190 105,230 Q108,260 100,295"/>
+                <path class="jelly-tentacle" d="M115,142 Q118,185 112,220 Q108,250 118,280"/>
+                <path class="jelly-tentacle" d="M130,140 Q135,178 128,215 Q122,245 132,270"/>
+            </svg>
+        </div>
+    </div>
+</section>
 
-    <!-- ========== APPLICATIONS ========== -->
-    <section class="section applications-section" id="applications">
-        <div class="container">
-            <div class="section-title">
-                <div class="section-label">
-                    <span class="lang-de">// Einsatz</span>
-                    <span class="lang-en">// Deploy</span>
-                </div>
-                <h2>
-                    <span class="lang-de">Einsatzbereiche</span>
-                    <span class="lang-en">Applications</span>
-                </h2>
-                <div class="accent-line"></div>
+<!-- WHY SECTION -->
+<section class="section why-section" id="why">
+    <div class="container">
+        <div class="section-header centered">
+            <div class="section-tag">
+                <span class="lang-en">// The Case for Autonomy</span>
+                <span class="lang-de">// Das Argument für Autonomie</span>
             </div>
-
-            <div class="applications-grid">
-                <div class="app-card">
-                    <div class="app-icon"><i class="fas fa-leaf"></i></div>
-                    <h4>
-                        <span class="lang-de">Umwelt&shy;monitoring</span>
-                        <span class="lang-en">Environmental Monitoring</span>
-                    </h4>
-                    <p>
-                        <span class="lang-de">Gewässerqualität, Meeresschutz und Klimadatenerhebung in Echtzeit</span>
-                        <span class="lang-en">Water quality, marine protection and real-time climate data collection</span>
-                    </p>
-                </div>
-
-                <div class="app-card">
-                    <div class="app-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h4>
-                        <span class="lang-de">Sicherheit</span>
-                        <span class="lang-en">Security</span>
-                    </h4>
-                    <p>
-                        <span class="lang-de">Hafenüberwachung, Küstenschutz und Infrastrukturschutz</span>
-                        <span class="lang-en">Port surveillance, coastal protection and infrastructure security</span>
-                    </p>
-                </div>
-
-                <div class="app-card">
-                    <div class="app-icon"><i class="fas fa-life-ring"></i></div>
-                    <h4>
-                        <span class="lang-de">Katastrophen&shy;schutz</span>
-                        <span class="lang-en">Disaster Response</span>
-                    </h4>
-                    <p>
-                        <span class="lang-de">Hochwasser-Erkennung, Schadensbewertung und Such- &amp; Rettungseinsätze</span>
-                        <span class="lang-en">Flood detection, damage assessment and search &amp; rescue operations</span>
-                    </p>
-                </div>
-
-                <div class="app-card">
-                    <div class="app-icon"><i class="fas fa-microscope"></i></div>
-                    <h4>
-                        <span class="lang-de">Forschung</span>
-                        <span class="lang-en">Research</span>
-                    </h4>
-                    <p>
-                        <span class="lang-de">Ozeankartierung, Unterwasser-Archäologie und wissenschaftliche Datenerhebung</span>
-                        <span class="lang-en">Ocean mapping, underwater archaeology and scientific data collection</span>
-                    </p>
-                </div>
+            <h2>
+                <span class="lang-en">Why Unmanned Water Vehicles?</span>
+                <span class="lang-de">Warum unbemannte Wasserfahrzeuge?</span>
+            </h2>
+            <p>
+                <span class="lang-en">Crewed vessels are expensive, limited by human endurance, and put lives at risk in dangerous waters. Autonomous systems change the equation entirely — they operate longer, reach further, and never need sleep.</span>
+                <span class="lang-de">Bemannte Schiffe sind teuer, durch menschliche Ausdauer begrenzt und setzen Leben in gefährlichen Gewässern aufs Spiel. Autonome Systeme ändern die Gleichung grundlegend — sie operieren länger, reichen weiter und brauchen keinen Schlaf.</span>
+            </p>
+            <div class="accent-bar"></div>
+        </div>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="icon-wrap"><i class="fas fa-user-shield"></i></div>
+                <h3><span class="lang-en">Zero Risk to Human Life</span><span class="lang-de">Kein Risiko für Menschenleben</span></h3>
+                <p><span class="lang-en">Contaminated waters, storm zones, minefields, hostile territories — machines go where people shouldn't. Every dangerous mission completed without a crew aboard is a life protected.</span><span class="lang-de">Verseuchte Gewässer, Sturmzonen, Minenfelder, feindliche Gebiete — Maschinen gehen dorthin, wo Menschen nicht sein sollten. Jede gefährliche Mission ohne Besatzung ist ein geschütztes Leben.</span></p>
+            </div>
+            <div class="why-card">
+                <div class="icon-wrap"><i class="fas fa-clock"></i></div>
+                <h3><span class="lang-en">24/7 Endurance</span><span class="lang-de">24/7 Ausdauer</span></h3>
+                <p><span class="lang-en">No crew fatigue, no shift changes, no return to port for rest. Our vehicles operate for weeks continuously — through night, fog, and rough seas. Persistent presence where it matters.</span><span class="lang-de">Keine Ermüdung der Crew, kein Schichtwechsel, keine Rückkehr zum Hafen. Unsere Fahrzeuge operieren wochenlang durchgehend — bei Nacht, Nebel und rauer See. Dauerhafte Präsenz wo es zählt.</span></p>
+            </div>
+            <div class="why-card">
+                <div class="icon-wrap"><i class="fas fa-brain"></i></div>
+                <h3><span class="lang-en">AI Decision Making</span><span class="lang-de">KI-Entscheidungsfindung</span></h3>
+                <p><span class="lang-en">Real-time sensor fusion, pattern recognition, and autonomous threat assessment. Our AI processes more data in seconds than a human crew could in hours — detecting anomalies invisible to the human eye.</span><span class="lang-de">Echtzeit-Sensorfusion, Mustererkennung und autonome Bedrohungsbewertung. Unsere KI verarbeitet in Sekunden mehr Daten als eine menschliche Crew in Stunden — und erkennt Anomalien, die dem menschlichen Auge verborgen bleiben.</span></p>
+            </div>
+            <div class="why-card">
+                <div class="icon-wrap"><i class="fas fa-lock"></i></div>
+                <h3><span class="lang-en">Dual-Use Capability</span><span class="lang-de">Dual-Use-Fähigkeit</span></h3>
+                <p><span class="lang-en">From environmental monitoring to maritime security and defense reconnaissance — one platform, many missions. The same vehicle that maps coral reefs can patrol critical infrastructure or support naval operations.</span><span class="lang-de">Von Umweltüberwachung über maritime Sicherheit bis zur Verteidigungsaufklärung — eine Plattform, viele Missionen. Dasselbe Fahrzeug, das Korallenriffe kartiert, kann kritische Infrastruktur patrouillieren oder Marineoperationen unterstützen.</span></p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ========== TECHNOLOGY ========== -->
-    <section class="section tech-section" id="technology">
-        <div class="container">
-            <div class="section-title">
-                <div class="section-label">
-                    <span class="lang-de">// Kern</span>
-                    <span class="lang-en">// Core</span>
-                </div>
-                <h2>
-                    <span class="lang-de">Technologie</span>
-                    <span class="lang-en">Technology</span>
-                </h2>
-                <div class="accent-line"></div>
-            </div>
-
-            <div class="tech-features">
-                <div class="tech-feature">
-                    <div class="tech-icon"><i class="fas fa-brain"></i></div>
-                    <h4>
-                        <span class="lang-de">KI-Navigation</span>
-                        <span class="lang-en">AI Navigation</span>
-                    </h4>
-                    <p>
-                        <span class="lang-de">Selbstlernende Algorithmen für autonome Routenplanung und Hinderniserkennung</span>
-                        <span class="lang-en">Self-learning algorithms for autonomous route planning and obstacle detection</span>
-                    </p>
-                </div>
-
-                <div class="tech-feature">
-                    <div class="tech-icon"><i class="fas fa-satellite-dish"></i></div>
-                    <h4>
-                        <span class="lang-de">Echtzeit-Sensorik</span>
-                        <span class="lang-en">Real-time Sensors</span>
-                    </h4>
-                    <p>
-                        <span class="lang-de">Multi-Sensor-Fusion mit Sonar, LIDAR, Kamera und Umweltsensoren</span>
-                        <span class="lang-en">Multi-sensor fusion with sonar, LIDAR, camera and environmental sensors</span>
-                    </p>
-                </div>
-
-                <div class="tech-feature">
-                    <div class="tech-icon"><i class="fas fa-network-wired"></i></div>
-                    <h4>
-                        <span class="lang-de">Schwarm&shy;intelligenz</span>
-                        <span class="lang-en">Swarm Intelligence</span>
-                    </h4>
-                    <p>
-                        <span class="lang-de">Koordinierter Einsatz mehrerer Fahrzeuge für maximale Abdeckung</span>
-                        <span class="lang-en">Coordinated deployment of multiple vehicles for maximum coverage</span>
-                    </p>
-                </div>
-            </div>
+<!-- VEHICLES -->
+<section class="section vehicles-section" id="vehicles">
+    <div class="container">
+        <div class="section-header centered">
+            <div class="section-tag">// Systems</div>
+            <h2>
+                <span class="lang-en">Unmanned Water Vehicles</span>
+                <span class="lang-de">Unbemannte Wasserfahrzeuge</span>
+            </h2>
+            <p>
+                <span class="lang-en">Two domains, one mission: complete maritime awareness. Our surface and subsurface platforms work independently or as coordinated swarms — covering every layer of the water column.</span>
+                <span class="lang-de">Zwei Domänen, eine Mission: vollständiges maritimes Lagebild. Unsere Überwasser- und Unterwasser-Plattformen arbeiten unabhängig oder als koordinierte Schwärme — jede Schicht der Wassersäule abdeckend.</span>
+            </p>
+            <div class="accent-bar"></div>
         </div>
-    </section>
-
-    <!-- ========== CONTACT ========== -->
-    <section class="section contact-section" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <div class="section-label">// Contact</div>
-                <h2>
-                    <span class="lang-de">Kontakt</span>
-                    <span class="lang-en">Contact</span>
-                </h2>
-                <div class="accent-line"></div>
-            </div>
-
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div class="label">
-                        <span class="lang-de">Adresse</span>
-                        <span class="lang-en">Address</span>
-                    </div>
-                    <div class="value">Mühlthaler Straße 63a<br>81375 München</div>
-                </div>
-
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <div class="label">
-                        <span class="lang-de">Telefon</span>
-                        <span class="lang-en">Phone</span>
-                    </div>
-                    <div class="value"><a href="tel:+498980926631">+49 (89) 80926631</a></div>
-                </div>
-
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div class="label">E-Mail</div>
-                    <div class="value"><a href="mailto:office@bpmspace.com">office@bpmspace.com</a></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== FOOTER / IMPRESSUM ========== -->
-    <footer class="site-footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <img src="./assets/img/bpmspace_weblogo.png" alt="BPMspace" style="height: 30px;">
-                <p>
-                    <span class="lang-de">KI-gesteuerte autonome Wasserfahrzeuge</span>
-                    <span class="lang-en">AI-powered autonomous water vehicles</span>
+        <div class="vehicles-split">
+            <div class="vehicle-panel usv">
+                <div class="vehicle-icon"><i class="fas fa-ship"></i></div>
+                <h3><span class="lang-en">Surface Drones</span><span class="lang-de">Überwasser-Drohnen</span></h3>
+                <div class="v-sub">USV — Unmanned Surface Vehicle</div>
+                <p class="v-desc">
+                    <span class="lang-en">Operating at the air-water interface, our USVs combine radar, optical sensors and AIS tracking for complete surface awareness. Built for endurance in open ocean conditions with autonomous collision avoidance.</span>
+                    <span class="lang-de">An der Luft-Wasser-Grenzfläche operierend kombinieren unsere USVs Radar, optische Sensoren und AIS-Tracking für vollständiges Oberflächen-Lagebild. Gebaut für Ausdauer auf offener See mit autonomer Kollisionsvermeidung.</span>
                 </p>
+                <ul class="v-features">
+                    <li><span class="lang-en">Autonomous patrol &amp; surveillance</span><span class="lang-de">Autonome Patrouille &amp; Überwachung</span></li>
+                    <li><span class="lang-en">Real-time sensor fusion (radar, camera, AIS)</span><span class="lang-de">Echtzeit-Sensorfusion (Radar, Kamera, AIS)</span></li>
+                    <li><span class="lang-en">Coastal &amp; port security monitoring</span><span class="lang-de">Küsten- &amp; Hafensicherheit</span></li>
+                    <li><span class="lang-en">Environmental data collection</span><span class="lang-de">Umweltdatenerhebung</span></li>
+                    <li><span class="lang-en">Long-range communication relay</span><span class="lang-de">Langstrecken-Kommunikationsrelais</span></li>
+                </ul>
             </div>
-
-            <button class="impressum-toggle" onclick="toggleImpressum()">
-                <span class="lang-de">Impressum &amp; Rechtliches</span>
-                <span class="lang-en">Legal Notice</span>
-                <i class="fas fa-chevron-down" style="margin-left: 0.5rem; font-size: 0.7rem;"></i>
-            </button>
-
-            <div class="impressum-content" id="impressum">
-                <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
-                <p>BPMspace GmbH<br>Mühlthaler Straße 63a<br>81375 München</p>
-                <p>Handelsregister: 204660<br>Registergericht: München</p>
-                <p><strong>Vertreten durch die Geschäftsführer:</strong><br>Dipl.-Inf. Robert Kuhlig</p>
-
-                <h2>Kontakt</h2>
-                <p>Telefon: +49 (89) 80926631<br>Telefax: +49 (89) 80926631<br>E-Mail: office@bpmspace.com</p>
-
-                <h2>Umsatzsteuer</h2>
-                <p>Umsatzsteuer-Identifikationsnummer gem&auml;&szlig; &sect;27 a Umsatzsteuergesetz:<br>DE289331112</p>
-
-                <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
-
-                <h3>Haftung f&uuml;r Inhalte</h3>
-                <p>Als Diensteanbieter sind wir gem&auml;&szlig; &sect; 7 Abs.1 TMG f&uuml;r eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect; 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, &uuml;bermittelte oder gespeicherte fremde Informationen zu &uuml;berwachen oder nach Umst&auml;nden zu forschen, die auf eine rechtswidrige T&auml;tigkeit hinweisen.</p>
-                <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unber&uuml;hrt. Eine diesbez&uuml;gliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
-
-                <h3>Haftung f&uuml;r Links</h3>
-                <p>Unser Angebot enth&auml;lt Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen. F&uuml;r die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf m&ouml;gliche Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.</p>
-                <p>Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
-
-                <h3>Urheberrecht</h3>
-                <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielf&auml;ltigung, Bearbeitung, Verbreitung und jede Art der Verwertung au&szlig;erhalb der Grenzen des Urheberrechtes bed&uuml;rfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur f&uuml;r den privaten, nicht kommerziellen Gebrauch gestattet.</p>
-                <p>Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
-            </div>
-
-            <div class="footer-bottom">
-                &copy; 2024 BPMspace GmbH, München.
-                <span class="lang-de">Alle Rechte vorbehalten.</span>
-                <span class="lang-en">All rights reserved.</span>
+            <div class="vehicle-panel uuv">
+                <div class="vehicle-icon"><i class="fas fa-water"></i></div>
+                <h3><span class="lang-en">Underwater Drones</span><span class="lang-de">Unterwasser-Drohnen</span></h3>
+                <div class="v-sub">UUV / AUV — Unmanned Underwater Vehicle</div>
+                <p class="v-desc">
+                    <span class="lang-en">Descending into the deep, our UUVs navigate autonomously through complete darkness using sonar, LIDAR and inertial systems. They map the unseen, inspect the unreachable, and detect what hides beneath the surface.</span>
+                    <span class="lang-de">In die Tiefe abtauchend navigieren unsere UUVs autonom durch völlige Dunkelheit mittels Sonar, LIDAR und Inertialsystemen. Sie kartieren das Unsichtbare, inspizieren das Unerreichbare und entdecken was unter der Oberfläche verborgen liegt.</span>
+                </p>
+                <ul class="v-features">
+                    <li><span class="lang-en">Subsea mapping &amp; sonar imaging</span><span class="lang-de">Unterwasserkartierung &amp; Sonar-Bildgebung</span></li>
+                    <li><span class="lang-en">Pipeline &amp; cable inspection</span><span class="lang-de">Pipeline- &amp; Kabelinspektion</span></li>
+                    <li><span class="lang-en">Mine countermeasures &amp; threat detection</span><span class="lang-de">Minenabwehr &amp; Bedrohungserkennung</span></li>
+                    <li><span class="lang-en">Marine research &amp; biodiversity monitoring</span><span class="lang-de">Meeresforschung &amp; Biodiversitäts-Monitoring</span></li>
+                    <li><span class="lang-en">Autonomous deep-water navigation</span><span class="lang-de">Autonome Tiefwasser-Navigation</span></li>
+                </ul>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <!-- ========== JAVASCRIPT ========== -->
-    <script>
-        // Language Toggle
-        function toggleLang() {
-            const body = document.body;
-            const btn = document.querySelector('.lang-toggle');
-            if (body.classList.contains('lang-de')) {
-                body.classList.remove('lang-de');
-                body.classList.add('lang-en');
-                btn.textContent = 'DE';
-            } else {
-                body.classList.remove('lang-en');
-                body.classList.add('lang-de');
-                btn.textContent = 'EN';
-            }
-        }
+<!-- APPLICATIONS -->
+<section class="section applications-section" id="applications">
+    <div class="container">
+        <div class="section-header centered">
+            <div class="section-tag">// Deploy</div>
+            <h2>
+                <span class="lang-en">Mission Profiles</span>
+                <span class="lang-de">Einsatzprofile</span>
+            </h2>
+            <p>
+                <span class="lang-en">Versatile platforms for a world of challenges. From protecting marine ecosystems to securing national borders — our vehicles adapt to the mission.</span>
+                <span class="lang-de">Vielseitige Plattformen für eine Welt voller Herausforderungen. Vom Schutz mariner Ökosysteme bis zur Sicherung nationaler Grenzen — unsere Fahrzeuge passen sich der Mission an.</span>
+            </p>
+            <div class="accent-bar"></div>
+        </div>
+        <div class="app-grid">
+            <div class="app-card">
+                <div class="app-icon"><i class="fas fa-leaf"></i></div>
+                <h4><span class="lang-en">Environmental Protection</span><span class="lang-de">Umweltschutz</span></h4>
+                <p><span class="lang-en">Water quality monitoring, marine ecosystem mapping, oil spill detection, and climate data collection across vast oceanic regions.</span><span class="lang-de">Wasserqualitätsüberwachung, Kartierung mariner Ökosysteme, Ölpest-Erkennung und Klimadatenerhebung über riesige ozeanische Regionen.</span></p>
+            </div>
+            <div class="app-card">
+                <div class="app-icon"><i class="fas fa-shield-alt"></i></div>
+                <h4><span class="lang-en">Maritime Security</span><span class="lang-de">Maritime Sicherheit</span></h4>
+                <p><span class="lang-en">Port surveillance, coastal patrol, border protection, and critical infrastructure monitoring — 24/7, without fatigue.</span><span class="lang-de">Hafenüberwachung, Küstenpatrouille, Grenzschutz und Überwachung kritischer Infrastruktur — 24/7, ohne Ermüdung.</span></p>
+            </div>
+            <div class="app-card">
+                <div class="app-icon"><i class="fas fa-life-ring"></i></div>
+                <h4><span class="lang-en">Search &amp; Rescue</span><span class="lang-de">Such- &amp; Rettung</span></h4>
+                <p><span class="lang-en">Flood response, disaster damage assessment, missing person search operations, and emergency communication relay in crisis zones.</span><span class="lang-de">Hochwassereinsatz, Katastrophen-Schadensbewertung, Vermisstensuche und Notfall-Kommunikationsrelais in Krisengebieten.</span></p>
+            </div>
+            <div class="app-card">
+                <div class="app-icon"><i class="fas fa-crosshairs"></i></div>
+                <h4><span class="lang-en">Defense &amp; Recon</span><span class="lang-de">Verteidigung &amp; Aufklärung</span></h4>
+                <p><span class="lang-en">ISR missions, mine detection and countermeasures, threat assessment, and force protection in contested maritime environments.</span><span class="lang-de">ISR-Missionen, Minenerkennung und -abwehr, Bedrohungsbewertung und Kräfteschutz in umkämpften maritimen Umgebungen.</span></p>
+            </div>
+        </div>
+    </div>
+</section>
 
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 80) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+<!-- LEGACY PROJECTS -->
+<section class="section legacy-section" id="legacy">
+    <div class="container">
+        <div class="section-header centered">
+            <div class="section-tag">// Heritage</div>
+            <h2>
+                <span class="lang-en">Built on Experience</span>
+                <span class="lang-de">Auf Erfahrung gebaut</span>
+            </h2>
+            <p>
+                <span class="lang-en">BPMspace has over a decade of building intelligent software systems — from AI-powered exam proctoring to certification management. These proven platforms form the foundation of our autonomous vehicle intelligence.</span>
+                <span class="lang-de">BPMspace hat über ein Jahrzehnt Erfahrung im Bau intelligenter Softwaresysteme — von KI-gestützter Prüfungsüberwachung bis zum Zertifizierungsmanagement. Diese bewährten Plattformen bilden das Fundament unserer autonomen Fahrzeugintelligenz.</span>
+            </p>
+            <div class="accent-bar"></div>
+        </div>
+        <div class="legacy-grid">
+            <div class="legacy-card">
+                <h4>SOE</h4>
+                <p><span class="lang-en">SecureOnlineExam — AI-powered online proctoring with real-time fraud detection and behavioral analysis.</span><span class="lang-de">SecureOnlineExam — KI-gestützte Online-Prüfungsüberwachung mit Echtzeit-Betrugserkennung und Verhaltensanalyse.</span></p>
+            </div>
+            <div class="legacy-card">
+                <h4>SQMS</h4>
+                <p><span class="lang-en">Syllabus &amp; Question Management — Certification exam platform built for ICO International Certification Organization.</span><span class="lang-de">Syllabus &amp; Question Management — Zertifizierungs-Prüfungsplattform für die ICO International Certification Organization.</span></p>
+            </div>
+            <div class="legacy-card">
+                <h4>COMS</h4>
+                <p><span class="lang-en">Certification Organisation Management — End-to-end workflows for accreditation and certification bodies.</span><span class="lang-de">Certification Organisation Management — End-to-End-Workflows für Akkreditierungs- und Zertifizierungsstellen.</span></p>
+            </div>
+            <div class="legacy-card">
+                <h4>APMS</h4>
+                <p><span class="lang-en">Agile Process Management — Intelligent business process automation with adaptive workflows.</span><span class="lang-de">Agile Process Management — Intelligente Geschäftsprozessautomatisierung mit adaptiven Workflows.</span></p>
+            </div>
+            <div class="legacy-card">
+                <h4>LIAM</h4>
+                <p><span class="lang-en">Lightweight Identity &amp; Access Management — Secure authentication and authorization framework.</span><span class="lang-de">Lightweight Identity &amp; Access Management — Sicheres Authentifizierungs- und Autorisierungs-Framework.</span></p>
+            </div>
+        </div>
+    </div>
+</section>
 
-        // Mobile menu
-        function toggleMenu() {
-            document.getElementById('navMenu').classList.toggle('open');
-        }
+<!-- CONTACT -->
+<section class="section contact-section" id="contact">
+    <div class="container">
+        <div class="section-header centered">
+            <div class="section-tag">// Contact</div>
+            <h2><span class="lang-en">Get In Touch</span><span class="lang-de">Kontakt</span></h2>
+            <div class="accent-bar"></div>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="label"><span class="lang-en">Address</span><span class="lang-de">Adresse</span></div>
+                <div class="value">Mühlthaler Straße 63a<br>81375 München</div>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <div class="label"><span class="lang-en">Phone</span><span class="lang-de">Telefon</span></div>
+                <div class="value"><a href="tel:+498980926631">+49 (89) 80926631</a></div>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div class="label">E-Mail</div>
+                <div class="value"><a href="mailto:office@bpmspace.com">office@bpmspace.com</a></div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        function closeMenu() {
-            document.getElementById('navMenu').classList.remove('open');
-        }
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <img src="./assets/img/bpmspace_weblogo.png" alt="BPMspace" style="height:26px">
+            <p><span class="lang-en">Autonomous Maritime Intelligence</span><span class="lang-de">Autonome Maritime Intelligenz</span></p>
+        </div>
+        <button class="impressum-toggle" onclick="toggleImpressum()">
+            <span class="lang-en">Legal Notice &amp; Impressum</span>
+            <span class="lang-de">Impressum &amp; Rechtliches</span>
+            <i class="fas fa-chevron-down" style="margin-left:0.5rem;font-size:0.6rem;transition:0.3s"></i>
+        </button>
+        <div class="impressum-content" id="impressum">
+            <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
+            <p>BPMspace GmbH<br>Mühlthaler Straße 63a<br>81375 München</p>
+            <p>Handelsregister: 204660<br>Registergericht: München</p>
+            <p><strong>Vertreten durch die Geschäftsführer:</strong><br>Dipl.-Inf. Robert Kuhlig</p>
+            <h2>Kontakt</h2>
+            <p>Telefon: +49 (89) 80926631<br>Telefax: +49 (89) 80926631<br>E-Mail: office@bpmspace.com</p>
+            <h2>Umsatzsteuer</h2>
+            <p>Umsatzsteuer-Identifikationsnummer gem&auml;&szlig; &sect;27 a Umsatzsteuergesetz:<br>DE289331112</p>
+            <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+            <h3>Haftung f&uuml;r Inhalte</h3>
+            <p>Als Diensteanbieter sind wir gem&auml;&szlig; &sect; 7 Abs.1 TMG f&uuml;r eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect; 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, &uuml;bermittelte oder gespeicherte fremde Informationen zu &uuml;berwachen oder nach Umst&auml;nden zu forschen, die auf eine rechtswidrige T&auml;tigkeit hinweisen.</p>
+            <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unber&uuml;hrt. Eine diesbez&uuml;gliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+            <h3>Haftung f&uuml;r Links</h3>
+            <p>Unser Angebot enth&auml;lt Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen. F&uuml;r die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf m&ouml;gliche Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.</p>
+            <p>Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+            <h3>Urheberrecht</h3>
+            <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielf&auml;ltigung, Bearbeitung, Verbreitung und jede Art der Verwertung au&szlig;erhalb der Grenzen des Urheberrechtes bed&uuml;rfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur f&uuml;r den privaten, nicht kommerziellen Gebrauch gestattet.</p>
+            <p>Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 BPMspace GmbH, München.
+            <span class="lang-en">All rights reserved.</span>
+            <span class="lang-de">Alle Rechte vorbehalten.</span>
+        </div>
+    </div>
+</footer>
 
-        // Impressum toggle
-        function toggleImpressum() {
-            const imp = document.getElementById('impressum');
-            imp.classList.toggle('open');
-            const icon = document.querySelector('.impressum-toggle .fa-chevron-down');
-            if (icon) {
-                icon.style.transform = imp.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0)';
-            }
-        }
-    </script>
+<script>
+function toggleLang() {
+    const body = document.body;
+    const btn = document.querySelector('.lang-toggle');
+    if (body.classList.contains('lang-en')) {
+        body.classList.remove('lang-en');
+        body.classList.add('lang-de');
+        btn.textContent = 'EN';
+    } else {
+        body.classList.remove('lang-de');
+        body.classList.add('lang-en');
+        btn.textContent = 'DE';
+    }
+}
+window.addEventListener('scroll', function() {
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 80);
+});
+function toggleMenu() { document.getElementById('navMenu').classList.toggle('open'); }
+function closeMenu() { document.getElementById('navMenu').classList.remove('open'); }
+function toggleImpressum() {
+    const imp = document.getElementById('impressum');
+    imp.classList.toggle('open');
+    const icon = document.querySelector('.impressum-toggle .fa-chevron-down');
+    if (icon) icon.style.transform = imp.classList.contains('open') ? 'rotate(180deg)' : '';
+}
+</script>
 </body>
 </html>
