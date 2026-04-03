@@ -55,21 +55,63 @@
             </div>
         </div>
         <div class="jellyfish">
-            <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
-                <path class="jelly-body" d="M40,120 Q40,30 100,25 Q160,30 160,120 Q150,135 130,140 Q110,142 100,142 Q90,142 70,140 Q50,135 40,120Z"/>
-                <path class="jelly-body-inner" d="M55,115 Q55,50 100,45 Q145,50 145,115 Q135,125 120,128 Q110,130 100,130 Q90,130 80,128 Q65,125 55,115Z"/>
-                <circle class="jelly-dots" cx="80" cy="75" r="2"/>
-                <circle class="jelly-dots" cx="100" cy="65" r="2.5"/>
-                <circle class="jelly-dots" cx="120" cy="78" r="2"/>
-                <circle class="jelly-dots" cx="90" cy="95" r="1.5"/>
-                <circle class="jelly-dots" cx="112" cy="92" r="1.8"/>
-                <circle class="jelly-dots" cx="75" cy="108" r="1.5"/>
-                <circle class="jelly-dots" cx="125" cy="105" r="1.5"/>
-                <path class="jelly-tentacle" d="M70,140 Q65,180 72,210 Q78,240 68,275"/>
-                <path class="jelly-tentacle" d="M85,142 Q82,185 88,220 Q92,250 85,285"/>
-                <path class="jelly-tentacle" d="M100,142 Q100,190 105,230 Q108,260 100,295"/>
-                <path class="jelly-tentacle" d="M115,142 Q118,185 112,220 Q108,250 118,280"/>
-                <path class="jelly-tentacle" d="M130,140 Q135,178 128,215 Q122,245 132,270"/>
+            <svg viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="bellGlow" cx="50%" cy="40%" r="50%">
+                        <stop offset="0%" stop-color="rgba(0,224,255,0.12)"/>
+                        <stop offset="100%" stop-color="rgba(0,224,255,0)"/>
+                    </radialGradient>
+                    <radialGradient id="coreGlow" cx="50%" cy="50%" r="40%">
+                        <stop offset="0%" stop-color="rgba(0,255,204,0.15)"/>
+                        <stop offset="100%" stop-color="rgba(0,255,204,0)"/>
+                    </radialGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="3" result="blur"/>
+                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <filter id="softGlow">
+                        <feGaussianBlur stdDeviation="6" result="blur"/>
+                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                </defs>
+                <!-- Ambient glow -->
+                <ellipse cx="150" cy="130" rx="90" ry="70" fill="url(#bellGlow)" filter="url(#softGlow)"/>
+                <!-- Outer bell -->
+                <path class="jelly-body" d="M55,155 C55,60 90,20 150,18 C210,20 245,60 245,155 C240,168 225,178 205,184 C185,188 165,190 150,190 C135,190 115,188 95,184 C75,178 60,168 55,155Z"/>
+                <!-- Inner bell -->
+                <path class="jelly-body-inner" d="M75,148 C75,75 105,42 150,40 C195,42 225,75 225,148 C218,158 200,165 185,168 C170,171 155,172 150,172 C145,172 130,171 115,168 C100,165 82,158 75,148Z"/>
+                <!-- Inner organ shapes -->
+                <ellipse cx="150" cy="110" rx="30" ry="40" fill="url(#coreGlow)" filter="url(#softGlow)"/>
+                <path d="M130,90 Q140,75 150,90 Q160,75 170,90" fill="none" stroke="rgba(0,255,204,0.2)" stroke-width="0.8"/>
+                <path d="M125,110 Q137,95 150,110 Q163,95 175,110" fill="none" stroke="rgba(0,255,204,0.15)" stroke-width="0.6"/>
+                <!-- Bio-luminescent dots -->
+                <circle class="jelly-dots" cx="110" cy="85" r="2.5"/>
+                <circle class="jelly-dots" cx="150" cy="70" r="3"/>
+                <circle class="jelly-dots" cx="190" cy="88" r="2.5"/>
+                <circle class="jelly-dots" cx="125" cy="115" r="2"/>
+                <circle class="jelly-dots" cx="175" cy="112" r="2.2"/>
+                <circle class="jelly-dots" cx="150" cy="100" r="1.8"/>
+                <circle class="jelly-dots" cx="100" cy="130" r="1.5"/>
+                <circle class="jelly-dots" cx="200" cy="128" r="1.5"/>
+                <circle class="jelly-dots" cx="140" cy="140" r="1.2"/>
+                <circle class="jelly-dots" cx="165" cy="138" r="1.3"/>
+                <!-- Frilly bell edge -->
+                <path d="M55,155 Q65,162 75,155 Q85,148 95,155 Q105,162 115,155 Q125,148 135,155 Q145,162 150,155 Q155,162 165,155 Q175,148 185,155 Q195,162 205,155 Q215,148 225,155 Q235,162 245,155" fill="none" stroke="var(--neon-cyan)" stroke-width="0.8" opacity="0.4" filter="url(#glow)"/>
+                <!-- Oral arms (thick, short) -->
+                <path d="M120,190 Q115,215 122,235 Q128,250 118,265" fill="none" stroke="var(--neon-cyan)" stroke-width="2.5" stroke-linecap="round" opacity="0.35" filter="url(#glow)"/>
+                <path d="M150,190 Q148,220 155,245 Q158,265 150,280" fill="none" stroke="var(--neon-teal)" stroke-width="2.5" stroke-linecap="round" opacity="0.3" filter="url(#glow)"/>
+                <path d="M180,190 Q185,215 178,240 Q172,258 182,270" fill="none" stroke="var(--neon-cyan)" stroke-width="2.5" stroke-linecap="round" opacity="0.35" filter="url(#glow)"/>
+                <!-- Long trailing tentacles -->
+                <path class="jelly-tentacle" d="M95,184 Q88,220 95,255 Q102,290 90,330 Q82,360 92,395"/>
+                <path class="jelly-tentacle" d="M115,188 Q110,230 118,270 Q125,310 112,350 Q105,380 115,410"/>
+                <path class="jelly-tentacle" d="M150,190 Q148,240 155,280 Q162,320 150,365 Q145,390 152,420"/>
+                <path class="jelly-tentacle" d="M185,188 Q190,230 182,270 Q175,310 188,350 Q195,380 185,410"/>
+                <path class="jelly-tentacle" d="M205,184 Q212,220 205,260 Q198,295 210,335 Q218,365 208,400"/>
+                <!-- Tiny particles around -->
+                <circle cx="40" cy="200" r="1" fill="var(--neon-cyan)" opacity="0.3"><animate attributeName="opacity" values="0.1;0.5;0.1" dur="3s" repeatCount="indefinite"/></circle>
+                <circle cx="260" cy="170" r="1.2" fill="var(--neon-teal)" opacity="0.2"><animate attributeName="opacity" values="0.1;0.4;0.1" dur="4s" repeatCount="indefinite"/></circle>
+                <circle cx="50" cy="300" r="0.8" fill="var(--neon-violet)" opacity="0.25"><animate attributeName="opacity" values="0.1;0.4;0.1" dur="3.5s" repeatCount="indefinite"/></circle>
+                <circle cx="250" cy="320" r="1" fill="var(--neon-cyan)" opacity="0.2"><animate attributeName="opacity" values="0.1;0.5;0.1" dur="5s" repeatCount="indefinite"/></circle>
             </svg>
         </div>
     </div>
@@ -151,7 +193,7 @@
                 </ul>
             </div>
             <div class="vehicle-panel uuv">
-                <div class="vehicle-icon"><i class="fas fa-water"></i></div>
+                <div class="vehicle-icon"><i class="fas fa-bullseye"></i></div>
                 <h3><span class="lang-en">Underwater Drones</span><span class="lang-de">Unterwasser-Drohnen</span></h3>
                 <div class="v-sub">UUV / AUV — Unmanned Underwater Vehicle</div>
                 <p class="v-desc">
@@ -263,11 +305,6 @@
                 <i class="fas fa-map-marker-alt"></i>
                 <div class="label"><span class="lang-en">Address</span><span class="lang-de">Adresse</span></div>
                 <div class="value">Mühlthaler Straße 63a<br>81375 München</div>
-            </div>
-            <div class="contact-item">
-                <i class="fas fa-phone"></i>
-                <div class="label"><span class="lang-en">Phone</span><span class="lang-de">Telefon</span></div>
-                <div class="value"><a href="tel:+498980926631">+49 (89) 80926631</a></div>
             </div>
             <div class="contact-item">
                 <i class="fas fa-envelope"></i>
