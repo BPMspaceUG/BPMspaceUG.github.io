@@ -143,12 +143,17 @@ body.lang-de .lang-en { display: none !important; }
 /* Jellyfish */
 .jellyfish {
   position: absolute;
-  width: 320px; height: 400px;
+  width: 380px;
   right: 8%; top: 50%;
   transform: translateY(-50%);
-  opacity: 0.7;
+  opacity: 0.85;
   animation: jellyFloat 8s ease-in-out infinite;
   pointer-events: none;
+}
+.jellyfish img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 30px rgba(0, 150, 255, 0.4)) drop-shadow(0 0 60px rgba(0, 150, 255, 0.15));
 }
 @keyframes jellyFloat {
   0%, 100% { transform: translateY(-50%) translateX(0); }
