@@ -1,672 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Title -->
-    <title>BPMspace - Agile Business Process Management</title>
-    <!-- Required Meta Tags Always Come First -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <!-- Favicon -->
-    <link rel="shortcut icon" href=".\assets\img\favicon\favicon.ico">
-    <!-- font awesome -->
+    <meta name="description" content="BPMspace — AI-powered unmanned water vehicles for maritime reconnaissance, environmental protection and security.">
+    <title>BPMspace — Autonomous Maritime Intelligence</title>
+    <link rel="icon" type="image/png" sizes="96x96" href="./assets/img/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32x32.png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <!-- CSS Global Compulsory -->
-    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-    <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="./assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./assets/css/simple-line-icons.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/hamburgers.min.css">
-    <link rel="stylesheet" href="./assets/css/animate.css">
-    <link rel="stylesheet" href="./assets/css/slick.css">
-    <!-- CSS Template -->
-    <link rel="stylesheet" href="./assets/css/styles.op-business.css">
-    <!-- CSS Customization -->
     <link rel="stylesheet" href="./assets/css/custom.css">
 </head>
+<body class="lang-en">
 
-<body>
-    <main>
-        <!-- Header v1 -->
-        <header id="js-header" class="u-header u-header--sticky-top u-header--change-appearance" data-header-fix-moment="100">
-            <div class="u-header__section g-theme-bg-blue-dark-v1-opacity-0_9 g-transition-0_3 g-py-25" data-header-fix-moment-exclude="g-py-25" data-header-fix-moment-classes="g-py-20">
-                <nav class="navbar navbar-expand-lg py-0">
-                    <div class="container g-pos-rel">
-                        <!-- Logo -->
-                        <a href="#!" class="js-go-to navbar-brand u-header__logo" data-type="static">
-                            <img class="img-fluid u-header__logo-img u-header__logo-img--main" src=".\assets\img\bpmspace_weblogo.png" alt="Image Description">
-                        </a>
-                        <!-- End Logo -->
-                        <!-- Navigation -->
-                        <div class="collapse navbar-collapse align-items-center flex-sm-row" id="navBar">
-                            <ul id="js-scroll-nav" class="navbar-nav text-uppercase g-letter-spacing-2 g-font-size-11 g-pt-20 g-pt-0--lg ml-auto">
-                                <li class="nav-item g-mr-10--lg g-mr-15--xl g-mb-7 g-mb-0--lg active">
-                                    <a href="#home" class="nav-link g-color-white p-0">Home <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item g-mx-10--lg g-mx-15--xl g-mb-7 g-mb-0--lg">
-                                    <a href="#about" class="nav-link g-color-white p-0">About</a>
-                                </li>
-                                <li class="nav-item g-mx-10--lg g-mx-15--xl g-mb-7 g-mb-0--lg">
-                                    <a href="#Developer" class="nav-link g-color-white p-0">PHP Developer</a>
-                                </li>
-                                <li class="nav-item g-mx-10--lg g-mx-15--xl g-mb-7 g-mb-0--lg">
-                                    <a href="#Partners" class="nav-link g-color-white p-0">Partners</a>
-                                </li>
-                                <li class="nav-item g-ml-10--lg g-ml-15--xl">
-                                    <a href="#contact" class="nav-link g-color-white p-0">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- End Navigation -->
-                        <!-- Responsive Toggle Button -->
-                        <button class="navbar-toggler btn g-line-height-1 g-brd-none g-pa-0 g-pos-abs g-top-10 g-right-0" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
-                     <span class="hamburger hamburger--slider">
-                     <span class="hamburger-box">
-                     <span class="hamburger-inner"></span>
-                     </span>
-                     </span>
-                     </button>
-                        <!-- End Responsive Toggle Button -->
-                    </div>
-                </nav>
+<!-- HEADER -->
+<header class="site-header" id="header">
+    <a href="#hero"><img class="header-logo" src="./assets/img/bpmspace_weblogo.png" alt="BPMspace"></a>
+    <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    <nav class="header-nav" id="navMenu">
+        <button class="mobile-menu-close" onclick="toggleMenu()" aria-label="Close"><i class="fas fa-times"></i></button>
+        <a href="#why" onclick="closeMenu()"><span class="lang-en">Why</span><span class="lang-de">Warum</span></a>
+        <a href="#vehicles" onclick="closeMenu()"><span class="lang-en">Systems</span><span class="lang-de">Systeme</span></a>
+        <a href="#applications" onclick="closeMenu()"><span class="lang-en">Missions</span><span class="lang-de">Einsatz</span></a>
+        <a href="#legacy" onclick="closeMenu()"><span class="lang-en">Heritage</span><span class="lang-de">Projekte</span></a>
+        <a href="#contact" onclick="closeMenu()"><span class="lang-en">Contact</span><span class="lang-de">Kontakt</span></a>
+        <button class="lang-toggle" onclick="toggleLang()">DE</button>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+    <div class="hero-inner">
+        <div class="hero-text">
+            <div class="hero-tag">
+                <span class="lang-en">// AI-Powered Maritime Autonomy — Munich, Germany</span>
+                <span class="lang-de">// KI-gesteuerte Maritime Autonomie — München, Deutschland</span>
             </div>
-        </header>
-        <!-- End Header v1 -->
-        <!-- Promo -->
-        <section id="home" class="g-pos-rel">
-            <div class="js-carousel g-overflow-hidden g-max-height-100vh" data-autoplay="true" data-infinite="true" data-fade="true" data-speed="5000">
-                <div class="js-slide g-bg-img-hero g-height-100vh g-min-height-500--md" style="background-image: url(./assets/img/BPMspace_astronaut.jpg);"></div>
-                <div class="js-slide g-bg-img-hero g-height-100vh g-min-height-500--md" style="background-image: url(./assets/img/BPMspace_process_space.jpg);"></div>
+            <h1>
+                <span class="lang-en"><em>AAMI</em><br>Artificial Autonomous<br>Maritime Intelligence</span>
+                <span class="lang-de"><em>AAMI</em><br>Künstliche Autonome<br>Maritime Intelligenz</span>
+            </h1>
+            <p class="hero-desc">
+                <span class="lang-en">We build AI-controlled unmanned vessels that patrol, scan and protect — above and below the waterline. Autonomous reconnaissance for environmental monitoring, maritime security and defense. 24/7. No crew. No limits.</span>
+                <span class="lang-de">Wir bauen KI-gesteuerte unbemannte Wasserfahrzeuge die patrouillieren, scannen und schützen — über und unter der Wasserlinie. Autonome Aufklärung für Umweltmonitoring, maritime Sicherheit und Verteidigung. 24/7. Keine Crew. Keine Grenzen.</span>
+            </p>
+            <div class="cta-group">
+                <a href="#vehicles" class="cta-primary">
+                    <span class="lang-en">Explore Systems</span>
+                    <span class="lang-de">Systeme entdecken</span>
+                </a>
+                <a href="#why" class="cta-secondary">
+                    <span class="lang-en">Why Unmanned?</span>
+                    <span class="lang-de">Warum unbemannt?</span>
+                </a>
             </div>
-            <div class="g-absolute-centered w-100">
-                <div class="container text-center g-width-780">
-                    <div class="info-v3-4 g-theme-bg-blue-dark-v1-opacity-0_9 g-pa-40 g-pa-60--md">
-                        <div class="g-pos-rel g-z-index-3">
-                            <h3 class="h3 text-uppercase g-letter-spacing-3 g-font-size-default g-color-white g-mb-10">We are</h3>
-                            <h2 class="h2 g-color-white g-letter-spacing-5 g-font-weight-400 g-font-size-25 g-font-size-35--md g-mb-20">BPMspace</h2>
-                            <p class="g-line-height-1_8 g-letter-spacing-3 g-color-white g-mb-20">We enable you in improving your corporate performance by managing your business processes in an agile and intelligent way.</p>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        <div class="jellyfish">
+            <img src="./3756635456442343545444325323/img/759FA72D-C46D-4B73-87A8-3925982A0677.png" alt="Jellyfish">
+        </div>
+    </div>
+</section>
+
+<!-- WHY SECTION -->
+<section class="section why-section" id="why">
+    <div class="container">
+        <div class="section-header centered">
+            <div class="section-tag">
+                <span class="lang-en">// The Case for Autonomy</span>
+                <span class="lang-de">// Das Argument für Autonomie</span>
             </div>
-        </section>
-        <!-- End Promo -->
-        <!-- Section Content -->
-        <section id="about" class="g-theme-bg-blue-dark-v1 g-py-80">
-            <div class="container text-center g-width-780 g-color-gray-light-v2 g-mb-60">
-                <div class="text-uppercase u-heading-v2-4--bottom g-brd-primary g-mb-40">
-                    <h4 class="h6 g-font-weight-800 g-font-size-12 g-letter-spacing-2 g-color-primary g-mb-20">About Us</h4>
-                    <h2 class="h1 u-heading-v2__title g-line-height-1_3 g-font-weight-600 g-font-size-40 g-color-white g-mb-minus-10">How We Do It</h2>
-                </div>
+            <h2>
+                <span class="lang-en">Why Unmanned Water Vehicles?</span>
+                <span class="lang-de">Warum unbemannte Wasserfahrzeuge?</span>
+            </h2>
+            <p>
+                <span class="lang-en">Crewed vessels are expensive, limited by human endurance, and put lives at risk in dangerous waters. Autonomous systems change the equation entirely — they operate longer, reach further, and never need sleep.</span>
+                <span class="lang-de">Bemannte Schiffe sind teuer, durch menschliche Ausdauer begrenzt und setzen Leben in gefährlichen Gewässern aufs Spiel. Autonome Systeme ändern die Gleichung grundlegend — sie operieren länger, reichen weiter und brauchen keinen Schlaf.</span>
+            </p>
+            <div class="accent-bar"></div>
+        </div>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="icon-wrap"><i class="fas fa-user-shield"></i></div>
+                <h3><span class="lang-en">Zero Risk to Human Life</span><span class="lang-de">Kein Risiko für Menschenleben</span></h3>
+                <p><span class="lang-en">Contaminated waters, storm zones, minefields, hostile territories — machines go where people shouldn't. Every dangerous mission completed without a crew aboard is a life protected.</span><span class="lang-de">Verseuchte Gewässer, Sturmzonen, Minenfelder, feindliche Gebiete — Maschinen gehen dorthin, wo Menschen nicht sein sollten. Jede gefährliche Mission ohne Besatzung ist ein geschütztes Leben.</span></p>
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 g-px-30 g-mb-40">
-                        <!-- Icon Blocks -->
-                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm">
-                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
-                                <div class="g-pull-50x-left g-brd-around g-brd-5 g-brd-primary-dark-v3 g-rounded-50x g-overflow-hidden">
-                                    <span class="d-block g-pos-abs g-top-0 g-left-0 g-width-95 g-height-95 g-brd-around g-brd-5 g-brd-primary g-rounded-50x" style="background-image: url(assets/img/exclamation_mark.jpg);"></span>
-                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-opacity-1 opacity-0--parent-hover g-transition-0_1 g-transition--ease-in">
-                              <i class="fas fa-circle-notch"></i>
-                              </span>
-                                </div>
-                            </div>
-                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">We do it AGILE</h3>
-                            <p class="g-color-gray-light-v2 mb-0">Not only software development must be agile, also process management has to focus on changing enviroments.</p>
-                        </div>
-                        <!-- End Icon Blocks -->
-                    </div>
-                    <div class="col-lg-6 g-px-30 g-mb-40">
-                        <!-- Icon Blocks -->
-                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm">
-                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
-                                <div class="g-pull-50x-left g-brd-around g-brd-5 g-brd-primary-dark-v3 g-rounded-50x g-overflow-hidden">
-                                    <span class="d-block g-pos-abs g-top-0 g-left-0 g-width-95 g-height-95 g-brd-around g-brd-5 g-brd-primary g-rounded-50x" style="background-image: url(assets/img/exclamation_mark.jpg);"></span>
-                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-opacity-1 opacity-0--parent-hover g-transition-0_1 g-transition--ease-in">
-                              <i class="far fa-lightbulb"></i>
-                              </span>
-                                </div>
-                            </div>
-                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">We do it INTELLIGENT</h3>
-                            <p class="g-color-gray-light-v2 mb-0">Design thinking is an intelligent way of problem-solving, decision-making, prototyping and operate.</p>
-                        </div>
-                        <!-- End Icon Blocks -->
-                    </div>
-                </div>
-                <!-- End Icon Blocks -->
-                <!-- Icon Blocks -->
-                <div class="row g-mb-50">
-                    <div class="col-lg-6 g-px-30 g-mb-40">
-                        <!-- Icon Blocks -->
-                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm">
-                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
-                                <div class="g-pull-50x-left g-brd-around g-brd-5 g-brd-primary-dark-v3 g-rounded-50x g-overflow-hidden">
-                                    <span class="d-block g-pos-abs g-top-0 g-left-0 g-width-95 g-height-95 g-brd-around g-brd-5 g-brd-primary g-rounded-50x" style="background-image: url(assets/img/exclamation_mark.jpg);"></span>
-                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-opacity-1 opacity-0--parent-hover g-transition-0_1 g-transition--ease-in">
-                              <i class="fas fa-long-arrow-alt-up"></i>
-                              </span>
-                                </div>
-                            </div>
-                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">We do it SIMPLE & LEARN</h3>
-                            <p class="g-color-gray-light-v2 mb-0">"Keep it simple, stupid" and “Fail fast - learn quickly” are our main principles.</p>
-                        </div>
-                        <!-- End Icon Blocks -->
-                    </div>
-                    <div class="col-lg-6 g-px-30 g-mb-40">
-                        <!-- Icon Blocks -->
-                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm">
-                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
-                                <div class="g-pull-50x-left g-brd-around g-brd-5 g-brd-primary-dark-v3 g-rounded-50x g-overflow-hidden">
-                                    <span class="d-block g-pos-abs g-top-0 g-left-0 g-width-95 g-height-95 g-brd-around g-brd-5 g-brd-primary g-rounded-50x" style="background-image: url(assets/img/exclamation_mark.jpg);"></span>
-                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-opacity-1 opacity-0--parent-hover g-transition-0_1 g-transition--ease-in">
-                              <i class="fas fa-project-diagram"></i>
-                              </span>
-                                </div>
-                            </div>
-                            <h3 class="h5 text-uppercase g-font-size-16 g-color-gray-light-v2 g-mb-10">We do it PROCESS ORIENTED</h3>
-                            <p class="g-color-gray-light-v2 mb-0">We think every single process and every process instance has a lifecycle!</p>
-                        </div>
-                        <!-- End Icon Blocks -->
-                    </div>
-                </div>
-                <!-- End Icon Blocks -->
+            <div class="why-card">
+                <div class="icon-wrap"><i class="fas fa-clock"></i></div>
+                <h3><span class="lang-en">24/7 Endurance</span><span class="lang-de">24/7 Ausdauer</span></h3>
+                <p><span class="lang-en">No crew fatigue, no shift changes, no return to port for rest. Our vehicles operate for weeks continuously — through night, fog, and rough seas. Persistent presence where it matters.</span><span class="lang-de">Keine Ermüdung der Crew, kein Schichtwechsel, keine Rückkehr zum Hafen. Unsere Fahrzeuge operieren wochenlang durchgehend — bei Nacht, Nebel und rauer See. Dauerhafte Präsenz wo es zählt.</span></p>
             </div>
-        </section>
-        <!-- End Section Content -->
-        <!-- Section Content -->
-        <section id="Developer" class="g-theme-bg-blue-v1 g-pt-80">
-            <div class="container text-center g-width-780 g-color-gray-light-v2 g-mb-60">
-                <div class="text-uppercase u-heading-v2-4--bottom g-brd-primary g-mb-40">
-                    <h4 class="h6 g-font-weight-800 g-font-size-12 g-letter-spacing-2 g-color-primary g-mb-20">Project</h4>
-                    <h2 class="h1 u-heading-v2__title g-line-height-1_3 g-font-weight-600 g-font-size-40 g-color-gray-light-v2 g-mb-minus-10">
-                        <div style="color:#0057B8;">PHP FullStack oder BackEnd Developer</div>
-                        <div style="color:#FFD700">Refugees Welcome!</div>
-                    </h2>
-                </div>
-                <!--  <p class="g-color-gray-light-v2 mb-0">What we do:</p> -->
+            <div class="why-card">
+                <div class="icon-wrap"><i class="fas fa-brain"></i></div>
+                <h3><span class="lang-en">AI Decision Making</span><span class="lang-de">KI-Entscheidungsfindung</span></h3>
+                <p><span class="lang-en">Real-time sensor fusion, pattern recognition, and autonomous threat assessment. Our AI processes more data in seconds than a human crew could in hours — detecting anomalies invisible to the human eye.</span><span class="lang-de">Echtzeit-Sensorfusion, Mustererkennung und autonome Bedrohungsbewertung. Unsere KI verarbeitet in Sekunden mehr Daten als eine menschliche Crew in Stunden — und erkennt Anomalien, die dem menschlichen Auge verborgen bleiben.</span></p>
             </div>
-            <div class="container text-left g-width-780 g-color-gray-light-v2 g-mb-60">
-                <h4 class="h6 text-center g-font-weight-800 g-font-size-12 g-letter-spacing-2 g-color-primary g-mb-20">PROJECT SQMSII</h4>
-                <p style="color:black">We are already an international team (Germany/Serbia) and we are searching for some new members!</p>
-                <p style="color:black">We are looking for a PHP FullStack or Back End Developer (FEMALE/male/diverse) for our client <a title=" ICO International Certification Organization AG " href="https://ico-cert.org/en " target="_blank ">ICO International Certification Organization</a>.
-                    Preference given to women with equal aptitude.</p>
-                <p>
-                    <a title="The ICO is an organisation providing certification of persons as defined in ISO/IEC 17024 Certification Body of Persons. ICO offers high-quality qualification programs and certifications in IT management. " href="https://ico-cert.org/en
-                    " target="_blank "><img style="display: block; margin-top: 50px; margin-bottom: 50px; margin-left: auto; margin-right: auto; " src="https://ico-cert.org/img/ico-cert_header_584.png " alt="ICO " width="584 " height="106 " /></a>
+            <div class="why-card">
+                <div class="icon-wrap"><i class="fas fa-lock"></i></div>
+                <h3><span class="lang-en">Dual-Use Capability</span><span class="lang-de">Dual-Use-Fähigkeit</span></h3>
+                <p><span class="lang-en">From environmental monitoring to maritime security and defense reconnaissance — one platform, many missions. The same vehicle that maps coral reefs can patrol critical infrastructure or support naval operations.</span><span class="lang-de">Von Umweltüberwachung über maritime Sicherheit bis zur Verteidigungsaufklärung — eine Plattform, viele Missionen. Dasselbe Fahrzeug, das Korallenriffe kartiert, kann kritische Infrastruktur patrouillieren oder Marineoperationen unterstützen.</span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- VEHICLES -->
+<section class="section vehicles-section" id="vehicles">
+    <div class="container">
+        <div class="section-header centered">
+            <div class="section-tag">// Systems</div>
+            <h2>
+                <span class="lang-en">Unmanned Water Vehicles</span>
+                <span class="lang-de">Unbemannte Wasserfahrzeuge</span>
+            </h2>
+            <p>
+                <span class="lang-en">Two domains, one mission: complete maritime awareness. Our surface and subsurface platforms work independently or as coordinated swarms — covering every layer of the water column.</span>
+                <span class="lang-de">Zwei Domänen, eine Mission: vollständiges maritimes Lagebild. Unsere Überwasser- und Unterwasser-Plattformen arbeiten unabhängig oder als koordinierte Schwärme — jede Schicht der Wassersäule abdeckend.</span>
+            </p>
+            <div class="accent-bar"></div>
+        </div>
+        <div class="vehicles-split">
+            <div class="vehicle-panel usv">
+                <div class="vehicle-icon"><i class="fas fa-ship"></i></div>
+                <h3><span class="lang-en">Surface Drones</span><span class="lang-de">Überwasser-Drohnen</span></h3>
+                <div class="v-sub">USV — Unmanned Surface Vehicle</div>
+                <p class="v-desc">
+                    <span class="lang-en">Operating at the air-water interface, our USVs combine radar, optical sensors and AIS tracking for complete surface awareness. Built for endurance in open ocean conditions with autonomous collision avoidance.</span>
+                    <span class="lang-de">An der Luft-Wasser-Grenzfläche operierend kombinieren unsere USVs Radar, optische Sensoren und AIS-Tracking für vollständiges Oberflächen-Lagebild. Gebaut für Ausdauer auf offener See mit autonomer Kollisionsvermeidung.</span>
                 </p>
-                <p class="left " style="color:black">The SQMS (<b>S</b>yllabus and <b>Q</b>uestion <b>M</b>anagement <b>S</b>ystem) is responsible for syllabus and exam question management and the export to <a title="SecureOnlineExam " href="https://prime73.exam.online/
-                    " target="_blank ">SOE (Secure Online Exam)</a> and the new Website of ICO. The main feature of the new version SQMSII is the MultiLanguageSupport.</p>
-                <p class="left " style="color:black"><strong>What should you bring ...</strong></p>
-                <ul style="color:black">
-                    <li>Solid knowledge in PHP FullStack/BackEnd development (object-oriented)</li>
-                    <li>Further programming languages desirable but not absolutely necessary
-                        <ul>
-                            <li>JavaScript</li>
-                            <li>Go</li>
-                        </ul>
-                    </li>
-                    <li>Knowledge of SECURE and clean code and test-driven development</li>
-                    <li>Thoughtful and pragmatic approach</li>
-                    <li>Knowledge of modern CI/CD technologies desirable but not necessary</li>
-                    <li>Experience with HTML5, CSS, API (Application Programming Interface), MySQL (MariaDB), Git and Docker (rudimentary)</li>
+                <ul class="v-features">
+                    <li><span class="lang-en">Autonomous patrol &amp; surveillance</span><span class="lang-de">Autonome Patrouille &amp; Überwachung</span></li>
+                    <li><span class="lang-en">Real-time sensor fusion (radar, camera, AIS)</span><span class="lang-de">Echtzeit-Sensorfusion (Radar, Kamera, AIS)</span></li>
+                    <li><span class="lang-en">Coastal &amp; port security monitoring</span><span class="lang-de">Küsten- &amp; Hafensicherheit</span></li>
+                    <li><span class="lang-en">Environmental data collection</span><span class="lang-de">Umweltdatenerhebung</span></li>
+                    <li><span class="lang-en">Long-range communication relay</span><span class="lang-de">Langstrecken-Kommunikationsrelais</span></li>
                 </ul>
-                <p style="color:black"><strong>Project language: </strong> English</p>
-                <p style="color:black"><strong>Project length: </strong> 3-5 months</p>
-                <p style="color:black">More interesting links about this project</p>
-                <ul style="color:black">
-                    <li><a href="https://github.com/mevdschee/php-crud-api " target="_blank ">PHP_CRUD_API incl. custom controller</a></li>
-                    <li><a href="https://www.deepl.com/de/docs-api/ " target="_blank ">DEEPLE API</a> (translation)</li>
-                    <li><a href="https://gohugo.io/content-management/multilingual/ " target="_blank ">HUGO Multilingual Mode</a></li>
-                    <li><a href="https://owasp.org/www-project-top-ten/ " target="_blank ">OWASP Top Ten</a></li>
+            </div>
+            <div class="vehicle-panel uuv">
+                <div class="vehicle-icon"><i class="fas fa-bullseye"></i></div>
+                <h3><span class="lang-en">Underwater Drones</span><span class="lang-de">Unterwasser-Drohnen</span></h3>
+                <div class="v-sub">UUV / AUV — Unmanned Underwater Vehicle</div>
+                <p class="v-desc">
+                    <span class="lang-en">Descending into the deep, our UUVs navigate autonomously through complete darkness using sonar, LIDAR and inertial systems. They map the unseen, inspect the unreachable, and detect what hides beneath the surface.</span>
+                    <span class="lang-de">In die Tiefe abtauchend navigieren unsere UUVs autonom durch völlige Dunkelheit mittels Sonar, LIDAR und Inertialsystemen. Sie kartieren das Unsichtbare, inspizieren das Unerreichbare und entdecken was unter der Oberfläche verborgen liegt.</span>
+                </p>
+                <ul class="v-features">
+                    <li><span class="lang-en">Subsea mapping &amp; sonar imaging</span><span class="lang-de">Unterwasserkartierung &amp; Sonar-Bildgebung</span></li>
+                    <li><span class="lang-en">Pipeline &amp; cable inspection</span><span class="lang-de">Pipeline- &amp; Kabelinspektion</span></li>
+                    <li><span class="lang-en">Mine countermeasures &amp; threat detection</span><span class="lang-de">Minenabwehr &amp; Bedrohungserkennung</span></li>
+                    <li><span class="lang-en">Marine research &amp; biodiversity monitoring</span><span class="lang-de">Meeresforschung &amp; Biodiversitäts-Monitoring</span></li>
+                    <li><span class="lang-en">Autonomous deep-water navigation</span><span class="lang-de">Autonome Tiefwasser-Navigation</span></li>
                 </ul>
-                <p style="color:black">What we offer</p>
-                <ul style="color:black">
-                    <li>Exceptional salary</li>
-                    <li>Flexible working hours</li>
-                    <li>Fully equipped workspace/office in Munich, also option for remote-work after the initial phase</li>
-                    <li>Free Training with our partner <a title="mITSM EDUCATION " href="https://www.mitsm.de " target="_blank ">mITSM</a> e.g. <a title="ITEMO SCRUM " href="https://www.mitsm.de/schulung/scrum/ " target="_blank
-                        ">SCRUM</a>, <a title="ITEMO Kanban " href="https://www.mitsm.de/schulung/kanban/ " target="_blank ">Kanban</a> and <a title="Cybersecurity &amp; Penetration Testing " href="https://www.mitsm.de/schulung/cybersecurity-penetration-testing/ "
-                            target="_blank ">Cybersecurity &amp; Penetration Testing</a></li>
-                </ul>
-                <p style="color:black">Sent your CV to office@bpmspace.com</p>
-                <div class="alert alert-success text-center mt-5" style="color:black">
-                    See also <a title="Free Places in our Foundation Classes for Ukrainian Refugees" href="https://www.mitsm.de/news/free-spots-in-our-foundation-classes-for-ukrainian-refugees/" target="_blank ">Free Places in our Foundation Classes for Ukrainian Refugees</a>                    of our Partner mITSM.
-                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<!-- APPLICATIONS -->
+<section class="section applications-section" id="applications">
+    <div class="container">
+        <div class="section-header centered">
+            <div class="section-tag">// Deploy</div>
+            <h2>
+                <span class="lang-en">Mission Profiles</span>
+                <span class="lang-de">Einsatzprofile</span>
+            </h2>
+            <p>
+                <span class="lang-en">Versatile platforms for a world of challenges. From protecting marine ecosystems to securing national borders — our vehicles adapt to the mission.</span>
+                <span class="lang-de">Vielseitige Plattformen für eine Welt voller Herausforderungen. Vom Schutz mariner Ökosysteme bis zur Sicherung nationaler Grenzen — unsere Fahrzeuge passen sich der Mission an.</span>
+            </p>
+            <div class="accent-bar"></div>
+        </div>
+        <div class="app-grid">
+            <div class="app-card">
+                <div class="app-icon"><i class="fas fa-leaf"></i></div>
+                <h4><span class="lang-en">Environmental Protection</span><span class="lang-de">Umweltschutz</span></h4>
+                <p><span class="lang-en">Water quality monitoring, marine ecosystem mapping, oil spill detection, and climate data collection across vast oceanic regions.</span><span class="lang-de">Wasserqualitätsüberwachung, Kartierung mariner Ökosysteme, Ölpest-Erkennung und Klimadatenerhebung über riesige ozeanische Regionen.</span></p>
             </div>
-            <!-- 
-               <div class="container-fluid px-0 ">
-                  <div class="js-carousel g-line-height-0 " 
-                     data-infinite="true "
-                     data-autoplay="true "
-                     data-speed="5000 "
-                     data-rows="1 "
-                     data-slides-show="4 "
-                     data-responsive='[{
-                     "breakpoint ": 1200,
-                     "settings ": {
-                     "slidesToShow ": 4
-                     }
-                     }, {
-                     "breakpoint ": 992,
-                     "settings ": {
-                     "slidesToShow ": 3
-                     }
-                     }, {
-                     "breakpoint ": 768,
-                     "settings ": {
-                     "slidesToShow ": 2
-                     }
-                     }, {
-                     "breakpoint ": 576,
-                     "settings ": {
-                     "slidesToShow ": 1
-                     }
-                     }]'>
-                     <div class="js-slide ">
-                        <div class="g-parent g-pos-rel g-overflow-hidden ">
-                           <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_3 g-transition--ease-in " src="./assets/img/BPMspace_ASMS.png " alt="Image description ">
-                           <div class="g-pos-abs g-top-0 g-left-0 g-flex-middle w-100 h-100 g-bg-primary-opacity-0_8 g-color-white opacity-0 g-opacity-1--parent-hover g-brd-around g-brd-10 g-brd-white g-pa-30 g-transition-0_3 g-transition--ease-in ">
-                              <div class="g-flex-middle-item--bottom ">
-                                 <header class="g-mb-5 ">
-                                    <h3 class="text-uppercase g-font-weight-700 g-font-size-18 mb-0 ">
-                                       <a class="g-color-white " href="#! ">Advanced Slider Management System</a>
-                                    </h3>
-                                 </header>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="js-slide ">
-                        <div class="g-parent g-pos-rel g-overflow-hidden ">
-                           <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_3 g-transition--ease-in " src="./assets/img/BPMspace_AuditMS.png " alt="Image description ">
-                           <div class="g-pos-abs g-top-0 g-left-0 g-flex-middle w-100 h-100 g-bg-primary-opacity-0_8 g-color-white opacity-0 g-opacity-1--parent-hover g-brd-around g-brd-10 g-brd-white g-pa-30 g-transition-0_3 g-transition--ease-in ">
-                              <div class="g-flex-middle-item--bottom ">
-                                 <header class="g-mb-5 ">
-                                    <h3 class="text-uppercase g-font-weight-700 g-font-size-18 mb-0 ">
-                                       <a class="g-color-white " href="#! ">Audit Management System</a>
-                                    </h3>
-                                 </header>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="js-slide ">
-                        <div class="g-parent g-pos-rel g-overflow-hidden ">
-                           <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_3 g-transition--ease-in " src="./assets/img/BPMspace_COMS.png " alt="Image description ">
-                           <div class="g-pos-abs g-top-0 g-left-0 g-flex-middle w-100 h-100 g-bg-primary-opacity-0_8 g-color-white opacity-0 g-opacity-1--parent-hover g-brd-around g-brd-10 g-brd-white g-pa-30 g-transition-0_3 g-transition--ease-in ">
-                              <div class="g-flex-middle-item--bottom ">
-                                 <header class="g-mb-5 ">
-                                    <h3 class="text-uppercase g-font-weight-700 g-font-size-18 mb-0 ">
-                                       <a class="g-color-white " href="#! ">Certification Organisation Management System</a>
-                                    </h3>
-                                 </header>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="js-slide ">
-                        <div class="g-parent g-pos-rel g-overflow-hidden ">
-                           <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_3 g-transition--ease-in " src="./assets/img/BPMspace_EduMS.png " alt="Image description ">
-                           <div class="g-pos-abs g-top-0 g-left-0 g-flex-middle w-100 h-100 g-bg-primary-opacity-0_8 g-color-white opacity-0 g-opacity-1--parent-hover g-brd-around g-brd-10 g-brd-white g-pa-30 g-transition-0_3 g-transition--ease-in ">
-                              <div class="g-flex-middle-item--bottom ">
-                                 <header class="g-mb-5 ">
-                                    <h3 class="text-uppercase g-font-weight-700 g-font-size-18 mb-0 ">
-                                       <a class="g-color-white " href="#! ">Education Management System</a>
-                                    </h3>
-                                 </header>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="js-slide ">
-                        <div class="g-parent g-pos-rel g-overflow-hidden ">
-                           <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_3 g-transition--ease-in " src="./assets/img/BPMspace_HEMS.png " alt="Image description ">
-                           <div class="g-pos-abs g-top-0 g-left-0 g-flex-middle w-100 h-100 g-bg-primary-opacity-0_8 g-color-white opacity-0 g-opacity-1--parent-hover g-brd-around g-brd-10 g-brd-white g-pa-30 g-transition-0_3 g-transition--ease-in ">
-                              <div class="g-flex-middle-item--bottom ">
-                                 <header class="g-mb-5 ">
-                                    <h3 class="text-uppercase g-font-weight-700 g-font-size-18 mb-0 ">
-                                       <a class="g-color-white " href="#! ">Hacking Environment Management System</a>
-                                    </h3>
-                                 </header>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="js-slide ">
-                        <div class="g-parent g-pos-rel g-overflow-hidden ">
-                           <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_3 g-transition--ease-in " src="./assets/img/BPMspace_APMS.png " alt="Image description ">
-                           <div class="g-pos-abs g-top-0 g-left-0 g-flex-middle w-100 h-100 g-bg-primary-opacity-0_8 g-color-white opacity-0 g-opacity-1--parent-hover g-brd-around g-brd-10 g-brd-white g-pa-30 g-transition-0_3 g-transition--ease-in ">
-                              <div class="g-flex-middle-item--bottom ">
-                                 <header class="g-mb-5 ">
-                                    <h3 class="text-uppercase g-font-weight-700 g-font-size-18 mb-0 ">
-                                       <a class="g-color-white " href="#! ">Agile Process Management System</a>
-                                    </h3>
-                                 </header>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="js-slide ">
-                        <div class="g-parent g-pos-rel g-overflow-hidden ">
-                           <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_3 g-transition--ease-in " src="./assets/img/BPMspace_LDMS.png " alt="Image description ">
-                           <div class="g-pos-abs g-top-0 g-left-0 g-flex-middle w-100 h-100 g-bg-primary-opacity-0_8 g-color-white opacity-0 g-opacity-1--parent-hover g-brd-around g-brd-10 g-brd-white g-pa-30 g-transition-0_3 g-transition--ease-in ">
-                              <div class="g-flex-middle-item--bottom ">
-                                 <header class="g-mb-5 ">
-                                    <h3 class="text-uppercase g-font-weight-700 g-font-size-18 mb-0 ">
-                                       <a class="g-color-white " href="#! ">Lightweight Document Management System</a>
-                                    </h3>
-                                 </header>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="js-slide ">
-                        <div class="g-parent g-pos-rel g-overflow-hidden ">
-                           <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_3 g-transition--ease-in " src="./assets/img/BPMspace_LIAM.png " alt="Image description ">
-                           <div class="g-pos-abs g-top-0 g-left-0 g-flex-middle w-100 h-100 g-bg-primary-opacity-0_8 g-color-white opacity-0 g-opacity-1--parent-hover g-brd-around g-brd-10 g-brd-white g-pa-30 g-transition-0_3 g-transition--ease-in ">
-                              <div class="g-flex-middle-item--bottom ">
-                                 <header class="g-mb-5 ">
-                                    <h3 class="text-uppercase g-font-weight-700 g-font-size-18 mb-0 ">
-                                       <a class="g-color-white " href="#! ">Lightweight Identity & Access Management </a>
-                                    </h3>
-                                 </header>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="js-slide ">
-                        <div class="g-parent g-pos-rel g-overflow-hidden ">
-                           <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_3 g-transition--ease-in " src="./assets/img/BPMspace_REPLACER.png " alt="Image description ">
-                           <div class="g-pos-abs g-top-0 g-left-0 g-flex-middle w-100 h-100 g-bg-primary-opacity-0_8 g-color-white opacity-0 g-opacity-1--parent-hover g-brd-around g-brd-10 g-brd-white g-pa-30 g-transition-0_3 g-transition--ease-in ">
-                              <div class="g-flex-middle-item--bottom ">
-                                 <header class="g-mb-5 ">
-                                    <h3 class="text-uppercase g-font-weight-700 g-font-size-18 mb-0 ">
-                                       <a class="g-color-white " href="#! ">Multilingual Replacer Application</a>
-                                    </h3>
-                                 </header>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="js-slide ">
-                        <div class="g-parent g-pos-rel g-overflow-hidden ">
-                           <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_3 g-transition--ease-in " src="./assets/img/BPMspace_SCMS.png " alt="Image description ">
-                           <div class="g-pos-abs g-top-0 g-left-0 g-flex-middle w-100 h-100 g-bg-primary-opacity-0_8 g-color-white opacity-0 g-opacity-1--parent-hover g-brd-around g-brd-10 g-brd-white g-pa-30 g-transition-0_3 g-transition--ease-in ">
-                              <div class="g-flex-middle-item--bottom ">
-                                 <header class="g-mb-5 ">
-                                    <h3 class="text-uppercase g-font-weight-700 g-font-size-18 mb-0 ">
-                                       <a class="g-color-white " href="#! ">Simple Configuration Management System</a>
-                                    </h3>
-                                 </header>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="js-slide ">
-                        <div class="g-parent g-pos-rel g-overflow-hidden ">
-                           <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_3 g-transition--ease-in " src="./assets/img/BPMspace_SQMS.png " alt="Image description ">
-                           <div class="g-pos-abs g-top-0 g-left-0 g-flex-middle w-100 h-100 g-bg-primary-opacity-0_8 g-color-white opacity-0 g-opacity-1--parent-hover g-brd-around g-brd-10 g-brd-white g-pa-30 g-transition-0_3 g-transition--ease-in ">
-                              <div class="g-flex-middle-item--bottom ">
-                                 <header class="g-mb-5 ">
-                                    <h3 class="text-uppercase g-font-weight-700 g-font-size-18 mb-0 ">
-                                       <a class="g-color-white " href="#! ">Syllabus Question Management System</a>
-                                    </h3>
-                                 </header>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="js-slide ">
-                        <div class="g-parent g-pos-rel g-overflow-hidden ">
-                           <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_3 g-transition--ease-in " src="./assets/img/BPMspace_TEMS.png " alt="Image description ">
-                           <div class="g-pos-abs g-top-0 g-left-0 g-flex-middle w-100 h-100 g-bg-primary-opacity-0_8 g-color-white opacity-0 g-opacity-1--parent-hover g-brd-around g-brd-10 g-brd-white g-pa-30 g-transition-0_3 g-transition--ease-in ">
-                              <div class="g-flex-middle-item--bottom ">
-                                 <header class="g-mb-5 ">
-                                    <h3 class="text-uppercase g-font-weight-700 g-font-size-18 mb-0 ">
-                                       <a class="g-color-white " href="#! ">Test & Examination Management System</a>
-                                    </h3>
-                                 </header>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               </div>
-               -->
-        </section>
-        <!-- End Section Content
-            <!-- What we creatd -->
-        <section id="TEMS_Private_policy " class="g-theme-bg-blue-dark-v1 g-py-80 ">
-            <div class="container text-center g-width-780 g-color-gray-light-v2 g-mb-60 ">
-                <div class="text-uppercase u-heading-v2-4--bottom g-brd-primary g-mb-40 ">
-                    <h4 class="h6 g-font-weight-800 g-font-size-12 g-letter-spacing-2 g-color-primary g-mb-20 ">What we created ..</h4>
-                </div>
-                <h2 class="h1 u-heading-v2__title g-line-height-1_3 g-font-weight-600 g-font-size-40 g-color-white g-mb-minus-10 ">Online Proctoring with AI fraud detection</h2>
+            <div class="app-card">
+                <div class="app-icon"><i class="fas fa-shield-alt"></i></div>
+                <h4><span class="lang-en">Maritime Security</span><span class="lang-de">Maritime Sicherheit</span></h4>
+                <p><span class="lang-en">Port surveillance, coastal patrol, border protection, and critical infrastructure monitoring — 24/7, without fatigue.</span><span class="lang-de">Hafenüberwachung, Küstenpatrouille, Grenzschutz und Überwachung kritischer Infrastruktur — 24/7, ohne Ermüdung.</span></p>
             </div>
-            <div class="container-fluid px-0 " style="text-align:center; ">
-                <div class="row ">
-                    <div class="col-md-2 "></div>
-                    <div class="col-md-8 ">
-                        <a title="SOE " href="https://prime73.exam.online/ " target="_blank " rel="noopener "><img class="img-fluid " src="./SecureOnlineExam_SOE.PNG " alt="SecureOnlineExam SOE Proctoring with AI fraud detection Artificial Intelligence,
-                    Machine Learning, Cloud Based, Secure &amp; Scalable " /></a>
-                    </div>
-                    <div class="col-md-2 "></div>
-                    <div class="col-md-2 "></div>
-                    <div class="col-md-8 ">
-                        <a title="SecureOnlineExam SOE Proctoring with AI fraud detection Artificial Intelligence, Machine Learning, Cloud Based, Secure &amp; Scalable " href="https://prime73.exam.online/ " target="_blank " rel="noopener ">Meet SOE and Prime73</a>
-                    </div>
-                    <div class="col-md-2 "></div>
-                </div>
+            <div class="app-card">
+                <div class="app-icon"><i class="fas fa-life-ring"></i></div>
+                <h4><span class="lang-en">Search &amp; Rescue</span><span class="lang-de">Such- &amp; Rettung</span></h4>
+                <p><span class="lang-en">Flood response, disaster damage assessment, missing person search operations, and emergency communication relay in crisis zones.</span><span class="lang-de">Hochwassereinsatz, Katastrophen-Schadensbewertung, Vermisstensuche und Notfall-Kommunikationsrelais in Krisengebieten.</span></p>
             </div>
-        </section>
-        <!-- End What we creatd -->
-        <!-- Partners -->
-        <section id="Partners " class="g-theme-bg-blue-v1 g-pt-80 ">
-            <div class="container text-center g-width-780 g-color-gray-light-v2 g-mb-60 ">
-                <div class="text-uppercase u-heading-v2-4--bottom g-brd-primary g-mb-40 ">
-                    <h4 class="h6 g-font-weight-800 g-font-size-12 g-letter-spacing-2 g-color-primary g-mb-20 ">Who work with us</h4>
-                    <h2 class="h1 u-heading-v2__title g-line-height-1_3 g-font-weight-600 g-font-size-40 g-color-gray-light-v2 g-mb-minus-10 ">Our Partners</h2>
-                </div>
+            <div class="app-card">
+                <div class="app-icon"><i class="fas fa-crosshairs"></i></div>
+                <h4><span class="lang-en">Defense &amp; Recon</span><span class="lang-de">Verteidigung &amp; Aufklärung</span></h4>
+                <p><span class="lang-en">ISR missions, mine detection and countermeasures, threat assessment, and force protection in contested maritime environments.</span><span class="lang-de">ISR-Missionen, Minenerkennung und -abwehr, Bedrohungsbewertung und Kräfteschutz in umkämpften maritimen Umgebungen.</span></p>
             </div>
-            <div class="js-carousel g-mb-60 " data-autoplay="true " data-infinite="true " data-slides-show="2 " data-responsive='[{
-               "breakpoint ": 1200,
-               "settings ": {
-               "slidesToShow ": 5
-               }
-               }, {
-               "breakpoint ": 992,
-               "settings ": {
-               "slidesToShow ": 4
-               }
-               }, {
-               "breakpoint ": 768,
-               "settings ": {
-               "slidesToShow ": 3
-               }
-               }, {
-               "breakpoint ": 576,
-               "settings ": {
-               "slidesToShow ": 2
-               }
-               }]'>
-                <div class="js-slide g-brd-around g-brd-gray-light-v1--hover g-transition-0_2 g-mx-10 g-my-1 ">
-                    <a href="https://ico-cert.org/de " target="_blank ">
-                        <img class="img-fluid g-max-width-170--md mx-auto " src="./assets/img/ico-cert_header_584.png " alt="Image Description ">
-                    </a>
-                </div>
-                <div class="js-slide g-brd-around g-brd-gray-light-v1--hover g-transition-0_2 g-mx-10 g-my-1 ">
-                    <a href="https://www.mitsm.de/ " target="_blank ">
-                        <img class="img-fluid g-max-width-170--md mx-auto " src="./assets/img/mitsm_logo.png " alt="Image Description ">
-                    </a>
-                </div>
-            </div>
-        </section>
-        <!-- End Partners -->
-        <footer>
-            <div id="contact " class="text-center g-color-gray-light-v2 g-theme-bg-blue-dark-v1 g-py-80 ">
-                <div class="container g-width-780 g-mb-60 ">
-                    <div class="text-uppercase u-heading-v2-4--bottom g-brd-primary g-mb-45 ">
-                        <h4 class="h6 g-font-weight-800 g-font-size-12 g-letter-spacing-2 g-color-primary g-mb-20 ">Contact</h4>
-                        <h2 class="h1 u-heading-v2__title g-line-height-1_3 g-font-weight-600 g-font-size-40 g-color-gray-light-v2 g-mb-minus-10 ">Our contacts</h2>
-                    </div>
-                </div>
-                <div class="container ">
-                    <div class="row ">
-                        <div class="col-sm-6 col-md-4 g-brd-top g-brd-top-none g-brd-left--md g-brd-primary g-px-15 g-py-30 g-py-0--md ">
-                            <!-- <i class="icon-globe d-inline-block g-font-size-50 g-color-primary g-mb-20 "></i> -->
-                            <img class="img-fluid g-max-width-170--md mx-auto " src="./assets/img/icons8-adresse-50.png " alt="Image Description ">
-                            <h3 class="text-uppercase g-font-size-default g-color-white-opacity-0_5 g-letter-spacing-1 g-mb-5 ">Address</h3>
-                            <strong class="g-font-size-default g-color-white ">Landaubogen 1, 81373 München</strong>
-                        </div>
-                        <div class="col-sm-6 col-md-4 g-brd-top g-brd-top-none g-brd-left--md g-brd-primary g-px-15 g-py-30 g-py-0--md ">
-                            <!--<i class="icon-call-in d-inline-block g-font-size-50 g-color-primary g-mb-20 "></i> -->
-                            <img class="img-fluid g-max-width-170--md mx-auto " src="./assets/img/icons8-telefon-filled-50.png " alt="Image Description ">
-                            <h3 class="text-uppercase g-font-size-default g-color-white-opacity-0_5 g-letter-spacing-1 g-mb-5 ">Phone number</h3>
-                            <strong class="g-font-size-default g-color-white ">+49 (89) 80926631</strong>
-                        </div>
-                        <div class="col-sm-6 col-md-4 g-brd-top g-brd-top-none g-brd-left--md g-brd-primary g-px-15 g-py-30 g-py-0--md ">
-                            <!--<i class="icon-envelope d-inline-block g-font-size-50 g-color-primary g-mb-20 "></i> -->
-                            <img class="img-fluid g-max-width-170--md mx-auto " src="./assets/img/email.png " alt="Image Description ">
-                            <h3 class="text-uppercase g-font-size-default g-color-white-opacity-0_5 g-letter-spacing-1 g-mb-5 ">Email</h3>
-                            <a class="g-font-size-default g-color-white " href="mailto:info@unify.com "><strong>office@bpmspace.com</strong></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Icon Blocks 
-               <ul class="row no-gutters list-inline g-mb-0 ">
-                 <li class="col list-inline-item g-mr-0 ">
-                   <a class="d-block g-theme-bg-blue-dark-v3 g-color-gray-dark-v5 g-bg-primary--hover g-color-white--hover g-font-size-default text-center g-pa-15 " href="#! ">
-                     <i class="fa fa-twitter "></i>
-                   </a>
-                 </li>
-                 <li class="col list-inline-item g-mr-0 ">
-                   <a class="d-block g-theme-bg-blue-dark-v2 g-color-gray-dark-v5 g-bg-primary--hover g-color-white--hover g-font-size-default text-center g-pa-15 " href="#! ">
-                     <i class="fa fa-linkedin "></i>
-                   </a>
-                 </li>
-                 <li class="col list-inline-item g-mr-0 ">
-                   <a class="d-block g-theme-bg-blue-dark-v3 g-color-gray-dark-v5 g-bg-primary--hover g-color-white--hover g-font-size-default text-center g-pa-15 " href="#! ">
-                     <i class="fa fa-facebook "></i>
-                   </a>
-                 </li>
-                 <li class="col list-inline-item g-mr-0 ">
-                   <a class="d-block g-theme-bg-blue-dark-v2 g-color-gray-dark-v5 g-bg-primary--hover g-color-white--hover g-font-size-default text-center g-pa-15 " href="#! ">
-                     <i class="fa fa-instagram "></i>
-                   </a>
-                 </li>
-                 <li class="col list-inline-item ">
-                   <a class="d-block g-theme-bg-blue-dark-v3 g-color-gray-dark-v5 g-bg-primary--hover g-color-white--hover g-font-size-default text-center g-pa-15 " href="#! ">
-                     <i class="fa fa-google-plus "></i>
-                   </a>
-                 </li>
-               </ul>
-                End Icon Blocks -->
-            <!-- Ipressum -->
-            <div class="container text-center g-width-780 g-color-gray-light-v2 g-mb-60 ">
-                <div class="text-uppercase u-heading-v2-4--bottom g-brd-primary g-mb-40 ">
-                    </br>
-                    <h4 class="h6 g-font-weight-800 g-font-size-12 g-letter-spacing-2 g-color-primary g-mb-20 ">Legal</h4>
-                    <h2 class="h1 u-heading-v2__title g-line-height-1_3 g-font-weight-600 g-font-size-40 g-color-gray-light-v2 g-mb-minus-10 ">Impressum</h2>
-                </div>
-                <div>
-                    <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
-                    <p>BPMspace GmbH<br />Mühlthaler Straße 63a<br /> 81375 München<br />
-                    </p>
-                    <p>Handelsregister: 204660<br /> Registergericht: München
-                    </p>
-                    <p><strong>Vertreten durch die Geschäftsführer:</strong><br /> Dipl.-Inf. Robert Kuhlig
-                    </p>
-                    <h2>Kontakt</h2>
-                    <p>Telefon: +49 (89) 80926631<br /> Telefax: +49 (89) 80926631<br /> E-Mail: office@bpmspace.com
-                    </p>
-                    <h2>Umsatzsteuer</h2>
-                    <p>Umsatzsteuer-Identifikationsnummer gem&auml;&szlig; &sect;27 a Umsatzsteuergesetz:<br /> DE289331112
-                    </p>
-                    <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
-                    <h3>Haftung f&uuml;r Inhalte</h3>
-                    <p class="text-justify ">Als Diensteanbieter sind wir gem&auml;&szlig; &sect; 7 Abs.1 TMG f&uuml;r eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect; 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet,
-                        &uuml;bermittelte oder gespeicherte fremde Informationen zu &uuml;berwachen oder nach Umst&auml;nden zu forschen, die auf eine rechtswidrige T&auml;tigkeit hinweisen.
-                    </p>
-                    <p class="text-justify ">Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unber&uuml;hrt. Eine diesbez&uuml;gliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten
-                        Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
-                    </p>
-                    <h3>Haftung f&uuml;r Links</h3>
-                    <p class="text-justify ">Unser Angebot enth&auml;lt Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen. F&uuml;r die Inhalte der verlinkten
-                        Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf m&ouml;gliche Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft. Rechtswidrige Inhalte
-                        waren zum Zeitpunkt der Verlinkung nicht erkennbar.
-                    </p>
-                    <p class="text-justify ">Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
-                    <h3>Urheberrecht</h3>
-                    <p class="text-justify ">Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielf&auml;ltigung, Bearbeitung, Verbreitung und jede Art der Verwertung au&szlig;erhalb der Grenzen des Urheberrechtes
-                        bed&uuml;rfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur f&uuml;r den privaten, nicht kommerziellen Gebrauch gestattet.
-                    </p>
-                    <p class="text-justify ">Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung
-                        aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
-                    </p>
-                    <p>Quelle: <a href="https://www.e-recht24.de ">https://www.e-recht24.de</a></p>
-                </div>
-            </div>
-            <!-- End Impressum -->
-        </footer>
-        <a class="js-go-to u-go-to-v1 " href="#! " data-type="fixed " data-position='{
-            "bottom ": 15,
-            "right ": 15
-            }' data-offset-top="400 " data-compensation="#js-header " data-show-effect="zoomIn ">
-            <i class="hs-icon hs-icon-arrow-top "></i>
-        </a>
-    </main>
-    <!-- JS Global Compulsory -->
-    <script src="./assets/js/jquery.min.js "></script>
-    <script src="./assets/js/jquery-migrate.min.js "></script>
-    <script src="./assets/js/popper.min.js "></script>
-    <script src="./assets/js/bootstrap.min.js "></script>
-    <!-- JS Implementing Plugins -->
-    <script src="./assets/js/appear.js "></script>
-    <script src="./assets/js/slick.js "></script>
-    <script src="./assets/js/gmaps.min.js "></script>
-    <!-- JS Unify -->
-    <script src="./assets/js/hs.core.js "></script>
-    <script src="./assets/js/hs.header.js "></script>
-    <script src="./assets/js/hs.hamburgers.js "></script>
-    <script src="./assets/js/hs.scroll-nav.js "></script>
-    <script src="./assets/js/hs.carousel.js "></script>
-    <script src="./assets/js/hs.map.js "></script>
-    <script src="./assets/js/hs.go-to.js "></script>
-    <!-- JS Customization -->
-    <!--<script src="./assets/js/custom.js "></script> -->
-    <!-- JS Plugins Init. -->
-    <script>
-        // initialization of google map
-        function initMap() {
-            $.HSCore.components.HSGMap.init('.js-g-map');
-        }
+        </div>
+    </div>
+</section>
 
-        $(document).on('ready', function() {
-            // initialization of carousel
-            $.HSCore.components.HSCarousel.init('.js-carousel');
+<!-- LEGACY PROJECTS -->
+<section class="section legacy-section" id="legacy">
+    <div class="container">
+        <div class="section-header centered">
+            <div class="section-tag">// Heritage</div>
+            <h2>
+                <span class="lang-en">Built on Experience</span>
+                <span class="lang-de">Auf Erfahrung gebaut</span>
+            </h2>
+            <p>
+                <span class="lang-en">BPMspace has over a decade of building intelligent software systems — from AI-powered exam proctoring to certification management. These proven platforms form the foundation of our autonomous vehicle intelligence.</span>
+                <span class="lang-de">BPMspace hat über ein Jahrzehnt Erfahrung im Bau intelligenter Softwaresysteme — von KI-gestützter Prüfungsüberwachung bis zum Zertifizierungsmanagement. Diese bewährten Plattformen bilden das Fundament unserer autonomen Fahrzeugintelligenz.</span>
+            </p>
+            <div class="accent-bar"></div>
+        </div>
+        <div class="legacy-grid">
+            <div class="legacy-card">
+                <h4>SOE</h4>
+                <p><span class="lang-en">SecureOnlineExam — AI-powered online proctoring with real-time fraud detection and behavioral analysis.</span><span class="lang-de">SecureOnlineExam — KI-gestützte Online-Prüfungsüberwachung mit Echtzeit-Betrugserkennung und Verhaltensanalyse.</span></p>
+            </div>
+            <div class="legacy-card">
+                <h4>SQMS II / EduMS</h4>
+                <p><span class="lang-en">Syllabus &amp; Question Management — Certification exam platform built for ICO International Certification Organization.</span><span class="lang-de">Syllabus &amp; Question Management — Zertifizierungs-Prüfungsplattform für die ICO International Certification Organization.</span></p>
+            </div>
+            <div class="legacy-card">
+                <h4>Syllabus Manager</h4>
+                <p><span class="lang-en">AI Multi-Agent &amp; Multi-LLM system for creating, verifying and approving syllabi, syllabus chapters, questions and answers. Automated quality assurance through intelligent agent collaboration.</span><span class="lang-de">KI-Multi-Agenten- &amp; Multi-LLM-System zum Erstellen, Verifizieren und Freigeben von Lehrplänen, Lehrplankapiteln, Fragen und Antworten. Automatisierte Qualitätssicherung durch intelligente Agenten-Kollaboration.</span></p>
+            </div>
+            <div class="legacy-card">
+                <h4>COMS</h4>
+                <p><span class="lang-en">Certification Organisation Management — End-to-end workflows for accreditation and certification bodies.</span><span class="lang-de">Certification Organisation Management — End-to-End-Workflows für Akkreditierungs- und Zertifizierungsstellen.</span></p>
+            </div>
+            <div class="legacy-card">
+                <h4>APMS</h4>
+                <p><span class="lang-en">Agile Process Management — Intelligent business process automation with adaptive workflows.</span><span class="lang-de">Agile Process Management — Intelligente Geschäftsprozessautomatisierung mit adaptiven Workflows.</span></p>
+            </div>
+            <div class="legacy-card">
+                <h4>LIAM</h4>
+                <p><span class="lang-en">Lightweight Identity &amp; Access Management — Secure authentication and authorization framework.</span><span class="lang-de">Lightweight Identity &amp; Access Management — Sicheres Authentifizierungs- und Autorisierungs-Framework.</span></p>
+            </div>
+        </div>
+    </div>
+</section>
 
-            // initialization of go to section
-            $.HSCore.components.HSGoTo.init('.js-go-to');
+<!-- CONTACT -->
+<section class="section contact-section" id="contact">
+    <div class="container">
+        <div class="section-header centered">
+            <div class="section-tag">// Contact</div>
+            <h2><span class="lang-en">Get In Touch</span><span class="lang-de">Kontakt</span></h2>
+            <div class="accent-bar"></div>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="label"><span class="lang-en">Address</span><span class="lang-de">Adresse</span></div>
+                <div class="value">Mühlthaler Straße 63a<br>81375 München</div>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div class="label">E-Mail</div>
+                <div class="value"><a href="mailto:office@bpmspace.com">office@bpmspace.com</a></div>
+            </div>
+        </div>
+    </div>
+</section>
 
-            // initialization of header
-            $.HSCore.components.HSHeader.init($('#js-header'));
-            $.HSCore.helpers.HSHamburgers.init('.hamburger');
-        });
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <img src="./assets/img/bpmspace_weblogo.png" alt="BPMspace" style="height:26px">
+            <p><span class="lang-en">Autonomous Maritime Intelligence</span><span class="lang-de">Autonome Maritime Intelligenz</span></p>
+        </div>
+        <button class="impressum-toggle" onclick="toggleImpressum()">
+            <span class="lang-en">Legal Notice &amp; Impressum</span>
+            <span class="lang-de">Impressum &amp; Rechtliches</span>
+            <i class="fas fa-chevron-down" style="margin-left:0.5rem;font-size:0.6rem;transition:0.3s"></i>
+        </button>
+        <div class="impressum-content" id="impressum">
+            <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
+            <p>BPMspace GmbH<br>Mühlthaler Straße 63a<br>81375 München</p>
+            <p>Handelsregister: 204660<br>Registergericht: München</p>
+            <p><strong>Vertreten durch die Geschäftsführer:</strong><br>Dipl.-Inf. Robert Kuhlig</p>
+            <h2>Kontakt</h2>
+            <p>Telefon: +49 (89) 80926631<br>Telefax: +49 (89) 80926631<br>E-Mail: office@bpmspace.com</p>
+            <h2>Umsatzsteuer</h2>
+            <p>Umsatzsteuer-Identifikationsnummer gem&auml;&szlig; &sect;27 a Umsatzsteuergesetz:<br>DE289331112</p>
+            <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+            <h3>Haftung f&uuml;r Inhalte</h3>
+            <p>Als Diensteanbieter sind wir gem&auml;&szlig; &sect; 7 Abs.1 TMG f&uuml;r eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect; 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, &uuml;bermittelte oder gespeicherte fremde Informationen zu &uuml;berwachen oder nach Umst&auml;nden zu forschen, die auf eine rechtswidrige T&auml;tigkeit hinweisen.</p>
+            <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unber&uuml;hrt. Eine diesbez&uuml;gliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+            <h3>Haftung f&uuml;r Links</h3>
+            <p>Unser Angebot enth&auml;lt Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen. F&uuml;r die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf m&ouml;gliche Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.</p>
+            <p>Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+            <h3>Urheberrecht</h3>
+            <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielf&auml;ltigung, Bearbeitung, Verbreitung und jede Art der Verwertung au&szlig;erhalb der Grenzen des Urheberrechtes bed&uuml;rfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur f&uuml;r den privaten, nicht kommerziellen Gebrauch gestattet.</p>
+            <p>Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 BPMspace GmbH, München.
+            <span class="lang-en">All rights reserved.</span>
+            <span class="lang-de">Alle Rechte vorbehalten.</span>
+        </div>
+    </div>
+</footer>
 
-        $(window).on('load', function() {
-            // initialization of HSScrollNav
-            $.HSCore.components.HSScrollNav.init($('#js-scroll-nav'), {
-                duration: 700
-            });
-        });
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtt1z99GtrHZt_IcnK-wryNsQ30A112J0&callback=initMap " async></script>
+<script>
+function toggleLang() {
+    const body = document.body;
+    const btn = document.querySelector('.lang-toggle');
+    if (body.classList.contains('lang-en')) {
+        body.classList.remove('lang-en');
+        body.classList.add('lang-de');
+        btn.textContent = 'EN';
+    } else {
+        body.classList.remove('lang-de');
+        body.classList.add('lang-en');
+        btn.textContent = 'DE';
+    }
+}
+window.addEventListener('scroll', function() {
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 80);
+});
+function toggleMenu() { document.getElementById('navMenu').classList.toggle('open'); }
+function closeMenu() { document.getElementById('navMenu').classList.remove('open'); }
+function toggleImpressum() {
+    const imp = document.getElementById('impressum');
+    imp.classList.toggle('open');
+    const icon = document.querySelector('.impressum-toggle .fa-chevron-down');
+    if (icon) icon.style.transform = imp.classList.contains('open') ? 'rotate(180deg)' : '';
+}
+</script>
 </body>
-
 </html>
