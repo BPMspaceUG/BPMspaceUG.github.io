@@ -361,7 +361,6 @@ body.lang-de .lang-en { display: none !important; }
   object-fit: cover;
   z-index: 1;
 }
-.showcase-crossfade.revealed .showcase-blueprint,
 .showcase-crossfade:hover .showcase-blueprint {
   opacity: 0;
 }
