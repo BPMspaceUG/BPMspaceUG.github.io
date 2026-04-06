@@ -327,6 +327,50 @@ body.lang-de .lang-en { display: none !important; }
 }
 
 /* ==============================
+   SHOWCASE — Crossfade Blueprint → Real
+   ============================== */
+.showcase-section {
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(0, 224, 255, 0.03) 0%, transparent 60%),
+    var(--abyss);
+  padding: 5rem 2rem;
+}
+.showcase-crossfade {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  cursor: pointer;
+}
+.showcase-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+.showcase-blueprint {
+  position: relative;
+  z-index: 2;
+  transition: opacity 1.5s var(--ease);
+}
+.showcase-real {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.showcase-crossfade.revealed .showcase-blueprint {
+  opacity: 0;
+}
+.showcase-crossfade:hover .showcase-blueprint {
+  opacity: 0;
+}
+
+/* ==============================
    SECTION COMMONS
    ============================== */
 .section { padding: 7rem 2rem; position: relative; }

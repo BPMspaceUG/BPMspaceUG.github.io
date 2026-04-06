@@ -59,6 +59,24 @@
     </div>
 </section>
 
+<!-- AAMI SHOWCASE — Blueprint to Reality -->
+<section class="section showcase-section" id="showcase">
+    <div class="container">
+        <div class="section-header centered">
+            <div class="section-tag">// From Blueprint to Reality</div>
+            <h2>
+                <span class="lang-en">AAMI USV Prototype</span>
+                <span class="lang-de">AAMI USV Prototyp</span>
+            </h2>
+            <div class="accent-bar"></div>
+        </div>
+        <div class="showcase-crossfade" id="showcaseCrossfade">
+            <img src="./assets/img/8CDE86CB-EB93-400F-972D-F4C3871C05C6.png" alt="AAMI Blueprint" class="showcase-img showcase-blueprint">
+            <img src="./assets/img/EB4D0ECC-222F-4FCB-87B5-DE8DC291F042.png" alt="AAMI Realistic" class="showcase-img showcase-real">
+        </div>
+    </div>
+</section>
+
 <!-- WHY SECTION -->
 <section class="section why-section" id="why">
     <div class="container">
@@ -326,6 +344,11 @@ function toggleImpressum() {
     const icon = document.querySelector('.impressum-toggle .fa-chevron-down');
     if (icon) icon.style.transform = imp.classList.contains('open') ? 'rotate(180deg)' : '';
 }
+// Showcase crossfade: auto after 5s
+setTimeout(function() {
+    var el = document.getElementById('showcaseCrossfade');
+    if (el) el.classList.add('revealed');
+}, 5000);
 </script>
 </body>
 </html>
