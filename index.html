@@ -344,11 +344,12 @@ function toggleImpressum() {
     const icon = document.querySelector('.impressum-toggle .fa-chevron-down');
     if (icon) icon.style.transform = imp.classList.contains('open') ? 'rotate(180deg)' : '';
 }
-// Showcase crossfade: auto after 8s, but only after images loaded
+// Showcase crossfade: toggle every 5s
 window.addEventListener('load', function() {
-    setTimeout(function() {
-        var el = document.getElementById('showcaseCrossfade');
-        if (el) el.classList.add('revealed');
+    var el = document.getElementById('showcaseCrossfade');
+    if (!el) return;
+    setInterval(function() {
+        el.classList.toggle('revealed');
     }, 5000);
 });
 </script>
