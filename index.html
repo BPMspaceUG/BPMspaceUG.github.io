@@ -71,8 +71,8 @@
             <div class="accent-bar"></div>
         </div>
         <div class="showcase-crossfade" id="showcaseCrossfade">
-            <img src="./assets/img/aami-blueprint.png" alt="AAMI Blueprint" class="showcase-img showcase-blueprint">
-            <img src="./assets/img/aami-realistic.png" alt="AAMI Realistic" class="showcase-img showcase-real">
+            <img src="./assets/img/aami-blueprint.jpg" alt="AAMI Blueprint" class="showcase-img showcase-blueprint">
+            <img src="./assets/img/aami-realistic.jpg" alt="AAMI Realistic" class="showcase-img showcase-real">
         </div>
     </div>
 </section>
@@ -344,11 +344,13 @@ function toggleImpressum() {
     const icon = document.querySelector('.impressum-toggle .fa-chevron-down');
     if (icon) icon.style.transform = imp.classList.contains('open') ? 'rotate(180deg)' : '';
 }
-// Showcase crossfade: auto after 5s
-setTimeout(function() {
-    var el = document.getElementById('showcaseCrossfade');
-    if (el) el.classList.add('revealed');
-}, 5000);
+// Showcase crossfade: auto after 8s, but only after images loaded
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        var el = document.getElementById('showcaseCrossfade');
+        if (el) el.classList.add('revealed');
+    }, 5000);
+});
 </script>
 </body>
 </html>
