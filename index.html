@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://use.fontawesome.com https://fonts.googleapis.com; font-src 'self' https://use.fontawesome.com https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="description" content="BPMspace — AI-powered unmanned water vehicles for maritime reconnaissance, environmental protection and security.">
     <title>BPMspace — Autonomous Maritime Intelligence</title>
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/bpmspace_weblogo.png">
@@ -14,15 +16,15 @@
 <!-- HEADER -->
 <header class="site-header" id="header">
     <a href="#hero"><img class="header-logo" src="./assets/img/bpmspace_weblogo.png" alt="BPMspace"></a>
-    <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    <button class="mobile-menu-btn" aria-label="Menu"><i class="fas fa-bars"></i></button>
     <nav class="header-nav" id="navMenu">
-        <button class="mobile-menu-close" onclick="toggleMenu()" aria-label="Close"><i class="fas fa-times"></i></button>
-        <a href="#why" onclick="closeMenu()"><span class="lang-en">Why</span><span class="lang-de">Warum</span></a>
-        <a href="#vehicles" onclick="closeMenu()"><span class="lang-en">Systems</span><span class="lang-de">Systeme</span></a>
-        <a href="#applications" onclick="closeMenu()"><span class="lang-en">Missions</span><span class="lang-de">Einsatz</span></a>
-        <a href="#legacy" onclick="closeMenu()"><span class="lang-en">Heritage</span><span class="lang-de">Projekte</span></a>
-        <a href="#contact" onclick="closeMenu()"><span class="lang-en">Contact</span><span class="lang-de">Kontakt</span></a>
-        <button class="lang-toggle" onclick="toggleLang()">DE</button>
+        <button class="mobile-menu-close" aria-label="Close"><i class="fas fa-times"></i></button>
+        <a href="#why"><span class="lang-en">Why</span><span class="lang-de">Warum</span></a>
+        <a href="#vehicles"><span class="lang-en">Systems</span><span class="lang-de">Systeme</span></a>
+        <a href="#applications"><span class="lang-en">Missions</span><span class="lang-de">Einsatz</span></a>
+        <a href="#legacy"><span class="lang-en">Heritage</span><span class="lang-de">Projekte</span></a>
+        <a href="#contact"><span class="lang-en">Contact</span><span class="lang-de">Kontakt</span></a>
+        <button class="lang-toggle">DE</button>
     </nav>
 </header>
 
@@ -286,7 +288,7 @@
             <img src="./assets/img/bpmspace_weblogo.png" alt="BPMspace" style="height:26px">
             <p><span class="lang-en">Autonomous Maritime Intelligence</span><span class="lang-de">Autonome Maritime Intelligenz</span></p>
         </div>
-        <button class="impressum-toggle" onclick="toggleImpressum()">
+        <button class="impressum-toggle">
             <span class="lang-en">Legal Notice &amp; Impressum</span>
             <span class="lang-de">Impressum &amp; Rechtliches</span>
             <i class="fas fa-chevron-down" style="margin-left:0.5rem;font-size:0.6rem;transition:0.3s"></i>
@@ -319,31 +321,6 @@
     </div>
 </footer>
 
-<script>
-function toggleLang() {
-    const body = document.body;
-    const btn = document.querySelector('.lang-toggle');
-    if (body.classList.contains('lang-en')) {
-        body.classList.remove('lang-en');
-        body.classList.add('lang-de');
-        btn.textContent = 'EN';
-    } else {
-        body.classList.remove('lang-de');
-        body.classList.add('lang-en');
-        btn.textContent = 'DE';
-    }
-}
-window.addEventListener('scroll', function() {
-    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 80);
-});
-function toggleMenu() { document.getElementById('navMenu').classList.toggle('open'); }
-function closeMenu() { document.getElementById('navMenu').classList.remove('open'); }
-function toggleImpressum() {
-    const imp = document.getElementById('impressum');
-    imp.classList.toggle('open');
-    const icon = document.querySelector('.impressum-toggle .fa-chevron-down');
-    if (icon) icon.style.transform = imp.classList.contains('open') ? 'rotate(180deg)' : '';
-}
-</script>
+<script src="./assets/js/main.js" defer data-cfasync="false"></script>
 </body>
 </html>
