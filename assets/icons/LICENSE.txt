@@ -1,0 +1,17 @@
+Font Awesome Free icons bundled in this directory
+=================================================
+
+Source:   Font Awesome Free, version 6.7.2
+Origin:    https://github.com/FortAwesome/Font-Awesome (svgs/solid/)
+           fetched via https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/svgs/solid/<name>.svg
+License:   Icons (these .svg files): CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
+           (Font Awesome also licenses its fonts under SIL OFL 1.1 and its code under the MIT License;
+            neither the fonts nor the JS/CSS toolkit are bundled here — only the raw SVG icon files.)
+Attribution: "Font Awesome Free 6.7.2 icons — CC BY 4.0" is shown in the website footer.
+Copyright:   © Fonticons, Inc.
+
+Bundled icons (solid style): bars, xmark, user-shield, clock, brain, lock, ship, bullseye,
+leaf, shield-halved, life-ring, crosshairs, location-dot, envelope, chevron-down.
+
+The .svg files are kept verbatim as downloaded (including Font Awesome's attribution comment)
+for provenance. The website embeds equivalent inline <svg> markup derived from these files.

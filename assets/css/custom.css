@@ -678,7 +678,7 @@ body.lang-de .lang-en { display: none !important; }
 }
 @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; gap: 2rem; } }
 
-.contact-item i {
+.contact-item .icon {
   font-size: 1.1rem; color: var(--neon-cyan);
   opacity: 0.5; margin-bottom: 0.8rem; display: block;
 }
@@ -715,7 +715,12 @@ body.lang-de .lang-en { display: none !important; }
   color: var(--text-dim); margin-top: 0.8rem;
 }
 
-.impressum-toggle {
+/* Inline-SVG icons (replaces Font Awesome CDN) */
+.icon { width: 1em; height: 1em; fill: currentColor; display: inline-block; vertical-align: -0.125em; }
+.icon-chevron { width: 0.6em; height: 0.6em; margin-left: 0.5rem; transition: transform 0.3s var(--ease); }
+
+/* Legal sections (Impressum + Privacy) as native <details> */
+.legal-summary {
   display: block; width: 100%;
   font-family: var(--font-mono);
   font-size: 0.65rem; font-weight: 500;
@@ -727,40 +732,51 @@ body.lang-de .lang-en { display: none !important; }
   cursor: pointer; text-align: center;
   transition: 0.3s var(--ease);
   margin-bottom: 1rem;
+  list-style: none;
 }
-.impressum-toggle:hover {
+.legal-summary::-webkit-details-marker { display: none; }
+.legal-summary:hover {
   border-color: rgba(0, 224, 255, 0.12);
   color: var(--neon-cyan);
   background: rgba(0, 224, 255, 0.03);
 }
+details[open] > .legal-summary .icon-chevron { transform: rotate(180deg); }
 
-.impressum-content {
-  display: none;
+.legal-body {
   font-size: 0.82rem; line-height: 1.8;
   color: var(--text-dim); padding: 2rem 0;
 }
-.impressum-content.open {
-  display: block;
+details[open] > .legal-body {
   animation: fadeSlide 0.4s var(--ease);
 }
 @keyframes fadeSlide {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.impressum-content h2 {
+.legal-body h2 {
   font-family: var(--font-body);
   font-size: 1rem; font-weight: 600;
   color: var(--text-bright);
   margin-top: 2rem; margin-bottom: 0.5rem;
 }
-.impressum-content h3 {
+.legal-body h3 {
   font-family: var(--font-body);
   font-size: 0.9rem; font-weight: 600;
   color: var(--text-bright);
   margin-top: 1.5rem; margin-bottom: 0.5rem;
 }
-.impressum-content p { margin-bottom: 0.8rem; }
-.impressum-content strong { color: var(--text); }
+.legal-body p { margin-bottom: 0.8rem; }
+.legal-body strong { color: var(--text); }
+.legal-body em { color: var(--text-dim); }
+
+.footer-attribution {
+  text-align: center; margin-top: 1.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.55rem; letter-spacing: 1px;
+  color: var(--text-dim);
+}
+.footer-attribution a { color: var(--text-dim); }
+.footer-attribution a:hover { color: var(--neon-cyan); }
 
 .footer-bottom {
   text-align: center; margin-top: 2rem; padding-top: 2rem;
