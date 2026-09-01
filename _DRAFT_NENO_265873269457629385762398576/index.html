@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>M.A.G. Yacht Service Center — Bakar, Croatia</title>
+<meta name="description" content="Family-run boatyard in Bakar bay near Rijeka. Haul-out, dry marina, hull and propulsion work since 2008.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Abril+Fatface&family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBFAF6;        /* chart white */
+    --shallow:#D9E8EF;      /* shallow-water tint */
+    --shoal:#EDF3F6;
+    --ink:#152A3B;          /* blue-black */
+    --steel:#5C6B74;
+    --blue:#153A61;         /* dark marine blue, boot-top */
+    --blue-dk:#0F2C4C;
+    --deep:#0B2038;         /* antifouling, below the waterline */
+    --hairline:#C9D3D8;
+    --display:"Instrument Serif",Georgia,"Times New Roman",serif;
+    --body:"Public Sans","Helvetica Neue",Arial,sans-serif;
+    --mono:"IBM Plex Mono","Courier New",monospace;
+    --measure:60ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%;height:auto}
+  a{color:inherit}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+  h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.02;margin:0}
+  h1{font-size:clamp(2.8rem,7vw,5.8rem);letter-spacing:-.01em}
+  h2{font-size:clamp(2.1rem,4vw,3.2rem);margin-bottom:.3em}
+  h3{font-size:1.55rem;margin-bottom:.2em}
+  p{margin:0 0 1em}
+  .wrap{width:min(1180px,calc(100% - 2.5rem));margin-inline:auto}
+  .mono{font-family:var(--mono)}
+
+  /* chart eyebrow: letterspaced italic serif, like sea names on a chart */
+  .eyebrow{font-family:var(--display);font-style:italic;font-size:1.05rem;letter-spacing:.42em;text-transform:uppercase;color:var(--blue);margin:0 0 .8rem}
+
+  /* language switching */
+  .lang [data-hr]{display:none}
+  .lang [data-en]{display:block}
+  .lang.hr [data-hr]{display:block}
+  .lang.hr [data-en]{display:none}
+  span[data-en],span[data-hr],a[data-en],a[data-hr]{display:inline!important}
+  .lang span[data-hr],.lang a[data-hr]{display:none!important}
+  .lang.hr span[data-hr],.lang.hr a[data-hr]{display:inline!important}
+  .lang.hr span[data-en],.lang.hr a[data-en]{display:none!important}
+
+  /* header: boot-top double stripe */
+  header{position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:3px solid var(--blue);box-shadow:0 6px 0 -3px var(--deep)}
+  .plim{width:1.5rem;height:auto;color:var(--blue);flex:none}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:.85rem 0}
+  .brand{display:flex;align-items:baseline;gap:.8rem;text-decoration:none}
+  .brand b{font-family:"Abril Fatface",var(--display);font-weight:400;font-size:1.55rem;letter-spacing:.02em;line-height:1}
+  .brand .pos{font-family:var(--mono);font-size:.78rem;color:var(--steel);letter-spacing:.02em}
+  nav{display:flex;align-items:center;gap:1.5rem;font-weight:600;font-size:.95rem}
+  nav a{text-decoration:none;color:var(--ink)}
+  nav a:hover{color:var(--blue)}
+  .langsw{display:inline-flex;border:1px solid var(--ink);overflow:hidden;font-size:.85rem}
+  .langsw button{border:0;background:none;padding:.3rem .7rem;font-family:var(--mono);font-weight:500;cursor:pointer;color:var(--ink)}
+  .langsw button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+  .tel{display:none}
+  @media(min-width:960px){.tel{display:inline;font-family:var(--mono);color:var(--blue);text-decoration:none}}
+  @media(max-width:700px){nav a.sec{display:none}.brand .pos{display:none}}
+
+  /* hero: photo under a chart graticule, yard position marked with load line */
+  .hero{position:relative;min-height:min(88vh,840px);display:grid;align-items:end;color:#fff;isolation:isolate;overflow:hidden}
+  .hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%;z-index:-3}
+  .hero::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.35;
+    background-image:linear-gradient(to right,rgba(255,255,255,.45) 1px,transparent 1px),
+                     linear-gradient(to bottom,rgba(255,255,255,.45) 1px,transparent 1px);
+    background-size:clamp(120px,14vw,190px) clamp(120px,14vw,190px)}
+  .hero::after{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(to top,rgba(10,22,30,.85) 0%,rgba(10,22,30,.35) 45%,rgba(10,22,30,.08) 100%)}
+  .hero .wrap{padding:7rem 0 3.5rem;position:relative}
+  .hero h1{max-width:15ch;text-shadow:0 2px 26px rgba(0,0,0,.4)}
+  .hero p{max-width:52ch;font-size:1.2rem;margin:1.25rem 0 1.9rem;color:rgba(255,255,255,.92)}
+  .fix{position:absolute;top:2.2rem;right:0;text-align:right;font-family:var(--mono);font-size:.8rem;letter-spacing:.05em;color:#fff}
+  .fix .plim{width:2.2rem;color:#fff;vertical-align:-8px;margin-left:.6rem}
+  @media(max-width:700px){.fix{display:none}}
+  /* logo: redrawn from the yard's own sticker — compass rose + deco lettering */
+  .logo{position:absolute;bottom:3.5rem;right:max(1.25rem,calc((100% - 1180px)/2));width:clamp(190px,24vw,280px);height:auto;color:#fff;filter:drop-shadow(0 2px 14px rgba(0,0,0,.45))}
+  @media(max-width:700px){.logo{bottom:auto;top:2.6rem;right:1.25rem;width:150px}}
+  .cta{display:inline-flex;align-items:center;gap:.5rem;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;padding:.95rem 1.5rem;font-size:1rem;letter-spacing:.01em}
+  .cta:hover{background:var(--blue-dk)}
+  .cta.ghost{background:transparent;border:1.5px solid rgba(255,255,255,.8);margin-left:.6rem;font-weight:600}
+  .cta.ghost:hover{background:rgba(255,255,255,.14)}
+
+  /* signature: depth-sounding divider — real soundings of Bakar bay along a depth contour */
+  .soundings{position:relative;display:flex;justify-content:space-between;align-items:center;
+    padding:1.1rem 0;margin:0;list-style:none;font-family:var(--display);font-style:italic;
+    font-size:1rem;color:var(--steel);user-select:none}
+  .soundings::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1.5px dashed var(--hairline)}
+  .soundings li{position:relative;background:var(--paper);padding:0 .7rem}
+  .soundings sub{font-size:.62em;font-style:italic;vertical-align:baseline;position:relative;top:.25em}
+  .on-shallow .soundings li{background:var(--shoal)}
+  @media(max-width:700px){.soundings li:nth-child(2n){display:none}}
+
+  section{padding:4.5rem 0 5rem}
+  .lede{max-width:var(--measure);color:var(--steel);font-size:1.15rem}
+  .head{margin-bottom:2.5rem;max-width:56rem}
+
+  /* services: legend entries on the chart */
+  .services{display:grid;gap:2.5rem 2rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .svc{margin:0}
+  .svc .ph{aspect-ratio:4/3;overflow:hidden;background:var(--shallow);border:1px solid var(--ink)}
+  .svc .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .svc:hover .ph img{transform:scale(1.03)}
+  .svc figcaption{padding-top:1rem;border-top:3px solid var(--ink);margin-top:-1px}
+  .svc h3{margin-top:.35rem}
+  .svc p{color:var(--steel);margin:.35rem 0 0}
+
+  /* yard: shallow-water section */
+  .yard{background:var(--shoal);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+  .yard .grid{display:grid;gap:3rem;grid-template-columns:minmax(0,1fr)}
+  @media(min-width:960px){.yard .grid{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:start}}
+  .yard .txt p{max-width:var(--measure)}
+  .yard .pics{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem}
+  .yard .pics img{aspect-ratio:4/3;object-fit:cover;width:100%;border:1px solid var(--ink)}
+  .yard .pics img:first-child{grid-column:1/-1;aspect-ratio:16/10}
+  table.facts{width:100%;border-collapse:collapse;margin-top:2rem;font-size:.92rem;max-width:var(--measure);font-family:var(--mono)}
+  table.facts th,table.facts td{text-align:left;padding:.6rem 0;border-top:1px solid var(--hairline);vertical-align:top}
+  table.facts th{font-weight:500;color:var(--steel);width:38%;padding-right:1rem}
+  table.facts tr:last-child th,table.facts tr:last-child td{border-bottom:1px solid var(--hairline)}
+
+  /* reviews */
+  .quotes{display:grid;gap:2.5rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  blockquote{margin:0;padding-left:1.25rem;border-left:3px solid var(--blue)}
+  blockquote p{font-family:var(--display);font-size:1.5rem;line-height:1.25;margin-bottom:.6rem}
+  blockquote cite{font-style:normal;font-family:var(--mono);color:var(--steel);font-size:.85rem}
+  .gsrc{margin-top:2.25rem;color:var(--steel);font-size:.95rem}
+  .gsrc a{color:var(--blue)}
+
+  /* contact: below the waterline — boot-top stripe, then antifouling */
+  .contact{background:var(--deep);color:#E8EEF2;border-top:14px solid var(--blue)}
+  .contact h2{color:#fff}
+  .contact .grid{display:grid;gap:3rem;grid-template-columns:minmax(0,1fr)}
+  @media(min-width:960px){.contact .grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}}
+  .contact dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.55rem 1.5rem;font-size:.95rem;font-family:var(--mono)}
+  .contact dt{color:#9DB4C2;font-weight:500}
+  .contact dd{margin:0}
+  .contact a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)}
+  .contact a:hover{border-color:#fff}
+  .contact .eyebrow{color:#8FC1E8}
+  .map{aspect-ratio:16/11;background:#0B2C3F;border:1px solid #2C5670}
+  .map iframe{width:100%;height:100%;border:0}
+  .contact .cta{margin-top:1.75rem}
+  .note{color:#9DB4C2;font-size:.95rem;margin-top:1.25rem;max-width:44ch}
+
+  footer{padding:2.25rem 0;font-size:.85rem;color:var(--steel);border-top:1px solid var(--ink);font-family:var(--mono)}
+  footer p{margin:0 0 .4em}
+</style>
+</head>
+<body class="lang">
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="M.A.G. Yacht Service Center">
+      <b>M.A.G.</b>
+      <svg class="plim" viewBox="0 0 44 28" aria-hidden="true"><circle cx="22" cy="14" r="10" fill="none" stroke="currentColor" stroke-width="2.5"/><line x1="0" y1="14" x2="44" y2="14" stroke="currentColor" stroke-width="2.5"/></svg>
+      <span class="pos">45°18.1&prime;N&ensp;14°32.2&prime;E</span>
+    </a>
+    <nav aria-label="Main">
+      <a class="sec" href="#services"><span data-en>Services</span><span data-hr>Usluge</span></a>
+      <a class="sec" href="#yard"><span data-en>The yard</span><span data-hr>Brodogradilište</span></a>
+      <a class="sec" href="#contact"><span data-en>Contact</span><span data-hr>Kontakt</span></a>
+      <a class="tel" href="tel:+38551287303">+385 51 287 303</a>
+      <div class="langsw" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="hr" aria-pressed="false">HR</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero" style="padding:0">
+  <img src="images/hero.jpg" alt="Catamaran moored at the M.A.G. pier in Bakar bay, early morning">
+  <svg class="logo" viewBox="0 -18 320 258" role="img" aria-label="M.A.G. Yacht Service Center, Bakar, Croatia">
+      <g transform="translate(160,104)" stroke="currentColor" fill="none" stroke-width="1.3" opacity=".55">
+        <circle r="64"/>
+        <circle r="46" stroke-dasharray="2.5 5"/>
+        <g id="c1">
+          <path d="M0,-96 L-12,-12 L0,0 Z" fill="currentColor" stroke="none"/>
+          <path d="M0,-96 L12,-12 L0,0 Z"/>
+        </g>
+        <use href="#c1" transform="rotate(90)"/>
+        <use href="#c1" transform="rotate(180)"/>
+        <use href="#c1" transform="rotate(270)"/>
+        <g id="c2" transform="rotate(45)">
+          <path d="M0,-56 L-8,-8 L0,0 Z" fill="currentColor" stroke="none"/>
+          <path d="M0,-56 L8,-8 L0,0 Z"/>
+        </g>
+        <use href="#c2" transform="rotate(90)"/>
+        <use href="#c2" transform="rotate(180)"/>
+        <use href="#c2" transform="rotate(270)"/>
+        <g fill="currentColor" stroke="none" font-family="'Abril Fatface',Georgia,serif" font-size="14" text-anchor="middle">
+          <text y="-102">N</text><text y="112">S</text>
+          <text x="-74" y="5">W</text><text x="74" y="5">E</text>
+          <text x="52" y="-52" font-size="10">NE</text><text x="52" y="60" font-size="10">SE</text>
+          <text x="-52" y="60" font-size="10">SW</text><text x="-52" y="-52" font-size="10">NW</text>
+        </g>
+      </g>
+      <g fill="currentColor" font-family="'Abril Fatface',Georgia,serif" text-anchor="middle">
+        <text x="160" y="122" font-size="58">M.A.G.</text>
+        <text x="160" y="164" font-size="20" letter-spacing="2">YACHT SERVICE</text>
+        <text x="160" y="192" font-size="20" letter-spacing="2">CENTER</text>
+        <text x="160" y="220" font-size="13" letter-spacing="3">BAKAR, CROATIA</text>
+      </g>
+    </svg>
+  <div class="wrap">
+    <p class="fix" aria-hidden="true">45°18.1&prime;N&ensp;14°32.2&prime;E<svg class="plim" viewBox="0 0 44 28"><circle cx="22" cy="14" r="10" fill="none" stroke="currentColor" stroke-width="2.5"/><line x1="0" y1="14" x2="44" y2="14" stroke="currentColor" stroke-width="2.5"/></svg><br>Bakarski zaljev</p>
+    <h1 data-en>Your boat in <i>the right hands.</i></h1>
+    <h1 data-hr>Vaše plovilo u <i>pravim rukama.</i></h1>
+    <p data-en>A family-run boatyard in Bakar bay, fifteen minutes from Rijeka. Haul-out, dry storage and full hull and propulsion service since 2008.</p>
+    <p data-hr>Obiteljsko servisno brodogradilište u Bakarskom zaljevu, petnaest minuta od Rijeke. Dizanje, zimovanje i kompletan servis trupa i propulzije od 2008.</p>
+    <div>
+      <a class="cta" href="tel:+38551287303"><span data-en>Call +385 51 287 303</span><span data-hr>Nazovite +385 51 287 303</span></a>
+      <a class="cta ghost" href="#contact"><span data-en>Request a quote</span><span data-hr>Zatražite ponudu</span></a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <ul class="soundings" aria-hidden="true">
+    <li>44</li><li>38<sub>5</sub></li><li>31</li><li>26<sub>2</sub></li><li>18</li><li>12<sub>4</sub></li><li>7</li><li>4<sub>5</sub></li><li>2<sub>8</sub></li>
+  </ul>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span data-en>Services</span><span data-hr>Usluge</span></p>
+      <h2 data-en>What we do</h2>
+      <h2 data-hr>Što radimo</h2>
+      <p class="lede" data-en>From a dinghy to a motor yacht: we lift it, block it, work on it and put it back in the water.</p>
+      <p class="lede" data-hr>Od gumenjaka do motorne jahte: dižemo, postavljamo na stalke, radimo i vraćamo u more.</p>
+    </div>
+    <div class="services">
+      <figure class="svc">
+        <div class="ph"><img src="images/travellift.jpg" alt="Travel lift in the yard" loading="lazy"></div>
+        <figcaption>
+          <h3 data-en>Haul-out and launch</h3><h3 data-hr>Dizanje i spuštanje</h3>
+          <p data-en>Travel lift and mobile crane for a safe lift, from small boats to sailing and motor yachts.</p>
+          <p data-hr>Travel lift i mobilna dizalica za sigurno izvlačenje i porinuće, od malih brodica do jedrilica i motornih jahti.</p>
+        </figcaption>
+      </figure>
+      <figure class="svc">
+        <div class="ph"><img src="images/storage.jpg" alt="Boats on stands in the dry marina" loading="lazy"></div>
+        <figcaption>
+          <h3 data-en>Dry marina and winter storage</h3><h3 data-hr>Suha marina i zimovanje</h3>
+          <p data-en>Fenced yard, boats on proper stands and blocking, and you can drive right up to your boat.</p>
+          <p data-hr>Ograđeno zemljište, plovila na stalcima i potkladama, autom se dolazi do samog plovila.</p>
+        </figcaption>
+      </figure>
+      <figure class="svc">
+        <div class="ph"><img src="images/hull.jpg" alt="Underwater hull of a motor yacht on stands" loading="lazy"></div>
+        <figcaption>
+          <h3 data-en>Underwater hull</h3><h3 data-hr>Podvodni dio trupa</h3>
+          <p data-en>Antifouling, blasting, osmosis treatment, gelcoat repair and polishing.</p>
+          <p data-hr>Antivegetativni premaz, pjeskarenje, sanacija osmoze, gelcoat i poliranje.</p>
+        </figcaption>
+      </figure>
+      <figure class="svc">
+        <div class="ph"><img src="images/propeller.jpg" alt="Rudder and propeller of a hauled-out boat" loading="lazy"></div>
+        <figcaption>
+          <h3 data-en>Propulsion and steering</h3><h3 data-hr>Propulzija i kormilo</h3>
+          <p data-en>Shafts, propellers, bearings, rudders, anodes and seals.</p>
+          <p data-hr>Osovine, propeleri, ležajevi, kormila, anode i brtve.</p>
+        </figcaption>
+      </figure>
+      <figure class="svc">
+        <div class="ph"><img src="images/scaffold.jpg" alt="Scaffolding alongside a motor yacht" loading="lazy"></div>
+        <figcaption>
+          <h3 data-en>Topsides and deck</h3><h3 data-hr>Nadgrađe i paluba</h3>
+          <p data-en>Scaffolding for work above the waterline, small repairs and season preparation.</p>
+          <p data-hr>Skele za radove iznad vodene linije, manji popravci i priprema za sezonu.</p>
+        </figcaption>
+      </figure>
+      <figure class="svc">
+        <div class="ph"><img src="images/stands.jpg" alt="Boat stands and wooden blocking in the yard" loading="lazy"></div>
+        <figcaption>
+          <h3 data-en>Do it yourself</h3><h3 data-hr>Radovi u vlastitom aranžmanu</h3>
+          <p data-en>Owners are welcome to work on their own boats. Power and water at the boat.</p>
+          <p data-hr>Vlasnici mogu sami raditi na svom plovilu. Struja i voda uz plovilo.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="yard" class="yard on-shallow">
+  <div class="wrap grid">
+    <div class="txt">
+      <p class="eyebrow"><span data-en>The yard</span><span data-hr>Brodogradilište</span></p>
+      <h2 data-en>A boatyard in Bakar bay</h2>
+      <h2 data-hr>Brodogradilište u Bakarskom zaljevu</h2>
+      <p data-en>M.A.G. is a family business run by the Sihtar family. The yard sits on the sheltered inner bay of Bakar, directly below the A7 motorway, so the drive from Rijeka, Trieste or Ljubljana ends at the pier.</p>
+      <p data-hr>M.A.G. je obiteljsko poduzeće obitelji Sihtar. Brodogradilište je u zaštićenom dijelu Bakarskog zaljeva, neposredno ispod autoceste A7, pa vožnja iz Rijeke, Trsta ili Ljubljane završava na samom gatu.</p>
+      <p data-en>We keep the yard quiet and orderly: proper stands and blocking, clean concrete, and an owner who is on site and answers the phone.</p>
+      <p data-hr>Držimo dvorište mirnim i urednim: pravi stalci i potklade, čist beton i vlasnik koji je na licu mjesta i javlja se na telefon.</p>
+      <table class="facts">
+        <tr><th><span data-en>Company</span><span data-hr>Tvrtka</span></th><td>M. A. G. d.o.o.</td></tr>
+        <tr><th><span data-en>Founded</span><span data-hr>Osnovano</span></th><td>8. 12. 2008., Bakar</td></tr>
+        <tr><th><span data-en>Activity</span><span data-hr>Djelatnost</span></th><td><span data-en>Repair and maintenance of ships and boats</span><span data-hr>Popravak i održavanje brodova i čamaca</span></td></tr>
+        <tr><th><span data-en>Position</span><span data-hr>Pozicija</span></th><td>45°18.1&prime;N 14°32.2&prime;E</td></tr>
+      </table>
+    </div>
+    <div class="pics">
+      <img src="images/bay.jpg" alt="Bakar bay with the A7 motorway viaduct above the town" loading="lazy">
+      <img src="images/crane.jpg" alt="Mobile crane lifting a boat in the yard" loading="lazy">
+      <img src="images/woodboat.jpg" alt="Wooden fishing boat with fresh antifouling on stands" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span data-en>Reviews</span><span data-hr>Recenzije</span></p>
+      <h2 data-en>What owners say</h2>
+      <h2 data-hr>Što kažu vlasnici</h2>
+    </div>
+    <div class="quotes">
+      <blockquote>
+        <p data-en>A place where every boater can repair their boat. The owner is very kind and accommodating.</p>
+        <p data-hr>Mjesto gdje svaki nautičar može popraviti svoju brodicu. Vlasnik je vrlo ljubazan i susretljiv.</p>
+        <cite>Robert S.</cite>
+      </blockquote>
+      <blockquote>
+        <p data-en>Anyone who cares about their vessel will find it in the right hands here.</p>
+        <p data-hr>Tko imalo drži do svog plovila, ovdje će ga naći u pravim rukama.</p>
+        <cite>Ronald R.</cite>
+      </blockquote>
+      <blockquote>
+        <p data-en>Lifting and launching done very professionally and correctly. The dry marina is excellent.</p>
+        <p data-hr>Dizanje i spuštanje obavljaju vrlo profesionalno i korektno. Suha marina je odlična.</p>
+        <cite>Roko K.</cite>
+      </blockquote>
+    </div>
+    <p class="gsrc" data-en>Reviews from Google Maps. <a href="https://maps.app.goo.gl/W8f9WcG9JrDQiPCw5" target="_blank" rel="noopener">Read all reviews</a></p>
+    <p class="gsrc" data-hr>Recenzije s Google Mapsa. <a href="https://maps.app.goo.gl/W8f9WcG9JrDQiPCw5" target="_blank" rel="noopener">Pročitajte sve recenzije</a></p>
+  </div>
+</section>
+
+<div class="wrap">
+  <ul class="soundings" aria-hidden="true">
+    <li>2<sub>8</sub></li><li>4<sub>5</sub></li><li>7</li><li>12<sub>4</sub></li><li>18</li><li>26<sub>2</sub></li><li>31</li><li>38<sub>5</sub></li><li>44</li>
+  </ul>
+</div>
+
+<section id="contact" class="contact">
+  <div class="wrap grid">
+    <div>
+      <p class="eyebrow"><span data-en>Contact</span><span data-hr>Kontakt</span></p>
+      <h2 data-en>Book a lift</h2>
+      <h2 data-hr>Dogovorite dizanje</h2>
+      <dl>
+        <dt><span data-en>Address</span><span data-hr>Adresa</span></dt>
+        <dd>Nautička 3<br>51222 Bakar, Croatia</dd>
+        <dt><span data-en>Phone</span><span data-hr>Telefon</span></dt>
+        <dd><a href="tel:+38551287303">+385 51 287 303</a></dd>
+        <dt><span data-en>Mobile</span><span data-hr>Mobitel</span></dt>
+        <dd><a href="tel:+385915468094">+385 91 546 8094</a><br><a href="tel:+385918960111">+385 91 896 0111</a></dd>
+        <dt>Fax</dt>
+        <dd>+385 51 287 304</dd>
+        <dt>E-mail</dt>
+        <dd><a href="mailto:mag@ri.t-com.hr">mag@ri.t-com.hr</a></dd>
+      </dl>
+      <a class="cta" href="mailto:mag@ri.t-com.hr?subject=Haul-out%20request"><span data-en>Send a request</span><span data-hr>Pošaljite upit</span></a>
+      <p class="note" data-en>Tell us the boat type, length, draft and displacement, and when you would like to come out of the water.</p>
+      <p class="note" data-hr>Navedite tip plovila, duljinu, gaz i istisninu te kada biste željeli izvući plovilo.</p>
+    </div>
+    <div class="map">
+      <iframe title="Map: M.A.G. d.o.o., Nautička 3, Bakar" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=45.3015534,14.5367056&z=16&output=embed"></iframe>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>M. A. G. društvo s ograničenom odgovornošću za trgovinu i usluge, Nautička 3, 51222 Bakar. OIB 15880004311, MBS 040253037, Trgovački sud u Rijeci.</p>
+    <p>© 2026 M.A.G. d.o.o.</p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var body=document.body, btns=document.querySelectorAll('[data-lang]');
+    function set(l){
+      body.classList.toggle('hr', l==='hr');
+      document.documentElement.lang=l;
+      btns.forEach(function(b){b.setAttribute('aria-pressed', b.dataset.lang===l ? 'true':'false');});
+    }
+    btns.forEach(function(b){b.addEventListener('click',function(){set(b.dataset.lang);});});
+    var nav=(navigator.language||'').toLowerCase();
+    if(nav.indexOf('hr')===0) set('hr');
+  })();
+</script>
+</body>
+</html>
