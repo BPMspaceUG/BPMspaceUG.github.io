@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>To-Do-Liste QMS 9001:2026</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#16181d;background:#f6f7f9}
+.bar{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #d8dbe0;padding:10px 20px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.bar strong{font-size:1.05rem}
+.bar label{padding:5px 12px;border:1px solid #9aa0a6;border-radius:4px;cursor:pointer;background:#fff;font-size:.85rem}
+.bar input{position:absolute;opacity:0;pointer-events:none}
+#m-de:checked~.bar label[for=m-de],#m-en:checked~.bar label[for=m-en],#m-both:checked~.bar label[for=m-both]{background:#16181d;color:#fff;border-color:#16181d}
+.wrap{max-width:1680px;margin:0 auto;padding:20px}
+.intro{background:#fff;border:1px solid #d8dbe0;border-radius:6px;padding:16px 20px;margin-bottom:18px}
+.intro h1{margin:0 0 8px;font-size:1.3rem}
+.intro p{margin:6px 0;color:#444}
+.e{background:#fff;border:1px solid #d8dbe0;border-radius:6px;margin-bottom:14px;overflow:hidden}
+.e.done{opacity:.45}
+.h{display:flex;gap:10px;align-items:baseline;padding:10px 16px;background:#f0f2f5;border-bottom:1px solid #d8dbe0;flex-wrap:wrap}
+.h .num{font-weight:700;color:#666;min-width:2.2em}
+.h .ttl{font-weight:600;flex:1;min-width:14em}
+.tag{font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;padding:2px 7px;border-radius:3px;border:1px solid}
+.tag.new{background:#e7f3ec;border-color:#198754;color:#0f5132}
+.tag.correction{background:#fdf0e3;border-color:#b06000;color:#7a4100}
+.tag.action{background:#e8eefb;border-color:#2b5fd9;color:#1b3f94}
+.tag.blocked{background:#fbe9e9;border-color:#b02a2a;color:#7a1c1c}
+.meta{padding:8px 16px;font-size:.8rem;color:#555;border-bottom:1px solid #eceef1;display:flex;gap:18px;flex-wrap:wrap}
+.meta code{background:#f0f2f5;padding:1px 5px;border-radius:3px;font-size:.95em}
+.note{padding:10px 16px;background:#fffdf3;border-bottom:1px solid #eceef1;font-size:.9rem}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.pair>.lang{min-width:0;padding:14px 16px}
+.pair>.lang+.lang{border-left:1px solid #eceef1}
+#m-de:checked~.wrap .pair,#m-en:checked~.wrap .pair{grid-template-columns:1fr}
+#m-de:checked~.wrap .lang[data-lang=en],#m-en:checked~.wrap .lang[data-lang=de]{display:none}
+.lh{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.lh .lab{font-size:.72rem;font-weight:700;letter-spacing:.06em;color:#666}
+.lh .st{font-size:.72rem;color:#888}
+.copy{margin-left:auto;padding:3px 12px;font-size:.78rem;border:1px solid #2b5fd9;border-radius:4px;background:#fff;cursor:pointer;color:#2b5fd9;font-weight:600}
+.copy:hover{background:#eef3fe}
+.copy.done{background:#198754;color:#fff;border-color:#198754}
+.prev{border:1px solid #e3e5e9;border-radius:4px;padding:10px 12px;background:#fcfcfd;margin-bottom:8px}
+.prev>:first-child{margin-top:0}.prev>:last-child{margin-bottom:0}
+.prev details{margin:6px 0;border:1px solid #e3e5e9;border-radius:4px;padding:6px 10px;background:#fff}
+.prev summary{cursor:pointer}
+details.src{font-size:.8rem}
+details.src summary{cursor:pointer;color:#666;user-select:none}
+pre.src{margin:6px 0 0;padding:10px 12px;background:#16181d;color:#e6e6e6;border-radius:4px;overflow:auto;max-height:22em;font-size:.78rem;line-height:1.45;white-space:pre-wrap;word-break:break-word}
+.now{font-size:.8rem;color:#777;margin-top:8px}
+.now code{background:#f6e9e9;color:#7a1c1c;padding:1px 5px;border-radius:3px}
+.chk{padding:12px 16px;display:flex;align-items:center;gap:10px;font-size:.9rem}
+.chk input{width:17px;height:17px;cursor:pointer}
+@media(max-width:900px){.pair{grid-template-columns:1fr}.pair>.lang+.lang{border-left:0;border-top:1px solid #eceef1}}
+@media print{.bar,.copy{display:none}.e{break-inside:avoid}}
+</style></head>
+<body data-topic="ae7551f0-24dd-4245-b5d2-ed07ec7ef8ac">
+<input type="radio" name="mode" id="m-de"><input type="radio" name="mode" id="m-en"><input type="radio" name="mode" id="m-both" checked>
+<div class="bar"><strong>To-Do-Liste QMS 9001:2026</strong><span style="flex:1"></span><label for="m-de">DE</label><label for="m-en">EN</label><label for="m-both">DE + EN</label></div>
+<div class="wrap">
+<div class="intro"><h1>To-Do-Liste QMS 9001:2026</h1><p>37 Einträge: <strong>29</strong> zum Kopieren, <strong>6</strong> Handlungen, <strong>2</strong> offene Fragen. <span id="progress"></span></p><p>Jeder Eintrag nennt die Entität, ihre UUID als Editor-Link und das Feld. <strong>kopieren</strong> legt den HTML-Quelltext in die Zwischenablage — nicht den sichtbaren Text, sondern das Markup, das in das Feld gehört. Die Vorschau darüber zeigt, wie es aussehen wird.</p><p>Oben rechts schaltet zwischen Deutsch, Englisch und beidem um. Die Haken bleiben in diesem Browser erhalten.</p></div>
+<div class="e" id="e1"><div class="h"><span class="num">1</span><span class="ttl">Untertitel — falsche Rollennamen</span><span class="tag correction">Korrektur</span></div><div class="meta"><span>topic <a href="https://www.ico-cert.org/editor/sqms/topics/ae7551f0-24dd-4245-b5d2-ed07ec7ef8ac" target="_blank" rel="noopener"><code>ae7551f0-24dd-4245-b5d2-ed07ec7ef8ac</code></a></span><span>Feld <code>subtitle</code></span></div><div class="note">Der Bestand wirbt mit „QMS Officer &amp; Auditor 9001“. Diesen Namen gibt es nicht — die Rollenzertifikate heißen <strong>Quality Manager</strong> und <strong>Quality Auditor</strong>.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">gefüllt</span><button type="button" class="copy" data-src="src-1-de">kopieren</button></div><div class="prev">Investieren Sie gezielt in Ihre Karriere als QMS Quality Manager oder Quality Auditor nach ISO 9001:2026!</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-1-de">Investieren Sie gezielt in Ihre Karriere als QMS Quality Manager oder Quality Auditor nach ISO 9001:2026!</pre></details><div class="now">Jetzt dort: <code>Investieren Sie gezielt in Ihre Karriere als QMS Officer &amp; Auditor 9001!</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">gefüllt</span><button type="button" class="copy" data-src="src-1-en">kopieren</button></div><div class="prev">Make a strategic investment in your career as a QMS Quality Manager or Quality Auditor according to ISO 9001:2026!</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-1-en">Make a strategic investment in your career as a QMS Quality Manager or Quality Auditor according to ISO 9001:2026!</pre></details><div class="now">Jetzt dort: <code>Make a strategic investment in your career as a QMS Officer &amp; ISO 9001 Auditor!</code></div></div></div><div class="chk"><input type="checkbox" data-n="1" id="c1"><label for="c1">erledigt</label></div></div>
+<div class="e" id="e2"><div class="h"><span class="num">2</span><span class="ttl">Header — Rollennamen und AQAP</span><span class="tag correction">Korrektur</span></div><div class="meta"><span>topic <a href="https://www.ico-cert.org/editor/sqms/topics/ae7551f0-24dd-4245-b5d2-ed07ec7ef8ac" target="_blank" rel="noopener"><code>ae7551f0-24dd-4245-b5d2-ed07ec7ef8ac</code></a></span><span>Feld <code>header</code></span></div><div class="note">Gegenüber dem Bestand geändert: die beworbenen Rollennamen heißen jetzt wie die Zertifikate wirklich heißen, und der <strong>ICO QMS &amp; AQAP Expert</strong> wird erstmals genannt. Alles andere ist unverändert.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">gefüllt</span><button type="button" class="copy" data-src="src-2-de">kopieren</button></div><div class="prev"><p><strong>ICO Digitale Zertifikate</strong></p>
+<p>Neben unseren druckbaren Zertifikaten bieten wir auch digitale Zertifikate (Open Badges) an. Mit diesen Zertifikaten können Sie Ihre Fähigkeiten und Leistungen online noch besser präsentieren. Open Badges, die Technologie hinter den digitalen ICO-Zertifikaten, sind so konzipiert, dass sie in sozialen Medien, beruflichen Netzwerken und für Ihren persönlichen digitalen Lebenslauf verwendet werden können. Sie können sie auch in Ihre E-Mail-Signatur einfügen. Zertifikate symbolisieren Ihr persönliches Engagement für lebenslanges Lernen und beruflichen Erfolg. Weitere Informationen über digitale Zertifikate und Open Badges finden Sie unter <a href="https://ico-cert.org/Digital-Badges">ICO Digitale Zertifikate</a>.</p>
+
+<div style="text-align:center">
+  <a href="/sample_set" title="Kostenloses ISO 9001 Beispielset - Testen Sie sich selbst" target="_blank">
+    <img src="https://ico-ag.sirv.com/EduMS2/PROD/FreeSampleSetBanner_QMS9001_DE.png" width="100%" alt="Kostenloses ISO 9001 Beispielset - Testen Sie sich selbst">
+  </a>
+</div>
+
+<div style="text-align:left;">
+  <p>Sichern Sie sich die ICO Personenzertifizierung zum <strong>ICO QMS Quality Manager nach ISO 9001:2026</strong>, zum <strong>ICO QMS Quality Auditor nach ISO 9001:2026</strong> oder zum <strong>ICO QMS &amp; AQAP Expert</strong> für die Qualitätssicherung in der NATO-Beschaffung. Mit diesem zukunftsorientierten Qualifikationsnachweis demonstrieren Sie Ihr tiefes Verständnis für die Planung, Bereitstellung, Überwachung und kontinuierliche Verbesserung von Qualitätsmanagementprozessen entlang der gesamten Wertschöpfungskette.</p>
+
+  <h2>Gründe für eine Karriere im Qualitätsmanagement mit ICO-Zertifikat</h2>
+  <p>
+    Qualität ist seit Jahrzehnten eines der wirksamsten Differenzierungsmerkmale am Markt — und sie wird durch die zunehmende Vernetzung globaler Lieferketten, gestiegene regulatorische Anforderungen und die wachsende Erwartung an nachweisbare Konformität immer wichtiger. Unternehmen und Behörden benötigen Quality Manager und Quality Auditoren, die nachweisbar von einem unabhängigen Personenzertifizierer wie der ICO geprüft und zertifiziert sind. Nur so können Sie gegenüber aktuellen und zukünftigen Arbeitgebern, Kunden oder Behörden belegen, dass Sie die notwendigen Fähigkeiten und Kenntnisse besitzen, um ein QMS nach ISO 9001:2026 wirtschaftlich, kundenorientiert und mit definierten Maßnahmen in einer Organisation zu etablieren und im Betrieb kontinuierlich zu verbessern.
+  </p>
+  <p>
+    Eine ICO-Personenzertifizierung ist herstellerneutral, prüfungsbasiert und nach ISO/IEC 17024 anerkannt. Damit hebt sie sich klar von reinen Teilnahmebescheinigungen aus Trainings ab.
+  </p>
+</div>
+</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-2-de">&lt;p&gt;&lt;strong&gt;ICO Digitale Zertifikate&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Neben unseren druckbaren Zertifikaten bieten wir auch digitale Zertifikate (Open Badges) an. Mit diesen Zertifikaten können Sie Ihre Fähigkeiten und Leistungen online noch besser präsentieren. Open Badges, die Technologie hinter den digitalen ICO-Zertifikaten, sind so konzipiert, dass sie in sozialen Medien, beruflichen Netzwerken und für Ihren persönlichen digitalen Lebenslauf verwendet werden können. Sie können sie auch in Ihre E-Mail-Signatur einfügen. Zertifikate symbolisieren Ihr persönliches Engagement für lebenslanges Lernen und beruflichen Erfolg. Weitere Informationen über digitale Zertifikate und Open Badges finden Sie unter &lt;a href=&quot;https://ico-cert.org/Digital-Badges&quot;&gt;ICO Digitale Zertifikate&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+  &lt;a href=&quot;/sample_set&quot; title=&quot;Kostenloses ISO 9001 Beispielset - Testen Sie sich selbst&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;https://ico-ag.sirv.com/EduMS2/PROD/FreeSampleSetBanner_QMS9001_DE.png&quot; width=&quot;100%&quot; alt=&quot;Kostenloses ISO 9001 Beispielset - Testen Sie sich selbst&quot;&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;text-align:left;&quot;&gt;
+  &lt;p&gt;Sichern Sie sich die ICO Personenzertifizierung zum &lt;strong&gt;ICO QMS Quality Manager nach ISO 9001:2026&lt;/strong&gt;, zum &lt;strong&gt;ICO QMS Quality Auditor nach ISO 9001:2026&lt;/strong&gt; oder zum &lt;strong&gt;ICO QMS &amp;amp; AQAP Expert&lt;/strong&gt; für die Qualitätssicherung in der NATO-Beschaffung. Mit diesem zukunftsorientierten Qualifikationsnachweis demonstrieren Sie Ihr tiefes Verständnis für die Planung, Bereitstellung, Überwachung und kontinuierliche Verbesserung von Qualitätsmanagementprozessen entlang der gesamten Wertschöpfungskette.&lt;/p&gt;
+
+  &lt;h2&gt;Gründe für eine Karriere im Qualitätsmanagement mit ICO-Zertifikat&lt;/h2&gt;
+  &lt;p&gt;
+    Qualität ist seit Jahrzehnten eines der wirksamsten Differenzierungsmerkmale am Markt — und sie wird durch die zunehmende Vernetzung globaler Lieferketten, gestiegene regulatorische Anforderungen und die wachsende Erwartung an nachweisbare Konformität immer wichtiger. Unternehmen und Behörden benötigen Quality Manager und Quality Auditoren, die nachweisbar von einem unabhängigen Personenzertifizierer wie der ICO geprüft und zertifiziert sind. Nur so können Sie gegenüber aktuellen und zukünftigen Arbeitgebern, Kunden oder Behörden belegen, dass Sie die notwendigen Fähigkeiten und Kenntnisse besitzen, um ein QMS nach ISO 9001:2026 wirtschaftlich, kundenorientiert und mit definierten Maßnahmen in einer Organisation zu etablieren und im Betrieb kontinuierlich zu verbessern.
+  &lt;/p&gt;
+  &lt;p&gt;
+    Eine ICO-Personenzertifizierung ist herstellerneutral, prüfungsbasiert und nach ISO/IEC 17024 anerkannt. Damit hebt sie sich klar von reinen Teilnahmebescheinigungen aus Trainings ab.
+  &lt;/p&gt;
+&lt;/div&gt;
+</pre></details><div class="now">Jetzt dort: <code>&lt;p&gt;&lt;strong&gt;ICO Digitale Zertifikate&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Neben unseren druckbaren Zertifikaten bieten wir auch digitale Zertifikate (Open Badges) an. Mit diesen Zert …</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">gefüllt</span><button type="button" class="copy" data-src="src-2-en">kopieren</button></div><div class="prev"><p><strong>ICO Digital Certificates</strong></p>
+<p>In addition to our printable certificates, we also offer digital certificates (Open Badges). These certificates allow you to showcase your skills and achievements even more effectively online. Open Badges, the technology behind ICO’s digital certificates, are designed to be used on social media, professional networks, and in your personal digital resume. You can also include them in your email signature. Certificates symbolize your personal commitment to lifelong learning and professional success. For more information about digital certificates and Open Badges, visit <a href="https://ico-cert.org/Digital-Badges">ICO Digital Certificates</a>.</p>
+
+<div style="text-align:center">
+  <a href="/sample_set" title="Kostenloses ISO 9001 Beispielset - Testen Sie sich selbst" target="_blank">
+    <img src="https://ico-ag.sirv.com/EduMS2/PROD/FreeSampleSetBanner_QMS9001_DE.png" width="100%" alt="Kostenloses ISO 9001 Beispielset - Testen Sie sich selbst">
+  </a>
+</div>
+
+<div style="text-align:left;">
+  <p>Earn the ICO Individual Certification as <strong>a QMS Officer 9001</strong> or a <strong>QMS 9001 Auditor in accordance with ISO 19011</strong>. With this forward-looking credential, you demonstrate your in-depth understanding of the planning, implementation, monitoring, and continuous improvement of quality management processes throughout the entire value chain.</p>
+
+  <h2>Reasons to Pursue a Career in Quality Management with an ICO Certificate</h2>
+  <p>
+    For decades, quality has been one of the most effective differentiators in the market—and it is becoming increasingly important due to the growing interconnectivity of global supply chains, heightened regulatory requirements, and rising expectations for demonstrable compliance. Companies and government agencies need QMS Officers and QMS Auditors who have been verifiably assessed and certified by an independent personnel certification body such as the ICO. Only in this way can you demonstrate to current and future employers, customers, or government agencies that you possess the necessary skills and knowledge to establish a QMS in accordance with ISO 9001:2026 within an organization in a cost-effective, customer-focused manner using defined measures, and to continuously improve its operation.
+  </p>
+  <p>
+    An ICO individual certification is vendor-neutral, exam-based, and recognized under ISO/IEC 17024. This clearly distinguishes it from mere certificates of attendance issued for training courses.
+  </p>
+</div></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-2-en">&lt;p&gt;&lt;strong&gt;ICO Digital Certificates&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In addition to our printable certificates, we also offer digital certificates (Open Badges). These certificates allow you to showcase your skills and achievements even more effectively online. Open Badges, the technology behind ICO’s digital certificates, are designed to be used on social media, professional networks, and in your personal digital resume. You can also include them in your email signature. Certificates symbolize your personal commitment to lifelong learning and professional success. For more information about digital certificates and Open Badges, visit &lt;a href=&quot;https://ico-cert.org/Digital-Badges&quot;&gt;ICO Digital Certificates&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div style=&quot;text-align:center&quot;&gt;
+  &lt;a href=&quot;/sample_set&quot; title=&quot;Kostenloses ISO 9001 Beispielset - Testen Sie sich selbst&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;https://ico-ag.sirv.com/EduMS2/PROD/FreeSampleSetBanner_QMS9001_DE.png&quot; width=&quot;100%&quot; alt=&quot;Kostenloses ISO 9001 Beispielset - Testen Sie sich selbst&quot;&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;text-align:left;&quot;&gt;
+  &lt;p&gt;Earn the ICO Individual Certification as &lt;strong&gt;a QMS Officer 9001&lt;/strong&gt; or a &lt;strong&gt;QMS 9001 Auditor in accordance with ISO 19011&lt;/strong&gt;. With this forward-looking credential, you demonstrate your in-depth understanding of the planning, implementation, monitoring, and continuous improvement of quality management processes throughout the entire value chain.&lt;/p&gt;
+
+  &lt;h2&gt;Reasons to Pursue a Career in Quality Management with an ICO Certificate&lt;/h2&gt;
+  &lt;p&gt;
+    For decades, quality has been one of the most effective differentiators in the market—and it is becoming increasingly important due to the growing interconnectivity of global supply chains, heightened regulatory requirements, and rising expectations for demonstrable compliance. Companies and government agencies need QMS Officers and QMS Auditors who have been verifiably assessed and certified by an independent personnel certification body such as the ICO. Only in this way can you demonstrate to current and future employers, customers, or government agencies that you possess the necessary skills and knowledge to establish a QMS in accordance with ISO 9001:2026 within an organization in a cost-effective, customer-focused manner using defined measures, and to continuously improve its operation.
+  &lt;/p&gt;
+  &lt;p&gt;
+    An ICO individual certification is vendor-neutral, exam-based, and recognized under ISO/IEC 17024. This clearly distinguishes it from mere certificates of attendance issued for training courses.
+  &lt;/p&gt;
+&lt;/div&gt;</pre></details><div class="now">Jetzt dort: <code>&lt;p&gt;&lt;strong&gt;ICO Digital Certificates&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In addition to our printable certificates, we also offer digital certificates (Open Badges). These certifica …</code></div></div></div><div class="chk"><input type="checkbox" data-n="2" id="c2"><label for="c2">erledigt</label></div></div>
+<div class="e" id="e3"><div class="h"><span class="num">3</span><span class="ttl">Beschreibung — Zertifikatsliste, AQAP, Tippfehler</span><span class="tag correction">Korrektur</span></div><div class="meta"><span>topic <a href="https://www.ico-cert.org/editor/sqms/topics/ae7551f0-24dd-4245-b5d2-ed07ec7ef8ac" target="_blank" rel="noopener"><code>ae7551f0-24dd-4245-b5d2-ed07ec7ef8ac</code></a></span><span>Feld <code>description</code></span></div><div class="note">Ersetzt die beiden Listen vollständig: die Rollen heißen jetzt <strong>Quality Manager</strong>, <strong>Quality Auditor</strong> und <strong>QMS &amp; AQAP Expert</strong>; der erfundene <em>Lead Auditor</em> und das erfundene Prüfungszertifikat <em>9001:2026 Auditor</em> sind entfallen; <strong>AQAP</strong> hat einen eigenen Abschnitt bekommen. Außerdem korrigiert: <code>ISO 9001:20126</code>, <code>ISO 9000:2026</code> und das <code>TBD:</code> mitten im Update-Absatz. Der erste und der letzte Abschnitt sind unverändert.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">gefüllt</span><button type="button" class="copy" data-src="src-3-de">kopieren</button></div><div class="prev"><h2>Warum ein Qualitätsmanagementsystem (QMS) nach ISO 9001:2026 so wichtig ist</h2>
+<p>
+  Die ISO 9001:2026 ist die weltweit am häufigsten zertifizierte Managementsystemnorm. Über eine Million Organisationen in mehr als 170 Ländern nutzen sie als gemeinsame Sprache für Qualität — vom mittelständischen Maschinenbauer bis zum globalen IT-Dienstleister, vom Gesundheitswesen bis zur öffentlichen Verwaltung. Diese Verbreitung macht die Norm zu einem De-facto-Standard, an dem sich Lieferanten, Kunden, Auditoren und Aufsichtsbehörden gleichermaßen orientieren.
+</p>
+<p>
+  Ein QMS nach ISO 9001:2026 verbindet zwei Welten: Es schafft die Disziplin, mit der eine Organisation Kundenanforderungen verlässlich erfüllt — und gleichzeitig die Offenheit, mit der sie sich über fortlaufende Verbesserung weiterentwickelt. Die Norm verlangt risikobasiertes Denken, einen prozessorientierten Ansatz, klare Führung von oben sowie messbare Ziele und nutzt das Plan-Do-Check-Act-Modell als verbindenden Kreislauf.
+</p>
+<p>
+  Wer ein QMS einführt, beginnt nicht bei null: Die High-Level-Structure der ISO 9001:2026 ist mit ISO 14001 (Umwelt), ISO 45001 (Arbeitsschutz), ISO/IEC 27001 (Informationssicherheit), ISO/IEC 20000-1 (IT-Service-Management) und ISO 22301 (Business Continuity) abgestimmt. Damit lässt sich ein QMS schlank in ein integriertes Managementsystem überführen — Politik, Ziele, Audits, Managementbewertung und Verbesserung greifen über alle Disziplinen hinweg ineinander.
+</p>
+<p>
+  Die ICO-Zertifizierungen rund um ISO 9001:2026 richten sich an Personen, die in dieser Welt eine sichtbare Rolle übernehmen wollen — als Verantwortliche im Unternehmen, als externe Berater, als Auditoren oder als Trainer.
+</p>
+
+<h2>Die ICO QMS Rollenzertifikate</h2>
+<ul>
+  <li><strong>ICO QMS Quality Manager nach ISO 9001:2026</strong>
+    <p>Bestätigt, dass Sie über das notwendige Wissen verfügen, um die Rolle des Qualitätsmanagers in einem Unternehmen zu übernehmen oder Organisationen bei der Einführung und dem Betrieb eines Qualitätsmanagementsystems nach ISO 9001:2026 als Berater zu unterstützen. Sie erwerben es mit den Prüfungen Foundation und Professional.</p>
+  </li>
+  <li><strong>ICO QMS Quality Auditor nach ISO 9001:2026</strong>
+    <p>Bestätigt, dass Sie zusätzlich zum Wissen des Quality Managers in der Lage sind, interne Audits, Lieferantenaudits und Audits bei Drittparteien im Bereich von Qualitätsmanagementsystemen durchzuführen. Die Auditkompetenz selbst weisen Sie über die fachübergreifende ICO-Ausbildung <strong>AMS 19011:2018</strong> nach — sie gilt für alle Managementsystemnormen, Sie müssen sie also nur einmal erwerben.</p>
+  </li>
+  <li><strong>ICO QMS &amp; AQAP Expert</strong>
+    <p>Bestätigt, dass Sie zusätzlich die besonderen Qualitätssicherungsanforderungen der NATO-Beschaffung beherrschen. Sie erwerben es mit der Prüfung <strong>AQAP 2110 Assurance</strong> auf dem Quality Manager aufbauend.</p>
+  </li>
+</ul>
+
+<h2>Die ICO QMS Prüfungszertifikate</h2>
+<ul>
+  <li><strong>ICO QMS 9001:2026 Foundation (FND)</strong>
+    <p>Bestätigt grundlegende Kenntnisse zur ISO 9001:2026, zur Begriffswelt der ISO 9000 und zum Aufbau eines QMS — die Einstiegsstufe. 45 Minuten, 30 Fragen, 60 % Bestehensgrenze.</p>
+  </li>
+  <li><strong>ICO QMS 9001:2026 Professional (PRO)</strong>
+    <p>Bestätigt vertieftes Wissen zur Anwendung der ISO 9001:2026 in der Praxis, einschließlich risikobasiertem Denken, integrierter Managementsysteme und Prozessverbesserung. 100 Minuten, 50 Fragen, 60 % Bestehensgrenze.</p>
+  </li>
+  <li><strong>ICO QMS Update 2026</strong>
+    <p>Bestätigt, dass Sie die wesentlichen Änderungen zwischen den Fassungen 2015 und 2026 der ISO 9001 im Detail kennen: die stärkere Bedeutung von Qualitätskultur und ethischem Verhalten, die präzisierte Betrachtung von Risiken und Chancen, den Kontext der Organisation einschließlich des Klimawandels, den verstärkten Umgang mit Veränderungen und die aktualisierte harmonisierte Struktur. 40 Minuten, 20 Fragen, 60 % Bestehensgrenze.</p>
+  </li>
+  <li><strong>AQAP 2110 Assurance</strong>
+    <p>Bestätigt Kenntnisse der NATO-Qualitätssicherungsanforderungen nach AQAP 2110 und ihres Verhältnisses zur ISO 9001. 60 Minuten, 30 Fragen, 60 % Bestehensgrenze.</p>
+  </li>
+</ul>
+
+<h2>AQAP — Qualitätssicherung in der NATO-Beschaffung</h2>
+<p>
+  <strong>AQAP</strong> steht für <em>Allied Quality Assurance Publications</em>, die Qualitätssicherungsvorschriften der NATO. Wer die NATO, ein Verteidigungsministerium oder einen Systemlieferanten der Rüstungsindustrie beliefern will, kommt an ihnen nicht vorbei: sie sind in Beschaffungsverträgen regelmäßig verbindlich vorgeschrieben.
+</p>
+<p>
+  <strong>AQAP 2110</strong> ist die zentrale Vorschrift für Entwicklung und Produktion. Sie setzt ein Qualitätsmanagementsystem nach ISO 9001 voraus und <em>ergänzt</em> es um Anforderungen, die das zivile Regelwerk nicht kennt — unter anderem die staatliche Qualitätssicherung durch den Auftraggeber (Government Quality Assurance), erweiterte Nachweis- und Mitteilungspflichten, die Behandlung von Abweichungen und Konfigurationsmanagement über den gesamten Lebenszyklus.
+</p>
+<p>
+  AQAP ersetzt die ISO 9001 also nicht, sondern baut auf ihr auf. Deshalb setzt auch das Zertifikat <strong>ICO QMS &amp; AQAP Expert</strong> auf dem Quality Manager auf: erst das zivile Qualitätsmanagement, dann die Besonderheiten der Beschaffung im Verteidigungsbereich.
+</p>
+
+<h2>Für wen ist die Zertifizierung gedacht?</h2>
+<ul>
+  <li>QM-Beauftragte, Qualitätsmanager und Leiter Qualitätssicherung in produzierenden Unternehmen, im Dienstleistungssektor, im Gesundheitswesen und in der öffentlichen Verwaltung</li>
+  <li>Berater und Auditoren, die ihre fachliche Eignung gegenüber Auftraggebern unabhängig nachweisen wollen</li>
+  <li>Prozessverantwortliche, Lean- oder Six-Sigma-Praktiker, die ihre Methodenwerkzeuge in einem normgerechten Rahmen einsetzen möchten</li>
+  <li>Trainer, die Qualifikationen auf Basis der ISO 9001 anbieten und ihre eigene Glaubwürdigkeit absichern wollen</li>
+  <li>Studierende und Berufseinsteiger, die ein anerkanntes Fundament für eine Karriere im Qualitätsmanagement legen möchten</li>
+</ul>
+</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-3-de">&lt;h2&gt;Warum ein Qualitätsmanagementsystem (QMS) nach ISO 9001:2026 so wichtig ist&lt;/h2&gt;
+&lt;p&gt;
+  Die ISO 9001:2026 ist die weltweit am häufigsten zertifizierte Managementsystemnorm. Über eine Million Organisationen in mehr als 170 Ländern nutzen sie als gemeinsame Sprache für Qualität — vom mittelständischen Maschinenbauer bis zum globalen IT-Dienstleister, vom Gesundheitswesen bis zur öffentlichen Verwaltung. Diese Verbreitung macht die Norm zu einem De-facto-Standard, an dem sich Lieferanten, Kunden, Auditoren und Aufsichtsbehörden gleichermaßen orientieren.
+&lt;/p&gt;
+&lt;p&gt;
+  Ein QMS nach ISO 9001:2026 verbindet zwei Welten: Es schafft die Disziplin, mit der eine Organisation Kundenanforderungen verlässlich erfüllt — und gleichzeitig die Offenheit, mit der sie sich über fortlaufende Verbesserung weiterentwickelt. Die Norm verlangt risikobasiertes Denken, einen prozessorientierten Ansatz, klare Führung von oben sowie messbare Ziele und nutzt das Plan-Do-Check-Act-Modell als verbindenden Kreislauf.
+&lt;/p&gt;
+&lt;p&gt;
+  Wer ein QMS einführt, beginnt nicht bei null: Die High-Level-Structure der ISO 9001:2026 ist mit ISO 14001 (Umwelt), ISO 45001 (Arbeitsschutz), ISO/IEC 27001 (Informationssicherheit), ISO/IEC 20000-1 (IT-Service-Management) und ISO 22301 (Business Continuity) abgestimmt. Damit lässt sich ein QMS schlank in ein integriertes Managementsystem überführen — Politik, Ziele, Audits, Managementbewertung und Verbesserung greifen über alle Disziplinen hinweg ineinander.
+&lt;/p&gt;
+&lt;p&gt;
+  Die ICO-Zertifizierungen rund um ISO 9001:2026 richten sich an Personen, die in dieser Welt eine sichtbare Rolle übernehmen wollen — als Verantwortliche im Unternehmen, als externe Berater, als Auditoren oder als Trainer.
+&lt;/p&gt;
+
+&lt;h2&gt;Die ICO QMS Rollenzertifikate&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;ICO QMS Quality Manager nach ISO 9001:2026&lt;/strong&gt;
+    &lt;p&gt;Bestätigt, dass Sie über das notwendige Wissen verfügen, um die Rolle des Qualitätsmanagers in einem Unternehmen zu übernehmen oder Organisationen bei der Einführung und dem Betrieb eines Qualitätsmanagementsystems nach ISO 9001:2026 als Berater zu unterstützen. Sie erwerben es mit den Prüfungen Foundation und Professional.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ICO QMS Quality Auditor nach ISO 9001:2026&lt;/strong&gt;
+    &lt;p&gt;Bestätigt, dass Sie zusätzlich zum Wissen des Quality Managers in der Lage sind, interne Audits, Lieferantenaudits und Audits bei Drittparteien im Bereich von Qualitätsmanagementsystemen durchzuführen. Die Auditkompetenz selbst weisen Sie über die fachübergreifende ICO-Ausbildung &lt;strong&gt;AMS 19011:2018&lt;/strong&gt; nach — sie gilt für alle Managementsystemnormen, Sie müssen sie also nur einmal erwerben.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ICO QMS &amp;amp; AQAP Expert&lt;/strong&gt;
+    &lt;p&gt;Bestätigt, dass Sie zusätzlich die besonderen Qualitätssicherungsanforderungen der NATO-Beschaffung beherrschen. Sie erwerben es mit der Prüfung &lt;strong&gt;AQAP 2110 Assurance&lt;/strong&gt; auf dem Quality Manager aufbauend.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Die ICO QMS Prüfungszertifikate&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;ICO QMS 9001:2026 Foundation (FND)&lt;/strong&gt;
+    &lt;p&gt;Bestätigt grundlegende Kenntnisse zur ISO 9001:2026, zur Begriffswelt der ISO 9000 und zum Aufbau eines QMS — die Einstiegsstufe. 45 Minuten, 30 Fragen, 60 % Bestehensgrenze.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ICO QMS 9001:2026 Professional (PRO)&lt;/strong&gt;
+    &lt;p&gt;Bestätigt vertieftes Wissen zur Anwendung der ISO 9001:2026 in der Praxis, einschließlich risikobasiertem Denken, integrierter Managementsysteme und Prozessverbesserung. 100 Minuten, 50 Fragen, 60 % Bestehensgrenze.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ICO QMS Update 2026&lt;/strong&gt;
+    &lt;p&gt;Bestätigt, dass Sie die wesentlichen Änderungen zwischen den Fassungen 2015 und 2026 der ISO 9001 im Detail kennen: die stärkere Bedeutung von Qualitätskultur und ethischem Verhalten, die präzisierte Betrachtung von Risiken und Chancen, den Kontext der Organisation einschließlich des Klimawandels, den verstärkten Umgang mit Veränderungen und die aktualisierte harmonisierte Struktur. 40 Minuten, 20 Fragen, 60 % Bestehensgrenze.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;AQAP 2110 Assurance&lt;/strong&gt;
+    &lt;p&gt;Bestätigt Kenntnisse der NATO-Qualitätssicherungsanforderungen nach AQAP 2110 und ihres Verhältnisses zur ISO 9001. 60 Minuten, 30 Fragen, 60 % Bestehensgrenze.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;AQAP — Qualitätssicherung in der NATO-Beschaffung&lt;/h2&gt;
+&lt;p&gt;
+  &lt;strong&gt;AQAP&lt;/strong&gt; steht für &lt;em&gt;Allied Quality Assurance Publications&lt;/em&gt;, die Qualitätssicherungsvorschriften der NATO. Wer die NATO, ein Verteidigungsministerium oder einen Systemlieferanten der Rüstungsindustrie beliefern will, kommt an ihnen nicht vorbei: sie sind in Beschaffungsverträgen regelmäßig verbindlich vorgeschrieben.
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;strong&gt;AQAP 2110&lt;/strong&gt; ist die zentrale Vorschrift für Entwicklung und Produktion. Sie setzt ein Qualitätsmanagementsystem nach ISO 9001 voraus und &lt;em&gt;ergänzt&lt;/em&gt; es um Anforderungen, die das zivile Regelwerk nicht kennt — unter anderem die staatliche Qualitätssicherung durch den Auftraggeber (Government Quality Assurance), erweiterte Nachweis- und Mitteilungspflichten, die Behandlung von Abweichungen und Konfigurationsmanagement über den gesamten Lebenszyklus.
+&lt;/p&gt;
+&lt;p&gt;
+  AQAP ersetzt die ISO 9001 also nicht, sondern baut auf ihr auf. Deshalb setzt auch das Zertifikat &lt;strong&gt;ICO QMS &amp;amp; AQAP Expert&lt;/strong&gt; auf dem Quality Manager auf: erst das zivile Qualitätsmanagement, dann die Besonderheiten der Beschaffung im Verteidigungsbereich.
+&lt;/p&gt;
+
+&lt;h2&gt;Für wen ist die Zertifizierung gedacht?&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;QM-Beauftragte, Qualitätsmanager und Leiter Qualitätssicherung in produzierenden Unternehmen, im Dienstleistungssektor, im Gesundheitswesen und in der öffentlichen Verwaltung&lt;/li&gt;
+  &lt;li&gt;Berater und Auditoren, die ihre fachliche Eignung gegenüber Auftraggebern unabhängig nachweisen wollen&lt;/li&gt;
+  &lt;li&gt;Prozessverantwortliche, Lean- oder Six-Sigma-Praktiker, die ihre Methodenwerkzeuge in einem normgerechten Rahmen einsetzen möchten&lt;/li&gt;
+  &lt;li&gt;Trainer, die Qualifikationen auf Basis der ISO 9001 anbieten und ihre eigene Glaubwürdigkeit absichern wollen&lt;/li&gt;
+  &lt;li&gt;Studierende und Berufseinsteiger, die ein anerkanntes Fundament für eine Karriere im Qualitätsmanagement legen möchten&lt;/li&gt;
+&lt;/ul&gt;
+</pre></details><div class="now">Jetzt dort: <code>&lt;h2&gt;Warum ein Qualitätsmanagementsystem (QMS) nach ISO 9001:2026 so wichtig ist&lt;/h2&gt;
+&lt;p&gt;
+  Die ISO 9001:2026 ist die weltweit am häufigsten zertifizierte Manage …</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">gefüllt</span><button type="button" class="copy" data-src="src-3-en">kopieren</button></div><div class="prev"><h2>Why a Quality Management System (QMS) Based on ISO 9001:2026 Is So Important</h2>
+<p>
+  ISO 9001:2026 is the most widely certified management system standard in the world. Over one million organizations in more than 170 countries use it as a common language for quality—from medium-sized machinery manufacturers to global IT service providers, from the healthcare sector to public administration. This widespread adoption makes the standard a de facto benchmark that suppliers, customers, auditors, and regulatory authorities alike use as a guide.
+</p>
+<p>
+  A QMS based on ISO 9001:2026 bridges two worlds: It establishes the discipline needed for an organization to reliably meet customer requirements—while also fostering the openness required for continuous improvement. The standard requires risk-based thinking, a process-oriented approach, clear leadership from the top, and measurable objectives, and uses the Plan-Do-Check-Act model as a unifying cycle.
+</p>
+<p>
+  Those implementing a QMS do not start from scratch: The High-Level Structure of ISO 9001:2026 is aligned with ISO 14001 (environment), ISO 45001 (occupational health and safety), ISO/IEC 27001 (information security), ISO/IEC 20000-1 (IT service management), and ISO 22301 (business continuity). This allows a QMS to be seamlessly transitioned into an integrated management system—policy, objectives, audits, management review, and improvement are interlinked across all disciplines.
+</p>
+<p>
+  The ICO certifications related to ISO 9001:2026 are aimed at individuals who want to take on a visible role in this field—as managers within a company, as external consultants, as auditors, or as trainers.
+</p>
+
+<h2>The ICO QMS Role Certificates</h2>
+<ul>
+  <li><strong>ICO QMS Quality Manager according to ISO 9001:2026</strong>
+    <p>Confirms that you have the knowledge required to take on the role of quality manager in an organisation, or to support organisations as a consultant in setting up and running a quality management system according to ISO 9001:2026. You earn it with the Foundation and Professional examinations.</p>
+  </li>
+  <li><strong>ICO QMS Quality Auditor according to ISO 9001:2026</strong>
+    <p>Confirms that, in addition to the knowledge of the Quality Manager, you are able to carry out internal audits, supplier audits and third-party audits of quality management systems. The auditing competence itself is evidenced through the cross-disciplinary ICO qualification <strong>AMS 19011:2018</strong> — it applies to every management system standard, so you earn it once.</p>
+  </li>
+  <li><strong>ICO QMS &amp; AQAP Expert</strong>
+    <p>Confirms that you also master the specific quality assurance requirements of NATO procurement. You earn it with the <strong>AQAP 2110 Assurance</strong> examination, building on the Quality Manager.</p>
+  </li>
+</ul>
+
+<h2>The ICO QMS Examination Certificates</h2>
+<ul>
+  <li><strong>ICO QMS 9001:2026 Foundation (FND)</strong>
+    <p>Confirms basic knowledge of ISO 9001:2026, of the vocabulary of ISO 9000 and of how a QMS is built — the entry level. 45 minutes, 30 questions, 60 % pass mark.</p>
+  </li>
+  <li><strong>ICO QMS 9001:2026 Professional (PRO)</strong>
+    <p>Confirms in-depth knowledge of applying ISO 9001:2026 in practice, including risk-based thinking, integrated management systems and process improvement. 100 minutes, 50 questions, 60 % pass mark.</p>
+  </li>
+  <li><strong>ICO QMS Update 2026</strong>
+    <p>Confirms that you know in detail the material changes between the 2015 and the 2026 edition of ISO 9001: the greater weight given to quality culture and ethical conduct, the sharpened treatment of risks and opportunities, the context of the organisation including climate change, the strengthened handling of change, and the updated harmonised structure. 40 minutes, 20 questions, 60 % pass mark.</p>
+  </li>
+  <li><strong>AQAP 2110 Assurance</strong>
+    <p>Confirms knowledge of the NATO quality assurance requirements under AQAP 2110 and of how they relate to ISO 9001. 60 minutes, 30 questions, 60 % pass mark.</p>
+  </li>
+</ul>
+
+<h2>AQAP — Quality Assurance in NATO Procurement</h2>
+<p>
+  <strong>AQAP</strong> stands for <em>Allied Quality Assurance Publications</em>, the quality assurance requirements of NATO. Anyone wishing to supply NATO, a ministry of defence or a prime contractor in the defence industry cannot avoid them: procurement contracts regularly make them binding.
+</p>
+<p>
+  <strong>AQAP 2110</strong> is the central publication for design, development and production. It presupposes a quality management system according to ISO 9001 and <em>adds</em> requirements the civil standard does not know — among them Government Quality Assurance by the customer, extended evidence and notification duties, the handling of deviations, and configuration management across the whole life cycle.
+</p>
+<p>
+  AQAP therefore does not replace ISO 9001; it builds on it. This is why the <strong>ICO QMS &amp; AQAP Expert</strong> certificate also builds on the Quality Manager: civil quality management first, then the particulars of defence procurement.
+</p>
+
+<h2>Who is this certification intended for?</h2>
+<ul>
+  <li>Quality management representatives, quality managers, and quality assurance managers in manufacturing companies, the service sector, healthcare, and public administration</li>
+  <li>Consultants and auditors who wish to independently demonstrate their professional competence to clients</li>
+  <li>Process owners, Lean, or Six Sigma practitioners who wish to apply their methodological tools within a standards-compliant framework</li>
+  <li>Trainers who offer certifications based on ISO 9001 and wish to establish their own credibility</li>
+  <li>Students and those starting their careers who wish to lay a recognized foundation for a career in quality management</li>
+</ul></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-3-en">&lt;h2&gt;Why a Quality Management System (QMS) Based on ISO 9001:2026 Is So Important&lt;/h2&gt;
+&lt;p&gt;
+  ISO 9001:2026 is the most widely certified management system standard in the world. Over one million organizations in more than 170 countries use it as a common language for quality—from medium-sized machinery manufacturers to global IT service providers, from the healthcare sector to public administration. This widespread adoption makes the standard a de facto benchmark that suppliers, customers, auditors, and regulatory authorities alike use as a guide.
+&lt;/p&gt;
+&lt;p&gt;
+  A QMS based on ISO 9001:2026 bridges two worlds: It establishes the discipline needed for an organization to reliably meet customer requirements—while also fostering the openness required for continuous improvement. The standard requires risk-based thinking, a process-oriented approach, clear leadership from the top, and measurable objectives, and uses the Plan-Do-Check-Act model as a unifying cycle.
+&lt;/p&gt;
+&lt;p&gt;
+  Those implementing a QMS do not start from scratch: The High-Level Structure of ISO 9001:2026 is aligned with ISO 14001 (environment), ISO 45001 (occupational health and safety), ISO/IEC 27001 (information security), ISO/IEC 20000-1 (IT service management), and ISO 22301 (business continuity). This allows a QMS to be seamlessly transitioned into an integrated management system—policy, objectives, audits, management review, and improvement are interlinked across all disciplines.
+&lt;/p&gt;
+&lt;p&gt;
+  The ICO certifications related to ISO 9001:2026 are aimed at individuals who want to take on a visible role in this field—as managers within a company, as external consultants, as auditors, or as trainers.
+&lt;/p&gt;
+
+&lt;h2&gt;The ICO QMS Role Certificates&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;ICO QMS Quality Manager according to ISO 9001:2026&lt;/strong&gt;
+    &lt;p&gt;Confirms that you have the knowledge required to take on the role of quality manager in an organisation, or to support organisations as a consultant in setting up and running a quality management system according to ISO 9001:2026. You earn it with the Foundation and Professional examinations.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ICO QMS Quality Auditor according to ISO 9001:2026&lt;/strong&gt;
+    &lt;p&gt;Confirms that, in addition to the knowledge of the Quality Manager, you are able to carry out internal audits, supplier audits and third-party audits of quality management systems. The auditing competence itself is evidenced through the cross-disciplinary ICO qualification &lt;strong&gt;AMS 19011:2018&lt;/strong&gt; — it applies to every management system standard, so you earn it once.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ICO QMS &amp;amp; AQAP Expert&lt;/strong&gt;
+    &lt;p&gt;Confirms that you also master the specific quality assurance requirements of NATO procurement. You earn it with the &lt;strong&gt;AQAP 2110 Assurance&lt;/strong&gt; examination, building on the Quality Manager.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;The ICO QMS Examination Certificates&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;ICO QMS 9001:2026 Foundation (FND)&lt;/strong&gt;
+    &lt;p&gt;Confirms basic knowledge of ISO 9001:2026, of the vocabulary of ISO 9000 and of how a QMS is built — the entry level. 45 minutes, 30 questions, 60 % pass mark.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ICO QMS 9001:2026 Professional (PRO)&lt;/strong&gt;
+    &lt;p&gt;Confirms in-depth knowledge of applying ISO 9001:2026 in practice, including risk-based thinking, integrated management systems and process improvement. 100 minutes, 50 questions, 60 % pass mark.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;ICO QMS Update 2026&lt;/strong&gt;
+    &lt;p&gt;Confirms that you know in detail the material changes between the 2015 and the 2026 edition of ISO 9001: the greater weight given to quality culture and ethical conduct, the sharpened treatment of risks and opportunities, the context of the organisation including climate change, the strengthened handling of change, and the updated harmonised structure. 40 minutes, 20 questions, 60 % pass mark.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;AQAP 2110 Assurance&lt;/strong&gt;
+    &lt;p&gt;Confirms knowledge of the NATO quality assurance requirements under AQAP 2110 and of how they relate to ISO 9001. 60 minutes, 30 questions, 60 % pass mark.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;AQAP — Quality Assurance in NATO Procurement&lt;/h2&gt;
+&lt;p&gt;
+  &lt;strong&gt;AQAP&lt;/strong&gt; stands for &lt;em&gt;Allied Quality Assurance Publications&lt;/em&gt;, the quality assurance requirements of NATO. Anyone wishing to supply NATO, a ministry of defence or a prime contractor in the defence industry cannot avoid them: procurement contracts regularly make them binding.
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;strong&gt;AQAP 2110&lt;/strong&gt; is the central publication for design, development and production. It presupposes a quality management system according to ISO 9001 and &lt;em&gt;adds&lt;/em&gt; requirements the civil standard does not know — among them Government Quality Assurance by the customer, extended evidence and notification duties, the handling of deviations, and configuration management across the whole life cycle.
+&lt;/p&gt;
+&lt;p&gt;
+  AQAP therefore does not replace ISO 9001; it builds on it. This is why the &lt;strong&gt;ICO QMS &amp;amp; AQAP Expert&lt;/strong&gt; certificate also builds on the Quality Manager: civil quality management first, then the particulars of defence procurement.
+&lt;/p&gt;
+
+&lt;h2&gt;Who is this certification intended for?&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Quality management representatives, quality managers, and quality assurance managers in manufacturing companies, the service sector, healthcare, and public administration&lt;/li&gt;
+  &lt;li&gt;Consultants and auditors who wish to independently demonstrate their professional competence to clients&lt;/li&gt;
+  &lt;li&gt;Process owners, Lean, or Six Sigma practitioners who wish to apply their methodological tools within a standards-compliant framework&lt;/li&gt;
+  &lt;li&gt;Trainers who offer certifications based on ISO 9001 and wish to establish their own credibility&lt;/li&gt;
+  &lt;li&gt;Students and those starting their careers who wish to lay a recognized foundation for a career in quality management&lt;/li&gt;
+&lt;/ul&gt;</pre></details><div class="now">Jetzt dort: <code>&lt;h2&gt;Why a Quality Management System (QMS) Based on ISO 9001:2026 Is So Important&lt;/h2&gt;
+&lt;p&gt;
+  ISO 9001:2026 is the most widely certified management system standar …</code></div></div></div><div class="chk"><input type="checkbox" data-n="3" id="c3"><label for="c3">erledigt</label></div></div>
+<div class="e" id="e4"><div class="h"><span class="num">4</span><span class="ttl">Footer — die 7 bestehenden FAQs plus 5 neue</span><span class="tag correction">Korrektur</span></div><div class="meta"><span>topic <a href="https://www.ico-cert.org/editor/sqms/topics/ae7551f0-24dd-4245-b5d2-ed07ec7ef8ac" target="_blank" rel="noopener"><code>ae7551f0-24dd-4245-b5d2-ed07ec7ef8ac</code></a></span><span>Feld <code>footer</code></span></div><div class="note"><strong>Das ganze Feld</strong>, nicht nur der Zusatz: die 7 bestehenden FAQs stehen unverändert vorn, die 5 neuen hängen hinten an. So kann der Inhalt in einem Zug ersetzt werden, ohne im Editor die richtige Stelle zu suchen — genau dort gehen Accordions kaputt.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">gefüllt</span><button type="button" class="copy" data-src="src-4-de">kopieren</button></div><div class="prev"><h2>FAQ</h2>
+
+<details>
+  <summary><b>Was ist ein QMS?</b></summary>
+  <p>Ein Qualitätsmanagementsystem (QMS) ist ein Rahmenwerk aus Politik, Zielen, Prozessen und Steuerungsmechanismen, mit dem eine Organisation sicherstellt, dass Kundenanforderungen verlässlich erfüllt werden und das System sich kontinuierlich weiterentwickelt. Die ISO 9001:2026 beschreibt die Mindestanforderungen an ein solches System.</p>
+</details>
+
+<details>
+  <summary><b>Was definiert die ISO 9001 in der Version 2026 anders als die Version 2015?</b></summary>
+  <p>Die Ausgabe 2026 entwickelt die ISO 9001:2015 gezielt weiter und behält deren grundlegende Struktur und prozessorientierten Ansatz bei. Neu bzw. stärker hervorgehoben werden insbesondere Qualitätskultur und ethisches Verhalten, eine klarere Betrachtung von Risiken und Chancen, der Umgang mit Veränderungen sowie die Berücksichtigung des Klimawandels im Kontext der Organisation. Zudem orientiert sich die Norm an der aktualisierten harmonisierten Struktur für Managementsystemnormen und enthält erweiterte Erläuterungen zur Anwendung der Anforderungen.</p>
+</details>
+
+<details>
+  <summary><b>Was bringt mir die ICO Foundation-Zertifizierung im Beruf?</b></summary>
+  <p>Sie demonstriert, dass Sie die Sprache der ISO 9001:2026 sicher beherrschen und das Zusammenspiel von Politik, Prozessen, Risiken, Audits und Verbesserung verstehen — eine zunehmend gefragte Grundlage für Aufgaben in QM, Prozessmanagement, Auditierung oder Beratung.</p>
+</details>
+
+<details>
+  <summary><b>Brauche ich Vorerfahrung im Qualitätsmanagement?</b></summary>
+  <p>Nein. Berufserfahrung in einer Organisation mit Prozessen, Kunden und Lieferanten erleichtert das Verständnis, ist aber keine Pflicht. Englische Grundkenntnisse sind hilfreich, weil die Originaltexte der Norm Englisch sind.</p>
+</details>
+
+<details>
+  <summary><b>Wie unterscheidet sich die Foundation- von der Professional-Stufe?</b></summary>
+  <p>Foundation vermittelt das verlässliche Grundverständnis: Begriffe, Aufbau der Norm, prozessorientierter Ansatz, risikobasiertes Denken. Professional vertieft die Anwendung in der Praxis, betrachtet Auditfälle, Prozessmessung und integrierte Managementsysteme und ist Voraussetzung für die Auditor-Rolle.</p>
+</details>
+
+<details>
+  <summary><b>Wie lange ist ein ICO-Zertifikat gültig?</b></summary>
+  <p>Die Gültigkeit ist personenbezogen. Details zu Erneuerung und Rezertifizierung finden Sie auf der <a href="https://ico-cert.org">ICO-Website</a>.</p>
+</details>
+
+<details>
+  <summary><b>Worin unterscheidet sich ISO 9001 von ISO 9000 und ISO 9004?</b></summary>
+  <p>ISO 9000 ist die Vokabelnorm — sie definiert die Begriffe und Grundlagen. ISO 9001 enthält die zertifizierungsrelevanten Anforderungen. ISO 9004 ist ein Leitfaden für nachhaltige Erfolgsorientierung, der über die Mindestanforderungen hinausgeht und nicht zertifizierungsfähig ist.</p>
+</details>
+
+<details>
+  <summary><b>Welche Zertifikate gibt es, und wie hängen sie zusammen?</b></summary>
+  <p>Es gibt zwei Arten. <strong>Prüfungszertifikate</strong> bescheinigen eine bestandene Prüfung: Foundation, Professional, Update und AQAP 2110 Assurance. <strong>Rollenzertifikate</strong> bescheinigen eine Rolle und setzen sich aus Prüfungen zusammen:</p>
+  <ul>
+    <li><strong>ICO QMS Quality Manager nach ISO 9001:2026</strong> — Foundation und Professional</li>
+    <li><strong>ICO QMS Quality Auditor nach ISO 9001:2026</strong> — zusätzlich die Auditausbildung AMS 19011:2018 (Foundation und Professional)</li>
+    <li><strong>ICO QMS &amp; AQAP Expert</strong> — Quality Manager und die Prüfung AQAP 2110 Assurance</li>
+  </ul>
+  <p>Die Auditausbildung nach ISO 19011 gilt managementsystemübergreifend: Sie erwerben sie einmal und können sie auch für ISO/IEC 27001, ISO/IEC 42001 oder ISO/IEC 20000-1 einsetzen.</p>
+</details>
+
+<details>
+  <summary><b>Was ist AQAP, und wozu brauche ich es?</b></summary>
+  <p><strong>AQAP</strong> steht für <em>Allied Quality Assurance Publications</em> — die Qualitätssicherungsvorschriften der NATO. Sie werden in Beschaffungsverträgen der NATO, der Verteidigungsministerien und der großen Systemlieferanten regelmäßig verbindlich vorgeschrieben.</p>
+  <p><strong>AQAP 2110</strong> gilt für Entwicklung und Produktion. Sie setzt ein QMS nach ISO 9001 voraus und ergänzt es um staatliche Qualitätssicherung durch den Auftraggeber, erweiterte Nachweis- und Mitteilungspflichten, die Behandlung von Abweichungen und Konfigurationsmanagement über den Lebenszyklus. AQAP ersetzt die ISO 9001 also nicht, sondern baut auf ihr auf.</p>
+  <p>Wenn Ihr Unternehmen in der Verteidigungsbeschaffung tätig ist oder dorthin liefern möchte, ist das <strong>ICO QMS &amp; AQAP Expert</strong> der passende Nachweis.</p>
+</details>
+
+<details>
+  <summary><b>Wer darf die Update-Prüfung machen?</b></summary>
+  <p>Die Update-Prüfung richtet sich an alle, die den Wissensstand einer ISO-9001:2015-Professional-Ausbildung mitbringen und auf die Fassung 2026 wechseln wollen. Sie prüft gezielt die Unterschiede zwischen den beiden Fassungen, nicht die Norm von Grund auf.</p>
+  <p>Die ICO hat die Fassung 2015 selbst nicht angeboten. Der Zugang läuft deshalb über ein <strong>anerkanntes Zertifikat eines anderen Ausstellers</strong> auf Professional-Niveau — welche das sind, steht in der folgenden FAQ.</p>
+  <p>Wichtig: Aus einem Fremdzertifikat und der bestandenen Update-Prüfung entsteht ein <strong>Prüfungszertifikat</strong>, kein Rollenzertifikat. Für ein Rollenzertifikat sind die ICO-Prüfungen Foundation und Professional nötig.</p>
+</details>
+
+<details>
+  <summary><b>Ich habe ein Zertifikat eines anderen Anbieters. Was nun?</b></summary>
+  <p>Die ICO erkennt Zertifikate anderer Aussteller an, wenn drei Bedingungen erfüllt sind:</p>
+  <ul>
+    <li>Es bescheinigt eine <strong>bestandene Prüfung</strong> — keine Teilnahme an einer Schulung. Wie der Aussteller sein Zertifikat nennt, spielt keine Rolle; eine Teilnahmebescheinigung zählt nicht, auch wenn sie anders heißt.</li>
+    <li>Aus dem Zertifikat geht die <strong>Normfassung</strong> hervor, auf die geprüft wurde — gesucht ist ISO 9001:2015.</li>
+    <li><strong>Fragenanzahl und Schwierigkeitsgrad</strong> entsprechen ungefähr der ICO-Prüfung derselben Stufe.</li>
+  </ul>
+  <p>Keine Rolle spielen dagegen: eine Schulungspflicht beim Aussteller, ein Nachweis von Berufserfahrung oder Audittagen, und die Form der Prüfung — schriftlich, online oder mündlich ist gleichwertig.</p>
+  <p><strong>Als Foundation anerkannt</strong> werden unter anderem: <em>Zertifikat als Prüfbescheinigung Qualitätsbeauftragte/r (TÜV)</em> von TÜV Rheinland/PersCert, <em>Personenzertifikat Qualitätsbeauftragter (QB)</em> von TÜV SÜD und <em>PECB Certificate Holder in ISO 9001 Foundation</em>.</p>
+  <p><strong>Als Professional anerkannt</strong> werden unter anderem: <em>Qualitätsmanager/in (TÜV)</em> und <em>Qualitätsauditor/in (TÜV)</em> von PersCert, <em>Personenzertifikat Qualitätsmanager (QM)</em>, <em>Qualitätsauditor (QA)</em> und <em>Qualitätsmanagement-Auditor (QMA-TÜV)</em> von TÜV SÜD sowie <em>PECB Certified ISO 9001 Provisional Auditor</em> und <em>Provisional Implementer</em>. Die höheren PECB-Stufen gelten als Nachweis derselben Prüfung.</p>
+  <p>Ein Auditor-Zertifikat eines anderen Ausstellers bescheinigt immer zweierlei: die Auditkompetenz nach ISO 19011 und das Fachwissen zur jeweiligen Norm. Die Auditkompetenz können Sie deshalb auch für andere Managementsysteme einsetzen — etwa für einen ICO-Auditor nach ISO/IEC 42001.</p>
+</details>
+
+<details>
+  <summary><b>Mein Zertifikat steht nicht in der Liste.</b></summary>
+  <p>Die Liste ist nicht abschließend. Senden Sie uns eine Kopie Ihres Zertifikats und, falls vorhanden, die Prüfungsordnung des Ausstellers. Wir prüfen anhand derselben drei Bedingungen und antworten Ihnen.</p>
+  <p>Nicht anerkannt werden Teilnahmebescheinigungen ohne Prüfung, Zertifikate ohne Angabe der geprüften Normfassung und Prüfungen, deren Umfang deutlich unter dem der ICO-Prüfung derselben Stufe liegt.</p>
+</details>
+</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-4-de">&lt;h2&gt;FAQ&lt;/h2&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;Was ist ein QMS?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;Ein Qualitätsmanagementsystem (QMS) ist ein Rahmenwerk aus Politik, Zielen, Prozessen und Steuerungsmechanismen, mit dem eine Organisation sicherstellt, dass Kundenanforderungen verlässlich erfüllt werden und das System sich kontinuierlich weiterentwickelt. Die ISO 9001:2026 beschreibt die Mindestanforderungen an ein solches System.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;Was definiert die ISO 9001 in der Version 2026 anders als die Version 2015?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;Die Ausgabe 2026 entwickelt die ISO 9001:2015 gezielt weiter und behält deren grundlegende Struktur und prozessorientierten Ansatz bei. Neu bzw. stärker hervorgehoben werden insbesondere Qualitätskultur und ethisches Verhalten, eine klarere Betrachtung von Risiken und Chancen, der Umgang mit Veränderungen sowie die Berücksichtigung des Klimawandels im Kontext der Organisation. Zudem orientiert sich die Norm an der aktualisierten harmonisierten Struktur für Managementsystemnormen und enthält erweiterte Erläuterungen zur Anwendung der Anforderungen.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;Was bringt mir die ICO Foundation-Zertifizierung im Beruf?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;Sie demonstriert, dass Sie die Sprache der ISO 9001:2026 sicher beherrschen und das Zusammenspiel von Politik, Prozessen, Risiken, Audits und Verbesserung verstehen — eine zunehmend gefragte Grundlage für Aufgaben in QM, Prozessmanagement, Auditierung oder Beratung.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;Brauche ich Vorerfahrung im Qualitätsmanagement?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;Nein. Berufserfahrung in einer Organisation mit Prozessen, Kunden und Lieferanten erleichtert das Verständnis, ist aber keine Pflicht. Englische Grundkenntnisse sind hilfreich, weil die Originaltexte der Norm Englisch sind.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;Wie unterscheidet sich die Foundation- von der Professional-Stufe?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;Foundation vermittelt das verlässliche Grundverständnis: Begriffe, Aufbau der Norm, prozessorientierter Ansatz, risikobasiertes Denken. Professional vertieft die Anwendung in der Praxis, betrachtet Auditfälle, Prozessmessung und integrierte Managementsysteme und ist Voraussetzung für die Auditor-Rolle.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;Wie lange ist ein ICO-Zertifikat gültig?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;Die Gültigkeit ist personenbezogen. Details zu Erneuerung und Rezertifizierung finden Sie auf der &lt;a href=&quot;https://ico-cert.org&quot;&gt;ICO-Website&lt;/a&gt;.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;Worin unterscheidet sich ISO 9001 von ISO 9000 und ISO 9004?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;ISO 9000 ist die Vokabelnorm — sie definiert die Begriffe und Grundlagen. ISO 9001 enthält die zertifizierungsrelevanten Anforderungen. ISO 9004 ist ein Leitfaden für nachhaltige Erfolgsorientierung, der über die Mindestanforderungen hinausgeht und nicht zertifizierungsfähig ist.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;Welche Zertifikate gibt es, und wie hängen sie zusammen?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;Es gibt zwei Arten. &lt;strong&gt;Prüfungszertifikate&lt;/strong&gt; bescheinigen eine bestandene Prüfung: Foundation, Professional, Update und AQAP 2110 Assurance. &lt;strong&gt;Rollenzertifikate&lt;/strong&gt; bescheinigen eine Rolle und setzen sich aus Prüfungen zusammen:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;strong&gt;ICO QMS Quality Manager nach ISO 9001:2026&lt;/strong&gt; — Foundation und Professional&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;ICO QMS Quality Auditor nach ISO 9001:2026&lt;/strong&gt; — zusätzlich die Auditausbildung AMS 19011:2018 (Foundation und Professional)&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;ICO QMS &amp;amp; AQAP Expert&lt;/strong&gt; — Quality Manager und die Prüfung AQAP 2110 Assurance&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;p&gt;Die Auditausbildung nach ISO 19011 gilt managementsystemübergreifend: Sie erwerben sie einmal und können sie auch für ISO/IEC 27001, ISO/IEC 42001 oder ISO/IEC 20000-1 einsetzen.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;Was ist AQAP, und wozu brauche ich es?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;&lt;strong&gt;AQAP&lt;/strong&gt; steht für &lt;em&gt;Allied Quality Assurance Publications&lt;/em&gt; — die Qualitätssicherungsvorschriften der NATO. Sie werden in Beschaffungsverträgen der NATO, der Verteidigungsministerien und der großen Systemlieferanten regelmäßig verbindlich vorgeschrieben.&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;AQAP 2110&lt;/strong&gt; gilt für Entwicklung und Produktion. Sie setzt ein QMS nach ISO 9001 voraus und ergänzt es um staatliche Qualitätssicherung durch den Auftraggeber, erweiterte Nachweis- und Mitteilungspflichten, die Behandlung von Abweichungen und Konfigurationsmanagement über den Lebenszyklus. AQAP ersetzt die ISO 9001 also nicht, sondern baut auf ihr auf.&lt;/p&gt;
+  &lt;p&gt;Wenn Ihr Unternehmen in der Verteidigungsbeschaffung tätig ist oder dorthin liefern möchte, ist das &lt;strong&gt;ICO QMS &amp;amp; AQAP Expert&lt;/strong&gt; der passende Nachweis.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;Wer darf die Update-Prüfung machen?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;Die Update-Prüfung richtet sich an alle, die den Wissensstand einer ISO-9001:2015-Professional-Ausbildung mitbringen und auf die Fassung 2026 wechseln wollen. Sie prüft gezielt die Unterschiede zwischen den beiden Fassungen, nicht die Norm von Grund auf.&lt;/p&gt;
+  &lt;p&gt;Die ICO hat die Fassung 2015 selbst nicht angeboten. Der Zugang läuft deshalb über ein &lt;strong&gt;anerkanntes Zertifikat eines anderen Ausstellers&lt;/strong&gt; auf Professional-Niveau — welche das sind, steht in der folgenden FAQ.&lt;/p&gt;
+  &lt;p&gt;Wichtig: Aus einem Fremdzertifikat und der bestandenen Update-Prüfung entsteht ein &lt;strong&gt;Prüfungszertifikat&lt;/strong&gt;, kein Rollenzertifikat. Für ein Rollenzertifikat sind die ICO-Prüfungen Foundation und Professional nötig.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;Ich habe ein Zertifikat eines anderen Anbieters. Was nun?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;Die ICO erkennt Zertifikate anderer Aussteller an, wenn drei Bedingungen erfüllt sind:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Es bescheinigt eine &lt;strong&gt;bestandene Prüfung&lt;/strong&gt; — keine Teilnahme an einer Schulung. Wie der Aussteller sein Zertifikat nennt, spielt keine Rolle; eine Teilnahmebescheinigung zählt nicht, auch wenn sie anders heißt.&lt;/li&gt;
+    &lt;li&gt;Aus dem Zertifikat geht die &lt;strong&gt;Normfassung&lt;/strong&gt; hervor, auf die geprüft wurde — gesucht ist ISO 9001:2015.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Fragenanzahl und Schwierigkeitsgrad&lt;/strong&gt; entsprechen ungefähr der ICO-Prüfung derselben Stufe.&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;p&gt;Keine Rolle spielen dagegen: eine Schulungspflicht beim Aussteller, ein Nachweis von Berufserfahrung oder Audittagen, und die Form der Prüfung — schriftlich, online oder mündlich ist gleichwertig.&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Als Foundation anerkannt&lt;/strong&gt; werden unter anderem: &lt;em&gt;Zertifikat als Prüfbescheinigung Qualitätsbeauftragte/r (TÜV)&lt;/em&gt; von TÜV Rheinland/PersCert, &lt;em&gt;Personenzertifikat Qualitätsbeauftragter (QB)&lt;/em&gt; von TÜV SÜD und &lt;em&gt;PECB Certificate Holder in ISO 9001 Foundation&lt;/em&gt;.&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Als Professional anerkannt&lt;/strong&gt; werden unter anderem: &lt;em&gt;Qualitätsmanager/in (TÜV)&lt;/em&gt; und &lt;em&gt;Qualitätsauditor/in (TÜV)&lt;/em&gt; von PersCert, &lt;em&gt;Personenzertifikat Qualitätsmanager (QM)&lt;/em&gt;, &lt;em&gt;Qualitätsauditor (QA)&lt;/em&gt; und &lt;em&gt;Qualitätsmanagement-Auditor (QMA-TÜV)&lt;/em&gt; von TÜV SÜD sowie &lt;em&gt;PECB Certified ISO 9001 Provisional Auditor&lt;/em&gt; und &lt;em&gt;Provisional Implementer&lt;/em&gt;. Die höheren PECB-Stufen gelten als Nachweis derselben Prüfung.&lt;/p&gt;
+  &lt;p&gt;Ein Auditor-Zertifikat eines anderen Ausstellers bescheinigt immer zweierlei: die Auditkompetenz nach ISO 19011 und das Fachwissen zur jeweiligen Norm. Die Auditkompetenz können Sie deshalb auch für andere Managementsysteme einsetzen — etwa für einen ICO-Auditor nach ISO/IEC 42001.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;Mein Zertifikat steht nicht in der Liste.&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;Die Liste ist nicht abschließend. Senden Sie uns eine Kopie Ihres Zertifikats und, falls vorhanden, die Prüfungsordnung des Ausstellers. Wir prüfen anhand derselben drei Bedingungen und antworten Ihnen.&lt;/p&gt;
+  &lt;p&gt;Nicht anerkannt werden Teilnahmebescheinigungen ohne Prüfung, Zertifikate ohne Angabe der geprüften Normfassung und Prüfungen, deren Umfang deutlich unter dem der ICO-Prüfung derselben Stufe liegt.&lt;/p&gt;
+&lt;/details&gt;
+</pre></details><div class="now">Jetzt dort: <code>&lt;h2&gt;FAQ&lt;/h2&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;Was ist ein QMS?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;Ein Qualitätsmanagementsystem (QMS) ist ein Rahmenwerk aus Politik, Zielen, Prozessen  …</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">gefüllt</span><button type="button" class="copy" data-src="src-4-en">kopieren</button></div><div class="prev"><h2>FAQ</h2>
+
+<details>
+  <summary><b>What is a QMS?</b></summary>
+  <p>A quality management system (QMS) is a framework consisting of policies, objectives, processes, and control mechanisms that an organization uses to ensure that customer requirements are reliably met and that the system continuously improves. ISO 9001:2026 describes the minimum requirements for such a system.</p>
+</details>
+
+<details>
+  <summary><b>How does the 2026 version of ISO 9001 differ from the 2015 version?</b></summary>
+  <p>The 2026 edition builds specifically on ISO 9001:2015 while retaining its fundamental structure and process-oriented approach. New or more strongly emphasized aspects include, in particular, a culture of quality and ethical conduct, a clearer consideration of risks and opportunities, the management of change, and the consideration of climate change within the context of the organization. In addition, the standard is based on the updated harmonized structure for management system standards and includes expanded guidance on the application of the requirements.</p>
+</details>
+
+<details>
+  <summary><b>How does ICO Foundation certification benefit my career?</b></summary>
+  <p>It demonstrates that you have a solid command of the language of ISO 9001:2026 and understand the interplay between policy, processes, risks, audits, and improvement—an increasingly sought-after foundation for roles in quality management, process management, auditing, or consulting.</p>
+</details>
+
+<details>
+  <summary><b>Do I need prior experience in quality management?</b></summary>
+  <p>No. Professional experience in an organization with processes, customers, and suppliers makes it easier to understand the material, but it is not required. A basic knowledge of English is helpful because the original texts of the standard are in English.</p>
+</details>
+
+<details>
+  <summary><b>How does the Foundation level differ from the Professional level?</b></summary>
+  <p>The Foundation level provides a solid basic understanding: terminology, the structure of the standard, a process-oriented approach, and risk-based thinking. The Professional level delves deeper into practical application, examines audit cases, process measurement, and integrated management systems, and is a prerequisite for the auditor role.</p>
+</details>
+
+<details>
+  <summary><b>How long is an ICO certificate valid?</b></summary>
+  <p>Validity is tied to the individual. Details on renewal and recertification can be found on the <a href="https://ico-cert.org">ICO website</a>.</p>
+</details>
+
+<details>
+  <summary><b>How does ISO 9001 differ from ISO 9000 and ISO 9004?</b></summary>
+  <p>ISO 9000 is the vocabulary standard—it defines the terms and fundamentals. ISO 9001 contains the requirements relevant to certification. ISO 9004 is a guide to sustainable success that goes beyond the minimum requirements and is not certifiable.</p>
+</details>
+
+<details>
+  <summary><b>Which certificates are there, and how do they relate?</b></summary>
+  <p>There are two kinds. <strong>Examination certificates</strong> attest a passed examination: Foundation, Professional, Update and AQAP 2110 Assurance. <strong>Role certificates</strong> attest a role and are composed of examinations:</p>
+  <ul>
+    <li><strong>ICO QMS Quality Manager according to ISO 9001:2026</strong> — Foundation and Professional</li>
+    <li><strong>ICO QMS Quality Auditor according to ISO 9001:2026</strong> — additionally the auditing qualification AMS 19011:2018 (Foundation and Professional)</li>
+    <li><strong>ICO QMS &amp; AQAP Expert</strong> — Quality Manager plus the AQAP 2110 Assurance examination</li>
+  </ul>
+  <p>The auditing qualification under ISO 19011 applies across management systems: you earn it once and can use it for ISO/IEC 27001, ISO/IEC 42001 or ISO/IEC 20000-1 as well.</p>
+</details>
+
+<details>
+  <summary><b>What is AQAP, and why would I need it?</b></summary>
+  <p><strong>AQAP</strong> stands for <em>Allied Quality Assurance Publications</em> — the quality assurance requirements of NATO. Procurement contracts of NATO, of ministries of defence and of the large prime contractors regularly make them binding.</p>
+  <p><strong>AQAP 2110</strong> applies to design, development and production. It presupposes a QMS according to ISO 9001 and adds Government Quality Assurance by the customer, extended evidence and notification duties, the handling of deviations, and configuration management across the life cycle. AQAP therefore does not replace ISO 9001; it builds on it.</p>
+  <p>If your organisation works in defence procurement, or wants to supply it, the <strong>ICO QMS &amp; AQAP Expert</strong> is the fitting credential.</p>
+</details>
+
+<details>
+  <summary><b>Who may take the Update examination?</b></summary>
+  <p>The Update examination is for those who bring the knowledge level of an ISO 9001:2015 Professional qualification and want to move to the 2026 edition. It examines the differences between the two editions, not the standard from scratch.</p>
+  <p>ICO did not offer the 2015 edition itself. Access therefore runs through a <strong>recognised certificate from another issuer</strong> at Professional level — which ones these are is set out in the next FAQ.</p>
+  <p>Please note: a foreign certificate plus the passed Update examination yields an <strong>examination certificate</strong>, not a role certificate. A role certificate requires the ICO Foundation and Professional examinations.</p>
+</details>
+
+<details>
+  <summary><b>I hold a certificate from another provider. What now?</b></summary>
+  <p>ICO recognises certificates from other issuers if three conditions are met:</p>
+  <ul>
+    <li>It attests a <strong>passed examination</strong> — not attendance of a training course. What the issuer calls its certificate does not matter; a certificate of attendance does not count, whatever its name.</li>
+    <li>The certificate states the <strong>edition of the standard</strong> that was examined — we are looking for ISO 9001:2015.</li>
+    <li><strong>Number of questions and level of difficulty</strong> roughly match the ICO examination of the same level.</li>
+  </ul>
+  <p>What does not matter: a training requirement imposed by the issuer, evidence of professional experience or audit days, and the form of the examination — written, online or oral are equivalent.</p>
+  <p><strong>Recognised as Foundation</strong>, among others: <em>Zertifikat als Prüfbescheinigung Qualitätsbeauftragte/r (TÜV)</em> from TÜV Rheinland/PersCert, <em>Personenzertifikat Qualitätsbeauftragter (QB)</em> from TÜV SÜD, and <em>PECB Certificate Holder in ISO 9001 Foundation</em>.</p>
+  <p><strong>Recognised as Professional</strong>, among others: <em>Qualitätsmanager/in (TÜV)</em> and <em>Qualitätsauditor/in (TÜV)</em> from PersCert, <em>Personenzertifikat Qualitätsmanager (QM)</em>, <em>Qualitätsauditor (QA)</em> and <em>Qualitätsmanagement-Auditor (QMA-TÜV)</em> from TÜV SÜD, as well as <em>PECB Certified ISO 9001 Provisional Auditor</em> and <em>Provisional Implementer</em>. The higher PECB grades count as evidence of the same examination.</p>
+  <p>An auditor certificate from another issuer always attests two things: auditing competence under ISO 19011 and subject knowledge of the standard concerned. You can therefore use the auditing competence for other management systems too — for an ICO auditor under ISO/IEC 42001, for instance.</p>
+</details>
+
+<details>
+  <summary><b>My certificate is not on the list.</b></summary>
+  <p>The list is not exhaustive. Send us a copy of your certificate and, if available, the issuer's examination regulations. We assess it against the same three conditions and come back to you.</p>
+  <p>Not recognised are certificates of attendance without an examination, certificates that do not state the edition examined, and examinations whose scope falls clearly short of the ICO examination at the same level.</p>
+</details>
+</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-4-en">&lt;h2&gt;FAQ&lt;/h2&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;What is a QMS?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;A quality management system (QMS) is a framework consisting of policies, objectives, processes, and control mechanisms that an organization uses to ensure that customer requirements are reliably met and that the system continuously improves. ISO 9001:2026 describes the minimum requirements for such a system.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;How does the 2026 version of ISO 9001 differ from the 2015 version?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;The 2026 edition builds specifically on ISO 9001:2015 while retaining its fundamental structure and process-oriented approach. New or more strongly emphasized aspects include, in particular, a culture of quality and ethical conduct, a clearer consideration of risks and opportunities, the management of change, and the consideration of climate change within the context of the organization. In addition, the standard is based on the updated harmonized structure for management system standards and includes expanded guidance on the application of the requirements.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;How does ICO Foundation certification benefit my career?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;It demonstrates that you have a solid command of the language of ISO 9001:2026 and understand the interplay between policy, processes, risks, audits, and improvement—an increasingly sought-after foundation for roles in quality management, process management, auditing, or consulting.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;Do I need prior experience in quality management?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;No. Professional experience in an organization with processes, customers, and suppliers makes it easier to understand the material, but it is not required. A basic knowledge of English is helpful because the original texts of the standard are in English.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;How does the Foundation level differ from the Professional level?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;The Foundation level provides a solid basic understanding: terminology, the structure of the standard, a process-oriented approach, and risk-based thinking. The Professional level delves deeper into practical application, examines audit cases, process measurement, and integrated management systems, and is a prerequisite for the auditor role.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;How long is an ICO certificate valid?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;Validity is tied to the individual. Details on renewal and recertification can be found on the &lt;a href=&quot;https://ico-cert.org&quot;&gt;ICO website&lt;/a&gt;.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;How does ISO 9001 differ from ISO 9000 and ISO 9004?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;ISO 9000 is the vocabulary standard—it defines the terms and fundamentals. ISO 9001 contains the requirements relevant to certification. ISO 9004 is a guide to sustainable success that goes beyond the minimum requirements and is not certifiable.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;Which certificates are there, and how do they relate?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;There are two kinds. &lt;strong&gt;Examination certificates&lt;/strong&gt; attest a passed examination: Foundation, Professional, Update and AQAP 2110 Assurance. &lt;strong&gt;Role certificates&lt;/strong&gt; attest a role and are composed of examinations:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;strong&gt;ICO QMS Quality Manager according to ISO 9001:2026&lt;/strong&gt; — Foundation and Professional&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;ICO QMS Quality Auditor according to ISO 9001:2026&lt;/strong&gt; — additionally the auditing qualification AMS 19011:2018 (Foundation and Professional)&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;ICO QMS &amp;amp; AQAP Expert&lt;/strong&gt; — Quality Manager plus the AQAP 2110 Assurance examination&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;p&gt;The auditing qualification under ISO 19011 applies across management systems: you earn it once and can use it for ISO/IEC 27001, ISO/IEC 42001 or ISO/IEC 20000-1 as well.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;What is AQAP, and why would I need it?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;&lt;strong&gt;AQAP&lt;/strong&gt; stands for &lt;em&gt;Allied Quality Assurance Publications&lt;/em&gt; — the quality assurance requirements of NATO. Procurement contracts of NATO, of ministries of defence and of the large prime contractors regularly make them binding.&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;AQAP 2110&lt;/strong&gt; applies to design, development and production. It presupposes a QMS according to ISO 9001 and adds Government Quality Assurance by the customer, extended evidence and notification duties, the handling of deviations, and configuration management across the life cycle. AQAP therefore does not replace ISO 9001; it builds on it.&lt;/p&gt;
+  &lt;p&gt;If your organisation works in defence procurement, or wants to supply it, the &lt;strong&gt;ICO QMS &amp;amp; AQAP Expert&lt;/strong&gt; is the fitting credential.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;Who may take the Update examination?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;The Update examination is for those who bring the knowledge level of an ISO 9001:2015 Professional qualification and want to move to the 2026 edition. It examines the differences between the two editions, not the standard from scratch.&lt;/p&gt;
+  &lt;p&gt;ICO did not offer the 2015 edition itself. Access therefore runs through a &lt;strong&gt;recognised certificate from another issuer&lt;/strong&gt; at Professional level — which ones these are is set out in the next FAQ.&lt;/p&gt;
+  &lt;p&gt;Please note: a foreign certificate plus the passed Update examination yields an &lt;strong&gt;examination certificate&lt;/strong&gt;, not a role certificate. A role certificate requires the ICO Foundation and Professional examinations.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;I hold a certificate from another provider. What now?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;ICO recognises certificates from other issuers if three conditions are met:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;It attests a &lt;strong&gt;passed examination&lt;/strong&gt; — not attendance of a training course. What the issuer calls its certificate does not matter; a certificate of attendance does not count, whatever its name.&lt;/li&gt;
+    &lt;li&gt;The certificate states the &lt;strong&gt;edition of the standard&lt;/strong&gt; that was examined — we are looking for ISO 9001:2015.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Number of questions and level of difficulty&lt;/strong&gt; roughly match the ICO examination of the same level.&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;p&gt;What does not matter: a training requirement imposed by the issuer, evidence of professional experience or audit days, and the form of the examination — written, online or oral are equivalent.&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Recognised as Foundation&lt;/strong&gt;, among others: &lt;em&gt;Zertifikat als Prüfbescheinigung Qualitätsbeauftragte/r (TÜV)&lt;/em&gt; from TÜV Rheinland/PersCert, &lt;em&gt;Personenzertifikat Qualitätsbeauftragter (QB)&lt;/em&gt; from TÜV SÜD, and &lt;em&gt;PECB Certificate Holder in ISO 9001 Foundation&lt;/em&gt;.&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Recognised as Professional&lt;/strong&gt;, among others: &lt;em&gt;Qualitätsmanager/in (TÜV)&lt;/em&gt; and &lt;em&gt;Qualitätsauditor/in (TÜV)&lt;/em&gt; from PersCert, &lt;em&gt;Personenzertifikat Qualitätsmanager (QM)&lt;/em&gt;, &lt;em&gt;Qualitätsauditor (QA)&lt;/em&gt; and &lt;em&gt;Qualitätsmanagement-Auditor (QMA-TÜV)&lt;/em&gt; from TÜV SÜD, as well as &lt;em&gt;PECB Certified ISO 9001 Provisional Auditor&lt;/em&gt; and &lt;em&gt;Provisional Implementer&lt;/em&gt;. The higher PECB grades count as evidence of the same examination.&lt;/p&gt;
+  &lt;p&gt;An auditor certificate from another issuer always attests two things: auditing competence under ISO 19011 and subject knowledge of the standard concerned. You can therefore use the auditing competence for other management systems too — for an ICO auditor under ISO/IEC 42001, for instance.&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;My certificate is not on the list.&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;The list is not exhaustive. Send us a copy of your certificate and, if available, the issuer&#x27;s examination regulations. We assess it against the same three conditions and come back to you.&lt;/p&gt;
+  &lt;p&gt;Not recognised are certificates of attendance without an examination, certificates that do not state the edition examined, and examinations whose scope falls clearly short of the ICO examination at the same level.&lt;/p&gt;
+&lt;/details&gt;
+</pre></details><div class="now">Jetzt dort: <code>&lt;h2&gt;FAQ&lt;/h2&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;b&gt;What is a QMS?&lt;/b&gt;&lt;/summary&gt;
+  &lt;p&gt;A quality management system (QMS) is a framework consisting of policies, objectives, pro …</code></div></div></div><div class="chk"><input type="checkbox" data-n="4" id="c4"><label for="c4">erledigt</label></div></div>
+<div class="e" id="e5"><div class="h"><span class="num">5</span><span class="ttl">ICO QMS Quality Manager — Beschreibung</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/90ad5707-f27f-4462-9c02-1aa31bdbd870" target="_blank" rel="noopener"><code>90ad5707-f27f-4462-9c02-1aa31bdbd870</code></a></span><span>Feld <code>description</code></span></div><div class="note">Steht heute auf <code>TBD</code> in beiden Sprachen.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-5-de">kopieren</button></div><div class="prev"><p>Inhaber dieses Zertifikats verfügen über die erforderlichen Kenntnisse, um die Rolle des Qualitätsmanagers in einer Organisation auszuüben oder Organisationen bei der Einführung und dem Betrieb eines Qualitätsmanagementsystems nach ISO 9001:2026 als Berater zu begleiten.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-5-de">&lt;p&gt;Inhaber dieses Zertifikats verfügen über die erforderlichen Kenntnisse, um die Rolle des Qualitätsmanagers in einer Organisation auszuüben oder Organisationen bei der Einführung und dem Betrieb eines Qualitätsmanagementsystems nach ISO 9001:2026 als Berater zu begleiten.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-5-en">kopieren</button></div><div class="prev"><p>Holders of this certificate have the knowledge required to fulfil the role of quality manager in an organisation, or to support organisations as a consultant in establishing and operating a quality management system according to ISO 9001:2026.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-5-en">&lt;p&gt;Holders of this certificate have the knowledge required to fulfil the role of quality manager in an organisation, or to support organisations as a consultant in establishing and operating a quality management system according to ISO 9001:2026.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div></div><div class="chk"><input type="checkbox" data-n="5" id="c5"><label for="c5">erledigt</label></div></div>
+<div class="e" id="e6"><div class="h"><span class="num">6</span><span class="ttl">ICO QMS Quality Auditor — Beschreibung</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/ae11b807-5de6-4944-a8fd-ae619858215f" target="_blank" rel="noopener"><code>ae11b807-5de6-4944-a8fd-ae619858215f</code></a></span><span>Feld <code>description</code></span></div><div class="note">Steht heute auf <code>TBD</code> in beiden Sprachen.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-6-de">kopieren</button></div><div class="prev"><p>Inhaber dieses Zertifikats verfügen zusätzlich zum Wissen des Quality Managers über die Fähigkeit, interne Audits, Lieferantenaudits und Audits bei Drittparteien an Qualitätsmanagementsystemen nach ISO 9001:2026 zu planen, durchzuführen und zu berichten.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-6-de">&lt;p&gt;Inhaber dieses Zertifikats verfügen zusätzlich zum Wissen des Quality Managers über die Fähigkeit, interne Audits, Lieferantenaudits und Audits bei Drittparteien an Qualitätsmanagementsystemen nach ISO 9001:2026 zu planen, durchzuführen und zu berichten.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-6-en">kopieren</button></div><div class="prev"><p>In addition to the knowledge of the Quality Manager, holders of this certificate are able to plan, conduct and report internal audits, supplier audits and third-party audits of quality management systems according to ISO 9001:2026.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-6-en">&lt;p&gt;In addition to the knowledge of the Quality Manager, holders of this certificate are able to plan, conduct and report internal audits, supplier audits and third-party audits of quality management systems according to ISO 9001:2026.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div></div><div class="chk"><input type="checkbox" data-n="6" id="c6"><label for="c6">erledigt</label></div></div>
+<div class="e" id="e7"><div class="h"><span class="num">7</span><span class="ttl">ICO QMS &amp;amp; AQAP Expert — Beschreibung</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/d4e3dc96-91f6-4cc6-a6c1-ee86278f4cc3" target="_blank" rel="noopener"><code>d4e3dc96-91f6-4cc6-a6c1-ee86278f4cc3</code></a></span><span>Feld <code>description</code></span></div><div class="note">Steht heute auf <code>TBD</code> in beiden Sprachen.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-7-de">kopieren</button></div><div class="prev"><p>Inhaber dieses Zertifikats beherrschen zusätzlich zum zivilen Qualitätsmanagement nach ISO 9001:2026 die Qualitätssicherungsanforderungen der NATO-Beschaffung nach AQAP 2110 — einschließlich der staatlichen Qualitätssicherung durch den Auftraggeber, der erweiterten Nachweis- und Mitteilungspflichten und des Konfigurationsmanagements über den Lebenszyklus.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-7-de">&lt;p&gt;Inhaber dieses Zertifikats beherrschen zusätzlich zum zivilen Qualitätsmanagement nach ISO 9001:2026 die Qualitätssicherungsanforderungen der NATO-Beschaffung nach AQAP 2110 — einschließlich der staatlichen Qualitätssicherung durch den Auftraggeber, der erweiterten Nachweis- und Mitteilungspflichten und des Konfigurationsmanagements über den Lebenszyklus.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-7-en">kopieren</button></div><div class="prev"><p>Beyond civil quality management under ISO 9001:2026, holders of this certificate master the quality assurance requirements of NATO procurement under AQAP 2110 — including Government Quality Assurance by the customer, the extended evidence and notification duties, and configuration management across the life cycle.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-7-en">&lt;p&gt;Beyond civil quality management under ISO 9001:2026, holders of this certificate master the quality assurance requirements of NATO procurement under AQAP 2110 — including Government Quality Assurance by the customer, the extended evidence and notification duties, and configuration management across the life cycle.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div></div><div class="chk"><input type="checkbox" data-n="7" id="c7"><label for="c7">erledigt</label></div></div>
+<div class="e" id="e8"><div class="h"><span class="num">8</span><span class="ttl">Prüfungszertifikat Foundation — Beschreibung</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/d343a357-d3f9-4f09-af85-ca78bfaf2c3c" target="_blank" rel="noopener"><code>d343a357-d3f9-4f09-af85-ca78bfaf2c3c</code></a></span><span>Feld <code>description</code></span></div><div class="note">Steht heute auf <code>TBD</code> in beiden Sprachen.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-8-de">kopieren</button></div><div class="prev"><p>Inhaber dieses Zertifikats kennen und verstehen die Grundlagen der ISO 9001:2026: den Aufbau der Norm, die Begriffswelt der ISO 9000, den prozessorientierten Ansatz, risikobasiertes Denken und den Plan-Do-Check-Act-Zyklus. Es ist die Einstiegsstufe des ICO-QMS-Programms.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-8-de">&lt;p&gt;Inhaber dieses Zertifikats kennen und verstehen die Grundlagen der ISO 9001:2026: den Aufbau der Norm, die Begriffswelt der ISO 9000, den prozessorientierten Ansatz, risikobasiertes Denken und den Plan-Do-Check-Act-Zyklus. Es ist die Einstiegsstufe des ICO-QMS-Programms.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-8-en">kopieren</button></div><div class="prev"><p>Holders of this certificate know and understand the fundamentals of ISO 9001:2026: the structure of the standard, the vocabulary of ISO 9000, the process approach, risk-based thinking and the Plan-Do-Check-Act cycle. It is the entry level of the ICO QMS programme.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-8-en">&lt;p&gt;Holders of this certificate know and understand the fundamentals of ISO 9001:2026: the structure of the standard, the vocabulary of ISO 9000, the process approach, risk-based thinking and the Plan-Do-Check-Act cycle. It is the entry level of the ICO QMS programme.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div></div><div class="chk"><input type="checkbox" data-n="8" id="c8"><label for="c8">erledigt</label></div></div>
+<div class="e" id="e9"><div class="h"><span class="num">9</span><span class="ttl">Prüfungszertifikat Professional — Beschreibung</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/6880b5a6-4ccd-49fb-86bd-f6547539993d" target="_blank" rel="noopener"><code>6880b5a6-4ccd-49fb-86bd-f6547539993d</code></a></span><span>Feld <code>description</code></span></div><div class="note">Steht heute auf <code>TBD</code> in beiden Sprachen.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-9-de">kopieren</button></div><div class="prev"><p>Inhaber dieses Zertifikats können die Anforderungen der ISO 9001:2026 in der Praxis anwenden: Kontext und interessierte Parteien bestimmen, Risiken und Chancen behandeln, Prozesse messen und verbessern, Managementbewertungen vorbereiten und ein QMS in ein integriertes Managementsystem überführen.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-9-de">&lt;p&gt;Inhaber dieses Zertifikats können die Anforderungen der ISO 9001:2026 in der Praxis anwenden: Kontext und interessierte Parteien bestimmen, Risiken und Chancen behandeln, Prozesse messen und verbessern, Managementbewertungen vorbereiten und ein QMS in ein integriertes Managementsystem überführen.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-9-en">kopieren</button></div><div class="prev"><p>Holders of this certificate can apply the requirements of ISO 9001:2026 in practice: determine context and interested parties, address risks and opportunities, measure and improve processes, prepare management reviews, and integrate a QMS into an integrated management system.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-9-en">&lt;p&gt;Holders of this certificate can apply the requirements of ISO 9001:2026 in practice: determine context and interested parties, address risks and opportunities, measure and improve processes, prepare management reviews, and integrate a QMS into an integrated management system.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div></div><div class="chk"><input type="checkbox" data-n="9" id="c9"><label for="c9">erledigt</label></div></div>
+<div class="e" id="e10"><div class="h"><span class="num">10</span><span class="ttl">Prüfungszertifikat Update 2026 — Beschreibung</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/bd49aa1d-8461-4095-be96-ab2e5a33d9df" target="_blank" rel="noopener"><code>bd49aa1d-8461-4095-be96-ab2e5a33d9df</code></a></span><span>Feld <code>description</code></span></div><div class="note">Steht heute auf <code>TBD</code> in beiden Sprachen.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-10-de">kopieren</button></div><div class="prev"><p>Inhaber dieses Zertifikats kennen und verstehen die wesentlichen Änderungen zwischen den Fassungen 2015 und 2026 der ISO 9001 im Detail: die stärkere Bedeutung von Qualitätskultur und ethischem Verhalten, die präzisierte Betrachtung von Risiken und Chancen, die erweiterten Anforderungen zum Kontext der Organisation einschließlich des Klimawandels, den verstärkten Umgang mit Veränderungen und die aktualisierte harmonisierte Struktur der Managementsystemnormen.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-10-de">&lt;p&gt;Inhaber dieses Zertifikats kennen und verstehen die wesentlichen Änderungen zwischen den Fassungen 2015 und 2026 der ISO 9001 im Detail: die stärkere Bedeutung von Qualitätskultur und ethischem Verhalten, die präzisierte Betrachtung von Risiken und Chancen, die erweiterten Anforderungen zum Kontext der Organisation einschließlich des Klimawandels, den verstärkten Umgang mit Veränderungen und die aktualisierte harmonisierte Struktur der Managementsystemnormen.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-10-en">kopieren</button></div><div class="prev"><p>Holders of this certificate know and understand in detail the material changes between the 2015 and the 2026 edition of ISO 9001: the greater weight given to quality culture and ethical conduct, the sharpened treatment of risks and opportunities, the extended requirements on the context of the organisation including climate change, the strengthened handling of change, and the updated harmonised structure of management system standards.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-10-en">&lt;p&gt;Holders of this certificate know and understand in detail the material changes between the 2015 and the 2026 edition of ISO 9001: the greater weight given to quality culture and ethical conduct, the sharpened treatment of risks and opportunities, the extended requirements on the context of the organisation including climate change, the strengthened handling of change, and the updated harmonised structure of management system standards.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div></div><div class="chk"><input type="checkbox" data-n="10" id="c10"><label for="c10">erledigt</label></div></div>
+<div class="e" id="e11"><div class="h"><span class="num">11</span><span class="ttl">Prüfungszertifikat AQAP 2110 Assurance — Beschreibung</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/94b084fb-9197-4536-a408-58ceeafed1ed" target="_blank" rel="noopener"><code>94b084fb-9197-4536-a408-58ceeafed1ed</code></a></span><span>Feld <code>description</code></span></div><div class="note">Steht heute auf <code>TBD</code> in beiden Sprachen.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-11-de">kopieren</button></div><div class="prev"><p>Inhaber dieses Zertifikats kennen und verstehen die Qualitätssicherungsanforderungen der NATO nach AQAP 2110 für Entwicklung und Produktion und ihr Verhältnis zur ISO 9001: die staatliche Qualitätssicherung durch den Auftraggeber, die erweiterten Nachweis- und Mitteilungspflichten, die Behandlung von Abweichungen und das Konfigurationsmanagement über den gesamten Lebenszyklus.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-11-de">&lt;p&gt;Inhaber dieses Zertifikats kennen und verstehen die Qualitätssicherungsanforderungen der NATO nach AQAP 2110 für Entwicklung und Produktion und ihr Verhältnis zur ISO 9001: die staatliche Qualitätssicherung durch den Auftraggeber, die erweiterten Nachweis- und Mitteilungspflichten, die Behandlung von Abweichungen und das Konfigurationsmanagement über den gesamten Lebenszyklus.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-11-en">kopieren</button></div><div class="prev"><p>Holders of this certificate know and understand the NATO quality assurance requirements under AQAP 2110 for design, development and production and how they relate to ISO 9001: Government Quality Assurance by the customer, the extended evidence and notification duties, the handling of deviations, and configuration management across the whole life cycle.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-11-en">&lt;p&gt;Holders of this certificate know and understand the NATO quality assurance requirements under AQAP 2110 for design, development and production and how they relate to ISO 9001: Government Quality Assurance by the customer, the extended evidence and notification duties, the handling of deviations, and configuration management across the whole life cycle.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div></div><div class="chk"><input type="checkbox" data-n="11" id="c11"><label for="c11">erledigt</label></div></div>
+<div class="e" id="e12"><div class="h"><span class="num">12</span><span class="ttl">ICO QMS Quality Manager — Badge-Text</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/90ad5707-f27f-4462-9c02-1aa31bdbd870" target="_blank" rel="noopener"><code>90ad5707-f27f-4462-9c02-1aa31bdbd870</code></a></span><span>Feld <code>badge_description</code></span></div><div class="note">Hauskonvention: die <code>badge_description</code> trägt in <strong>beiden</strong> Sprachslots den englischen Text — so halten es ISMS 27001 und AIMS 42001 durchgängig. Open Badges werden international gelesen. In beide Felder derselbe Text.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">leer</span><button type="button" class="copy" data-src="src-12-de">kopieren</button></div><div class="prev">Holders of this certificate have the knowledge required to fulfil the role of quality manager in an organisation, or to support organisations as a consultant in establishing and operating a quality management system according to ISO 9001:2026.</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-12-de">Holders of this certificate have the knowledge required to fulfil the role of quality manager in an organisation, or to support organisations as a consultant in establishing and operating a quality management system according to ISO 9001:2026.</pre></details><div class="now">Jetzt dort: <code>leer</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">Sprachfeld fehlt</span><button type="button" class="copy" data-src="src-12-en">kopieren</button></div><div class="prev">Holders of this certificate have the knowledge required to fulfil the role of quality manager in an organisation, or to support organisations as a consultant in establishing and operating a quality management system according to ISO 9001:2026.</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-12-en">Holders of this certificate have the knowledge required to fulfil the role of quality manager in an organisation, or to support organisations as a consultant in establishing and operating a quality management system according to ISO 9001:2026.</pre></details><div class="now">Jetzt dort: <code>Sprachfeld fehlt</code></div></div></div><div class="chk"><input type="checkbox" data-n="12" id="c12"><label for="c12">erledigt</label></div></div>
+<div class="e" id="e13"><div class="h"><span class="num">13</span><span class="ttl">ICO QMS Quality Auditor — Badge-Text</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/ae11b807-5de6-4944-a8fd-ae619858215f" target="_blank" rel="noopener"><code>ae11b807-5de6-4944-a8fd-ae619858215f</code></a></span><span>Feld <code>badge_description</code></span></div><div class="note">Hauskonvention: die <code>badge_description</code> trägt in <strong>beiden</strong> Sprachslots den englischen Text — so halten es ISMS 27001 und AIMS 42001 durchgängig. Open Badges werden international gelesen. In beide Felder derselbe Text.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">Sprachfeld fehlt</span><button type="button" class="copy" data-src="src-13-de">kopieren</button></div><div class="prev">In addition to the knowledge of the Quality Manager, holders of this certificate are able to plan, conduct and report internal audits, supplier audits and third-party audits of quality management systems according to ISO 9001:2026.</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-13-de">In addition to the knowledge of the Quality Manager, holders of this certificate are able to plan, conduct and report internal audits, supplier audits and third-party audits of quality management systems according to ISO 9001:2026.</pre></details><div class="now">Jetzt dort: <code>Sprachfeld fehlt</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">Sprachfeld fehlt</span><button type="button" class="copy" data-src="src-13-en">kopieren</button></div><div class="prev">In addition to the knowledge of the Quality Manager, holders of this certificate are able to plan, conduct and report internal audits, supplier audits and third-party audits of quality management systems according to ISO 9001:2026.</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-13-en">In addition to the knowledge of the Quality Manager, holders of this certificate are able to plan, conduct and report internal audits, supplier audits and third-party audits of quality management systems according to ISO 9001:2026.</pre></details><div class="now">Jetzt dort: <code>Sprachfeld fehlt</code></div></div></div><div class="chk"><input type="checkbox" data-n="13" id="c13"><label for="c13">erledigt</label></div></div>
+<div class="e" id="e14"><div class="h"><span class="num">14</span><span class="ttl">ICO QMS &amp;amp; AQAP Expert — Badge-Text</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/d4e3dc96-91f6-4cc6-a6c1-ee86278f4cc3" target="_blank" rel="noopener"><code>d4e3dc96-91f6-4cc6-a6c1-ee86278f4cc3</code></a></span><span>Feld <code>badge_description</code></span></div><div class="note">Hauskonvention: die <code>badge_description</code> trägt in <strong>beiden</strong> Sprachslots den englischen Text — so halten es ISMS 27001 und AIMS 42001 durchgängig. Open Badges werden international gelesen. In beide Felder derselbe Text.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">Sprachfeld fehlt</span><button type="button" class="copy" data-src="src-14-de">kopieren</button></div><div class="prev">Beyond civil quality management under ISO 9001:2026, holders of this certificate master the quality assurance requirements of NATO procurement under AQAP 2110 — including Government Quality Assurance by the customer, the extended evidence and notification duties, and configuration management across the life cycle.</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-14-de">Beyond civil quality management under ISO 9001:2026, holders of this certificate master the quality assurance requirements of NATO procurement under AQAP 2110 — including Government Quality Assurance by the customer, the extended evidence and notification duties, and configuration management across the life cycle.</pre></details><div class="now">Jetzt dort: <code>Sprachfeld fehlt</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">Sprachfeld fehlt</span><button type="button" class="copy" data-src="src-14-en">kopieren</button></div><div class="prev">Beyond civil quality management under ISO 9001:2026, holders of this certificate master the quality assurance requirements of NATO procurement under AQAP 2110 — including Government Quality Assurance by the customer, the extended evidence and notification duties, and configuration management across the life cycle.</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-14-en">Beyond civil quality management under ISO 9001:2026, holders of this certificate master the quality assurance requirements of NATO procurement under AQAP 2110 — including Government Quality Assurance by the customer, the extended evidence and notification duties, and configuration management across the life cycle.</pre></details><div class="now">Jetzt dort: <code>Sprachfeld fehlt</code></div></div></div><div class="chk"><input type="checkbox" data-n="14" id="c14"><label for="c14">erledigt</label></div></div>
+<div class="e" id="e15"><div class="h"><span class="num">15</span><span class="ttl">Prüfungszertifikat Foundation — Badge-Text</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/d343a357-d3f9-4f09-af85-ca78bfaf2c3c" target="_blank" rel="noopener"><code>d343a357-d3f9-4f09-af85-ca78bfaf2c3c</code></a></span><span>Feld <code>badge_description</code></span></div><div class="note">Hauskonvention: die <code>badge_description</code> trägt in <strong>beiden</strong> Sprachslots den englischen Text — so halten es ISMS 27001 und AIMS 42001 durchgängig. Open Badges werden international gelesen. In beide Felder derselbe Text.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">Sprachfeld fehlt</span><button type="button" class="copy" data-src="src-15-de">kopieren</button></div><div class="prev">Holders of this certificate know and understand the fundamentals of ISO 9001:2026: the structure of the standard, the vocabulary of ISO 9000, the process approach, risk-based thinking and the Plan-Do-Check-Act cycle. It is the entry level of the ICO QMS programme.</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-15-de">Holders of this certificate know and understand the fundamentals of ISO 9001:2026: the structure of the standard, the vocabulary of ISO 9000, the process approach, risk-based thinking and the Plan-Do-Check-Act cycle. It is the entry level of the ICO QMS programme.</pre></details><div class="now">Jetzt dort: <code>Sprachfeld fehlt</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">Sprachfeld fehlt</span><button type="button" class="copy" data-src="src-15-en">kopieren</button></div><div class="prev">Holders of this certificate know and understand the fundamentals of ISO 9001:2026: the structure of the standard, the vocabulary of ISO 9000, the process approach, risk-based thinking and the Plan-Do-Check-Act cycle. It is the entry level of the ICO QMS programme.</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-15-en">Holders of this certificate know and understand the fundamentals of ISO 9001:2026: the structure of the standard, the vocabulary of ISO 9000, the process approach, risk-based thinking and the Plan-Do-Check-Act cycle. It is the entry level of the ICO QMS programme.</pre></details><div class="now">Jetzt dort: <code>Sprachfeld fehlt</code></div></div></div><div class="chk"><input type="checkbox" data-n="15" id="c15"><label for="c15">erledigt</label></div></div>
+<div class="e" id="e16"><div class="h"><span class="num">16</span><span class="ttl">Prüfungszertifikat Professional — Badge-Text</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/6880b5a6-4ccd-49fb-86bd-f6547539993d" target="_blank" rel="noopener"><code>6880b5a6-4ccd-49fb-86bd-f6547539993d</code></a></span><span>Feld <code>badge_description</code></span></div><div class="note">Hauskonvention: die <code>badge_description</code> trägt in <strong>beiden</strong> Sprachslots den englischen Text — so halten es ISMS 27001 und AIMS 42001 durchgängig. Open Badges werden international gelesen. In beide Felder derselbe Text.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">Sprachfeld fehlt</span><button type="button" class="copy" data-src="src-16-de">kopieren</button></div><div class="prev">Holders of this certificate can apply the requirements of ISO 9001:2026 in practice: determine context and interested parties, address risks and opportunities, measure and improve processes, prepare management reviews, and integrate a QMS into an integrated management system.</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-16-de">Holders of this certificate can apply the requirements of ISO 9001:2026 in practice: determine context and interested parties, address risks and opportunities, measure and improve processes, prepare management reviews, and integrate a QMS into an integrated management system.</pre></details><div class="now">Jetzt dort: <code>Sprachfeld fehlt</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">Sprachfeld fehlt</span><button type="button" class="copy" data-src="src-16-en">kopieren</button></div><div class="prev">Holders of this certificate can apply the requirements of ISO 9001:2026 in practice: determine context and interested parties, address risks and opportunities, measure and improve processes, prepare management reviews, and integrate a QMS into an integrated management system.</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-16-en">Holders of this certificate can apply the requirements of ISO 9001:2026 in practice: determine context and interested parties, address risks and opportunities, measure and improve processes, prepare management reviews, and integrate a QMS into an integrated management system.</pre></details><div class="now">Jetzt dort: <code>Sprachfeld fehlt</code></div></div></div><div class="chk"><input type="checkbox" data-n="16" id="c16"><label for="c16">erledigt</label></div></div>
+<div class="e" id="e17"><div class="h"><span class="num">17</span><span class="ttl">Prüfungszertifikat Update 2026 — Badge-Text</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/bd49aa1d-8461-4095-be96-ab2e5a33d9df" target="_blank" rel="noopener"><code>bd49aa1d-8461-4095-be96-ab2e5a33d9df</code></a></span><span>Feld <code>badge_description</code></span></div><div class="note">Hauskonvention: die <code>badge_description</code> trägt in <strong>beiden</strong> Sprachslots den englischen Text — so halten es ISMS 27001 und AIMS 42001 durchgängig. Open Badges werden international gelesen. In beide Felder derselbe Text.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">Sprachfeld fehlt</span><button type="button" class="copy" data-src="src-17-de">kopieren</button></div><div class="prev">Holders of this certificate know and understand in detail the material changes between the 2015 and the 2026 edition of ISO 9001: the greater weight given to quality culture and ethical conduct, the sharpened treatment of risks and opportunities, the extended requirements on the context of the organisation including climate change, the strengthened handling of change, and the updated harmonised structure of management system standards.</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-17-de">Holders of this certificate know and understand in detail the material changes between the 2015 and the 2026 edition of ISO 9001: the greater weight given to quality culture and ethical conduct, the sharpened treatment of risks and opportunities, the extended requirements on the context of the organisation including climate change, the strengthened handling of change, and the updated harmonised structure of management system standards.</pre></details><div class="now">Jetzt dort: <code>Sprachfeld fehlt</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">leer</span><button type="button" class="copy" data-src="src-17-en">kopieren</button></div><div class="prev">Holders of this certificate know and understand in detail the material changes between the 2015 and the 2026 edition of ISO 9001: the greater weight given to quality culture and ethical conduct, the sharpened treatment of risks and opportunities, the extended requirements on the context of the organisation including climate change, the strengthened handling of change, and the updated harmonised structure of management system standards.</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-17-en">Holders of this certificate know and understand in detail the material changes between the 2015 and the 2026 edition of ISO 9001: the greater weight given to quality culture and ethical conduct, the sharpened treatment of risks and opportunities, the extended requirements on the context of the organisation including climate change, the strengthened handling of change, and the updated harmonised structure of management system standards.</pre></details><div class="now">Jetzt dort: <code>leer</code></div></div></div><div class="chk"><input type="checkbox" data-n="17" id="c17"><label for="c17">erledigt</label></div></div>
+<div class="e" id="e18"><div class="h"><span class="num">18</span><span class="ttl">Prüfungszertifikat AQAP 2110 Assurance — Badge-Text</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/94b084fb-9197-4536-a408-58ceeafed1ed" target="_blank" rel="noopener"><code>94b084fb-9197-4536-a408-58ceeafed1ed</code></a></span><span>Feld <code>badge_description</code></span></div><div class="note">Hauskonvention: die <code>badge_description</code> trägt in <strong>beiden</strong> Sprachslots den englischen Text — so halten es ISMS 27001 und AIMS 42001 durchgängig. Open Badges werden international gelesen. In beide Felder derselbe Text.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">leer</span><button type="button" class="copy" data-src="src-18-de">kopieren</button></div><div class="prev">Holders of this certificate know and understand the NATO quality assurance requirements under AQAP 2110 for design, development and production and how they relate to ISO 9001: Government Quality Assurance by the customer, the extended evidence and notification duties, the handling of deviations, and configuration management across the whole life cycle.</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-18-de">Holders of this certificate know and understand the NATO quality assurance requirements under AQAP 2110 for design, development and production and how they relate to ISO 9001: Government Quality Assurance by the customer, the extended evidence and notification duties, the handling of deviations, and configuration management across the whole life cycle.</pre></details><div class="now">Jetzt dort: <code>leer</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">Sprachfeld fehlt</span><button type="button" class="copy" data-src="src-18-en">kopieren</button></div><div class="prev">Holders of this certificate know and understand the NATO quality assurance requirements under AQAP 2110 for design, development and production and how they relate to ISO 9001: Government Quality Assurance by the customer, the extended evidence and notification duties, the handling of deviations, and configuration management across the whole life cycle.</div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-18-en">Holders of this certificate know and understand the NATO quality assurance requirements under AQAP 2110 for design, development and production and how they relate to ISO 9001: Government Quality Assurance by the customer, the extended evidence and notification duties, the handling of deviations, and configuration management across the whole life cycle.</pre></details><div class="now">Jetzt dort: <code>Sprachfeld fehlt</code></div></div></div><div class="chk"><input type="checkbox" data-n="18" id="c18"><label for="c18">erledigt</label></div></div>
+<div class="e" id="e19"><div class="h"><span class="num">19</span><span class="ttl">Foundation — Zulassungstext</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/d343a357-d3f9-4f09-af85-ca78bfaf2c3c" target="_blank" rel="noopener"><code>d343a357-d3f9-4f09-af85-ca78bfaf2c3c</code></a></span><span>Feld <code>prerequisite</code></span></div><div class="note">Steht heute auf <code>TBD</code>. Der Wortlaut folgt dem Muster der Vorbild-Topics, aber <strong>ohne deren Fehler</strong>: die Links sind korrekt mit <code>&lt;/a&gt;</code> geschlossen, und statt Markdown steht <code>&lt;strong&gt;</code> im HTML.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-19-de">kopieren</button></div><div class="prev"><p>Keine. Wir empfehlen jedoch vor der Prüfung den Besuch einer Foundation-Schulung bei einer von der ICO akkreditierten Trainingsorganisation. Termine finden Sie unter <a href="/events" target="_blank">Schulungstermine</a>.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-19-de">&lt;p&gt;Keine. Wir empfehlen jedoch vor der Prüfung den Besuch einer Foundation-Schulung bei einer von der ICO akkreditierten Trainingsorganisation. Termine finden Sie unter &lt;a href=&quot;/events&quot; target=&quot;_blank&quot;&gt;Schulungstermine&lt;/a&gt;.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-19-en">kopieren</button></div><div class="prev"><p>None. However, we recommend attending a Foundation training course at an ICO-accredited training organisation before the examination. Dates can be found under <a href="/events" target="_blank">Training dates</a>.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-19-en">&lt;p&gt;None. However, we recommend attending a Foundation training course at an ICO-accredited training organisation before the examination. Dates can be found under &lt;a href=&quot;/events&quot; target=&quot;_blank&quot;&gt;Training dates&lt;/a&gt;.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div></div><div class="chk"><input type="checkbox" data-n="19" id="c19"><label for="c19">erledigt</label></div></div>
+<div class="e" id="e20"><div class="h"><span class="num">20</span><span class="ttl">Professional — Zulassungstext</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/6880b5a6-4ccd-49fb-86bd-f6547539993d" target="_blank" rel="noopener"><code>6880b5a6-4ccd-49fb-86bd-f6547539993d</code></a></span><span>Feld <code>prerequisite</code></span></div><div class="note">Steht heute auf <code>TBD</code>. Der Wortlaut folgt dem Muster der Vorbild-Topics, aber <strong>ohne deren Fehler</strong>: die Links sind korrekt mit <code>&lt;/a&gt;</code> geschlossen, und statt Markdown steht <code>&lt;strong&gt;</code> im HTML.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-20-de">kopieren</button></div><div class="prev"><p>Keine. Wir empfehlen jedoch den Besitz des ICO QMS 9001:2026 Foundation Zertifikats und den Besuch einer Professional-Schulung bei einer von der ICO akkreditierten Trainingsorganisation. Anerkannt wird ersatzweise ein gleichwertiges Prüfungszertifikat eines anderen Ausstellers auf Foundation-Niveau — welche das sind, steht in den FAQ auf dieser Seite. Zum Erwerb eines Rollenzertifikats ist der Nachweis des Foundation-Levels nötig. Termine finden Sie unter <a href="/events" target="_blank">Schulungstermine</a>.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-20-de">&lt;p&gt;Keine. Wir empfehlen jedoch den Besitz des ICO QMS 9001:2026 Foundation Zertifikats und den Besuch einer Professional-Schulung bei einer von der ICO akkreditierten Trainingsorganisation. Anerkannt wird ersatzweise ein gleichwertiges Prüfungszertifikat eines anderen Ausstellers auf Foundation-Niveau — welche das sind, steht in den FAQ auf dieser Seite. Zum Erwerb eines Rollenzertifikats ist der Nachweis des Foundation-Levels nötig. Termine finden Sie unter &lt;a href=&quot;/events&quot; target=&quot;_blank&quot;&gt;Schulungstermine&lt;/a&gt;.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-20-en">kopieren</button></div><div class="prev"><p>None. However, we recommend holding the ICO QMS 9001:2026 Foundation certificate and attending a Professional training course at an ICO-accredited training organisation. An equivalent examination certificate from another issuer at Foundation level is accepted instead — which ones these are is set out in the FAQ on this page. Proof of Foundation level is required to obtain a role certificate. Dates can be found under <a href="/events" target="_blank">Training dates</a>.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-20-en">&lt;p&gt;None. However, we recommend holding the ICO QMS 9001:2026 Foundation certificate and attending a Professional training course at an ICO-accredited training organisation. An equivalent examination certificate from another issuer at Foundation level is accepted instead — which ones these are is set out in the FAQ on this page. Proof of Foundation level is required to obtain a role certificate. Dates can be found under &lt;a href=&quot;/events&quot; target=&quot;_blank&quot;&gt;Training dates&lt;/a&gt;.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div></div><div class="chk"><input type="checkbox" data-n="20" id="c20"><label for="c20">erledigt</label></div></div>
+<div class="e" id="e21"><div class="h"><span class="num">21</span><span class="ttl">Update 2026 — Zulassungstext</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/bd49aa1d-8461-4095-be96-ab2e5a33d9df" target="_blank" rel="noopener"><code>bd49aa1d-8461-4095-be96-ab2e5a33d9df</code></a></span><span>Feld <code>prerequisite</code></span></div><div class="note">Steht heute auf <code>TBD</code>. Der Wortlaut folgt dem Muster der Vorbild-Topics, aber <strong>ohne deren Fehler</strong>: die Links sind korrekt mit <code>&lt;/a&gt;</code> geschlossen, und statt Markdown steht <code>&lt;strong&gt;</code> im HTML.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-21-de">kopieren</button></div><div class="prev"><p>Keine. Wir empfehlen die Update-Prüfung jedoch <strong>ausdrücklich nur dann</strong>, wenn Sie den Wissensstand einer ISO-9001:2015-Professional-Ausbildung mitbringen. Die ICO hat die Fassung 2015 nicht angeboten; anerkannt wird deshalb ein gleichwertiges Prüfungszertifikat eines anderen Ausstellers auf Professional-Niveau — welche das sind, steht in den FAQ auf dieser Seite. Aus Fremdzertifikat und bestandener Update-Prüfung entsteht ein Prüfungszertifikat, kein Rollenzertifikat. Termine finden Sie unter <a href="/events" target="_blank">Schulungstermine</a>.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-21-de">&lt;p&gt;Keine. Wir empfehlen die Update-Prüfung jedoch &lt;strong&gt;ausdrücklich nur dann&lt;/strong&gt;, wenn Sie den Wissensstand einer ISO-9001:2015-Professional-Ausbildung mitbringen. Die ICO hat die Fassung 2015 nicht angeboten; anerkannt wird deshalb ein gleichwertiges Prüfungszertifikat eines anderen Ausstellers auf Professional-Niveau — welche das sind, steht in den FAQ auf dieser Seite. Aus Fremdzertifikat und bestandener Update-Prüfung entsteht ein Prüfungszertifikat, kein Rollenzertifikat. Termine finden Sie unter &lt;a href=&quot;/events&quot; target=&quot;_blank&quot;&gt;Schulungstermine&lt;/a&gt;.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-21-en">kopieren</button></div><div class="prev"><p>None. However, we <strong>expressly</strong> recommend the Update examination only if you bring the knowledge level of an ISO 9001:2015 Professional qualification. ICO did not offer the 2015 edition; an equivalent examination certificate from another issuer at Professional level is therefore accepted — which ones these are is set out in the FAQ on this page. A foreign certificate plus a passed Update examination yields an examination certificate, not a role certificate. Dates can be found under <a href="/events" target="_blank">Training dates</a>.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-21-en">&lt;p&gt;None. However, we &lt;strong&gt;expressly&lt;/strong&gt; recommend the Update examination only if you bring the knowledge level of an ISO 9001:2015 Professional qualification. ICO did not offer the 2015 edition; an equivalent examination certificate from another issuer at Professional level is therefore accepted — which ones these are is set out in the FAQ on this page. A foreign certificate plus a passed Update examination yields an examination certificate, not a role certificate. Dates can be found under &lt;a href=&quot;/events&quot; target=&quot;_blank&quot;&gt;Training dates&lt;/a&gt;.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div></div><div class="chk"><input type="checkbox" data-n="21" id="c21"><label for="c21">erledigt</label></div></div>
+<div class="e" id="e22"><div class="h"><span class="num">22</span><span class="ttl">AQAP 2110 Assurance — Zulassungstext</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/94b084fb-9197-4536-a408-58ceeafed1ed" target="_blank" rel="noopener"><code>94b084fb-9197-4536-a408-58ceeafed1ed</code></a></span><span>Feld <code>prerequisite</code></span></div><div class="note">Steht heute auf <code>TBD</code>. Der Wortlaut folgt dem Muster der Vorbild-Topics, aber <strong>ohne deren Fehler</strong>: die Links sind korrekt mit <code>&lt;/a&gt;</code> geschlossen, und statt Markdown steht <code>&lt;strong&gt;</code> im HTML.</div><div class="pair"><div class="lang" data-lang="de" lang="de"><div class="lh"><span class="lab">DEUTSCH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-22-de">kopieren</button></div><div class="prev"><p>Keine. Wir empfehlen jedoch den Besitz des Rollenzertifikats ICO QMS Quality Manager nach ISO 9001:2026, da AQAP 2110 ein Qualitätsmanagementsystem nach ISO 9001 voraussetzt und dieses lediglich um die Anforderungen der NATO-Beschaffung ergänzt. Termine finden Sie unter <a href="/events" target="_blank">Schulungstermine</a>.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-22-de">&lt;p&gt;Keine. Wir empfehlen jedoch den Besitz des Rollenzertifikats ICO QMS Quality Manager nach ISO 9001:2026, da AQAP 2110 ein Qualitätsmanagementsystem nach ISO 9001 voraussetzt und dieses lediglich um die Anforderungen der NATO-Beschaffung ergänzt. Termine finden Sie unter &lt;a href=&quot;/events&quot; target=&quot;_blank&quot;&gt;Schulungstermine&lt;/a&gt;.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div><div class="lang" data-lang="en" lang="en"><div class="lh"><span class="lab">ENGLISH</span><span class="st">Platzhalter TBD</span><button type="button" class="copy" data-src="src-22-en">kopieren</button></div><div class="prev"><p>None. However, we recommend holding the ICO QMS Quality Manager role certificate according to ISO 9001:2026, since AQAP 2110 presupposes a quality management system under ISO 9001 and merely adds the requirements of NATO procurement to it. Dates can be found under <a href="/events" target="_blank">Training dates</a>.</p></div><details class="src"><summary>HTML-Quelltext (das wird kopiert)</summary><pre class="src" id="src-22-en">&lt;p&gt;None. However, we recommend holding the ICO QMS Quality Manager role certificate according to ISO 9001:2026, since AQAP 2110 presupposes a quality management system under ISO 9001 and merely adds the requirements of NATO procurement to it. Dates can be found under &lt;a href=&quot;/events&quot; target=&quot;_blank&quot;&gt;Training dates&lt;/a&gt;.&lt;/p&gt;</pre></details><div class="now">Jetzt dort: <code>TBD</code></div></div></div><div class="chk"><input type="checkbox" data-n="22" id="c22"><label for="c22">erledigt</label></div></div>
+<div class="e" id="e23"><div class="h"><span class="num">23</span><span class="ttl">Tags — Quality Manager</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/90ad5707-f27f-4462-9c02-1aa31bdbd870" target="_blank" rel="noopener"><code>90ad5707-f27f-4462-9c02-1aa31bdbd870</code></a></span><span>Feld <code>tags</code></span></div><div class="note">Dreiteiliges Muster der Vorbilder: Sockel · Typmarke <code>ROLECERT</code> oder <code>EXAMCERT</code> · Themenbezug. <strong>Jeder Tag einzeln eintragen</strong> — bei ISMS FND stehen zwei Tags fälschlich in einem String, das nicht nachbauen.</div><div class="lang"><div class="lh"><span class="lab">WERT</span><button type="button" class="copy" data-src="src-23">kopieren</button></div><details class="src" open><summary>Quelltext</summary><pre class="src" id="src-23">ICO, ICOCERT, CERTIFICATION, EDUCATION, LEADERSHIPDEVELOPMENT, LIFELONGLEARNING, PERSONALDEVELOPMENT, ROLECERT, ISO9001, QMS, QUALITYMANAGEMENT, QUALITYMANAGER</pre></details></div><div class="chk"><input type="checkbox" data-n="23" id="c23"><label for="c23">erledigt</label></div></div>
+<div class="e" id="e24"><div class="h"><span class="num">24</span><span class="ttl">Tags — Quality Auditor</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/ae11b807-5de6-4944-a8fd-ae619858215f" target="_blank" rel="noopener"><code>ae11b807-5de6-4944-a8fd-ae619858215f</code></a></span><span>Feld <code>tags</code></span></div><div class="note">Dreiteiliges Muster der Vorbilder: Sockel · Typmarke <code>ROLECERT</code> oder <code>EXAMCERT</code> · Themenbezug. <strong>Jeder Tag einzeln eintragen</strong> — bei ISMS FND stehen zwei Tags fälschlich in einem String, das nicht nachbauen.</div><div class="lang"><div class="lh"><span class="lab">WERT</span><button type="button" class="copy" data-src="src-24">kopieren</button></div><details class="src" open><summary>Quelltext</summary><pre class="src" id="src-24">ICO, ICOCERT, CERTIFICATION, EDUCATION, LEADERSHIPDEVELOPMENT, LIFELONGLEARNING, PERSONALDEVELOPMENT, ROLECERT, ISO9001, QMS, QUALITYMANAGEMENT, QUALITYAUDITOR, ISO19011</pre></details></div><div class="chk"><input type="checkbox" data-n="24" id="c24"><label for="c24">erledigt</label></div></div>
+<div class="e" id="e25"><div class="h"><span class="num">25</span><span class="ttl">Tags — QMS &amp; AQAP Expert</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/d4e3dc96-91f6-4cc6-a6c1-ee86278f4cc3" target="_blank" rel="noopener"><code>d4e3dc96-91f6-4cc6-a6c1-ee86278f4cc3</code></a></span><span>Feld <code>tags</code></span></div><div class="note">Dreiteiliges Muster der Vorbilder: Sockel · Typmarke <code>ROLECERT</code> oder <code>EXAMCERT</code> · Themenbezug. <strong>Jeder Tag einzeln eintragen</strong> — bei ISMS FND stehen zwei Tags fälschlich in einem String, das nicht nachbauen.</div><div class="lang"><div class="lh"><span class="lab">WERT</span><button type="button" class="copy" data-src="src-25">kopieren</button></div><details class="src" open><summary>Quelltext</summary><pre class="src" id="src-25">ICO, ICOCERT, CERTIFICATION, EDUCATION, LEADERSHIPDEVELOPMENT, LIFELONGLEARNING, PERSONALDEVELOPMENT, ROLECERT, ISO9001, QMS, AQAP, NATO, DEFENCEPROCUREMENT</pre></details></div><div class="chk"><input type="checkbox" data-n="25" id="c25"><label for="c25">erledigt</label></div></div>
+<div class="e" id="e26"><div class="h"><span class="num">26</span><span class="ttl">Tags — FND</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/d343a357-d3f9-4f09-af85-ca78bfaf2c3c" target="_blank" rel="noopener"><code>d343a357-d3f9-4f09-af85-ca78bfaf2c3c</code></a></span><span>Feld <code>tags</code></span></div><div class="note">Dreiteiliges Muster der Vorbilder: Sockel · Typmarke <code>ROLECERT</code> oder <code>EXAMCERT</code> · Themenbezug. <strong>Jeder Tag einzeln eintragen</strong> — bei ISMS FND stehen zwei Tags fälschlich in einem String, das nicht nachbauen.</div><div class="lang"><div class="lh"><span class="lab">WERT</span><button type="button" class="copy" data-src="src-26">kopieren</button></div><details class="src" open><summary>Quelltext</summary><pre class="src" id="src-26">ICO, ICOCERT, CERTIFICATION, EDUCATION, LEADERSHIPDEVELOPMENT, LIFELONGLEARNING, PERSONALDEVELOPMENT, EXAMCERT, ISO9001, QMS, QUALITYMANAGEMENT</pre></details></div><div class="chk"><input type="checkbox" data-n="26" id="c26"><label for="c26">erledigt</label></div></div>
+<div class="e" id="e27"><div class="h"><span class="num">27</span><span class="ttl">Tags — PRO</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/6880b5a6-4ccd-49fb-86bd-f6547539993d" target="_blank" rel="noopener"><code>6880b5a6-4ccd-49fb-86bd-f6547539993d</code></a></span><span>Feld <code>tags</code></span></div><div class="note">Dreiteiliges Muster der Vorbilder: Sockel · Typmarke <code>ROLECERT</code> oder <code>EXAMCERT</code> · Themenbezug. <strong>Jeder Tag einzeln eintragen</strong> — bei ISMS FND stehen zwei Tags fälschlich in einem String, das nicht nachbauen.</div><div class="lang"><div class="lh"><span class="lab">WERT</span><button type="button" class="copy" data-src="src-27">kopieren</button></div><details class="src" open><summary>Quelltext</summary><pre class="src" id="src-27">ICO, ICOCERT, CERTIFICATION, EDUCATION, LEADERSHIPDEVELOPMENT, LIFELONGLEARNING, PERSONALDEVELOPMENT, EXAMCERT, ISO9001, QMS, QUALITYMANAGEMENT</pre></details></div><div class="chk"><input type="checkbox" data-n="27" id="c27"><label for="c27">erledigt</label></div></div>
+<div class="e" id="e28"><div class="h"><span class="num">28</span><span class="ttl">Tags — UPDATE</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/bd49aa1d-8461-4095-be96-ab2e5a33d9df" target="_blank" rel="noopener"><code>bd49aa1d-8461-4095-be96-ab2e5a33d9df</code></a></span><span>Feld <code>tags</code></span></div><div class="note">Dreiteiliges Muster der Vorbilder: Sockel · Typmarke <code>ROLECERT</code> oder <code>EXAMCERT</code> · Themenbezug. <strong>Jeder Tag einzeln eintragen</strong> — bei ISMS FND stehen zwei Tags fälschlich in einem String, das nicht nachbauen.</div><div class="lang"><div class="lh"><span class="lab">WERT</span><button type="button" class="copy" data-src="src-28">kopieren</button></div><details class="src" open><summary>Quelltext</summary><pre class="src" id="src-28">ICO, ICOCERT, CERTIFICATION, EDUCATION, LEADERSHIPDEVELOPMENT, LIFELONGLEARNING, PERSONALDEVELOPMENT, EXAMCERT, ISO9001, QMS, QUALITYMANAGEMENT, TRANSITION</pre></details></div><div class="chk"><input type="checkbox" data-n="28" id="c28"><label for="c28">erledigt</label></div></div>
+<div class="e" id="e29"><div class="h"><span class="num">29</span><span class="ttl">Tags — AQAP 2110 Assurance</span><span class="tag new">neu</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/94b084fb-9197-4536-a408-58ceeafed1ed" target="_blank" rel="noopener"><code>94b084fb-9197-4536-a408-58ceeafed1ed</code></a></span><span>Feld <code>tags</code></span></div><div class="note">Dreiteiliges Muster der Vorbilder: Sockel · Typmarke <code>ROLECERT</code> oder <code>EXAMCERT</code> · Themenbezug. <strong>Jeder Tag einzeln eintragen</strong> — bei ISMS FND stehen zwei Tags fälschlich in einem String, das nicht nachbauen.</div><div class="lang"><div class="lh"><span class="lab">WERT</span><button type="button" class="copy" data-src="src-29">kopieren</button></div><details class="src" open><summary>Quelltext</summary><pre class="src" id="src-29">ICO, ICOCERT, CERTIFICATION, EDUCATION, LEADERSHIPDEVELOPMENT, LIFELONGLEARNING, PERSONALDEVELOPMENT, EXAMCERT, ISO9001, AQAP, NATO, DEFENCEPROCUREMENT</pre></details></div><div class="chk"><input type="checkbox" data-n="29" id="c29"><label for="c29">erledigt</label></div></div>
+<div class="e" id="e30"><div class="h"><span class="num">30</span><span class="ttl">Prüfungsdatensatz für Foundation anlegen</span><span class="tag blocked">offene Frage</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/d343a357-d3f9-4f09-af85-ca78bfaf2c3c" target="_blank" rel="noopener"><code>d343a357-d3f9-4f09-af85-ca78bfaf2c3c</code></a></span><span>Feld <code>exam</code></span></div><div class="note"><strong>Das FND-Zertifikat hat als einziges gar keinen Prüfungsdatensatz</strong> — es gibt kein <code>exam</code>-Objekt, in das etwas eingetragen werden könnte. Die Werte stehen fest: <strong>45 Minuten, 30 Fragen</strong>, Schwierigkeitsprofil <code>Easy-100%3A-60%PR</code> (<code>59fc7c9e-290f-4600-9f2b-e9be0758d059</code>), Bestehensgrenze 60 %. Danach gehört auch der Zulassungstext aus Eintrag „Foundation — Zulassungstext“ in das Feld <code>exam.prerequisite</code>.<br><br><strong>Offen:</strong> ob das Anlegen im Editor überhaupt möglich ist. Falls nicht, ist es kein Office-Auftrag, sondern ein Thema für die EduMS3-Entwicklung — bitte zurückmelden.</div><div class="chk"><input type="checkbox" data-n="30" id="c30"><label for="c30">erledigt</label></div></div>
+<div class="e" id="e31"><div class="h"><span class="num">31</span><span class="ttl">Voraussetzungen verknüpfen — Quality Manager</span><span class="tag action">Handlung</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/90ad5707-f27f-4462-9c02-1aa31bdbd870" target="_blank" rel="noopener"><code>90ad5707-f27f-4462-9c02-1aa31bdbd870</code></a></span><span>Feld <code>requirements</code></span></div><div class="note">Im Zertifikats-Editor über die Beziehung <strong>Requirements / Voraussetzungen</strong> die Prüfungen <strong>FND</strong> (<code>d343a357-d3f9-4f09-af85-ca78bfaf2c3c</code>) und <strong>PRO</strong> (<code>6880b5a6-4ccd-49fb-86bd-f6547539993d</code>) <strong>anhängen</strong> — nicht in das Textfeld <code>prerequisite</code> schreiben. Aus dieser Verknüpfung baut die Webseite das Zertifikatsgefüge automatisch auf; bei QMS 9001:2026 ist bisher keine einzige Verknüpfung gesetzt. Vorbild ist ISMS 27001:2022, wo der Security Officer flach an FND und PRO hängt und der NIS2 Expert an der Officer-Rolle.</div><div class="chk"><input type="checkbox" data-n="31" id="c31"><label for="c31">erledigt</label></div></div>
+<div class="e" id="e32"><div class="h"><span class="num">32</span><span class="ttl">Voraussetzungen verknüpfen — Quality Auditor</span><span class="tag action">Handlung</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/ae11b807-5de6-4944-a8fd-ae619858215f" target="_blank" rel="noopener"><code>ae11b807-5de6-4944-a8fd-ae619858215f</code></a></span><span>Feld <code>requirements</code></span></div><div class="note">Im Zertifikats-Editor über die Beziehung <strong>Requirements / Voraussetzungen</strong> die Prüfungen <strong>FND</strong> und <strong>PRO</strong> dieses Topics sowie <strong>AMS 19011:2018 FND</strong> und <strong>AMS 19011:2018 PRO</strong> aus dem Topic AMS 19011 — nicht 19011:2026, das hat kein PRO <strong>anhängen</strong> — nicht in das Textfeld <code>prerequisite</code> schreiben. Aus dieser Verknüpfung baut die Webseite das Zertifikatsgefüge automatisch auf; bei QMS 9001:2026 ist bisher keine einzige Verknüpfung gesetzt. Vorbild ist ISMS 27001:2022, wo der Security Officer flach an FND und PRO hängt und der NIS2 Expert an der Officer-Rolle.</div><div class="chk"><input type="checkbox" data-n="32" id="c32"><label for="c32">erledigt</label></div></div>
+<div class="e" id="e33"><div class="h"><span class="num">33</span><span class="ttl">Voraussetzungen verknüpfen — QMS &amp;amp; AQAP Expert</span><span class="tag action">Handlung</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/d4e3dc96-91f6-4cc6-a6c1-ee86278f4cc3" target="_blank" rel="noopener"><code>d4e3dc96-91f6-4cc6-a6c1-ee86278f4cc3</code></a></span><span>Feld <code>requirements</code></span></div><div class="note">Im Zertifikats-Editor über die Beziehung <strong>Requirements / Voraussetzungen</strong> das Rollenzertifikat <strong>ICO QMS Quality Manager</strong> (<code>90ad5707-f27f-4462-9c02-1aa31bdbd870</code>) und die Prüfung <strong>AQAP 2110 Assurance</strong> (<code>94b084fb-9197-4536-a408-58ceeafed1ed</code>) <strong>anhängen</strong> — nicht in das Textfeld <code>prerequisite</code> schreiben. Aus dieser Verknüpfung baut die Webseite das Zertifikatsgefüge automatisch auf; bei QMS 9001:2026 ist bisher keine einzige Verknüpfung gesetzt. Vorbild ist ISMS 27001:2022, wo der Security Officer flach an FND und PRO hängt und der NIS2 Expert an der Officer-Rolle.</div><div class="chk"><input type="checkbox" data-n="33" id="c33"><label for="c33">erledigt</label></div></div>
+<div class="e" id="e34"><div class="h"><span class="num">34</span><span class="ttl">Slug korrigieren: 2210 → 2110</span><span class="tag action">Handlung</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/94b084fb-9197-4536-a408-58ceeafed1ed" target="_blank" rel="noopener"><code>94b084fb-9197-4536-a408-58ceeafed1ed</code></a></span><span>Feld <code>slug</code></span></div><div class="note">Der Slug lautet <code>aqap-2210-assurance</code>, das Zertifikat heißt aber <strong>AQAP 2110 Assurance</strong>. AQAP 2110 und AQAP 2210 sind verschiedene NATO-Dokumente — 2110 gilt für Entwicklung und Produktion, 2210 ist die Softwareergänzung. Der Name stimmt, der Slug nicht. Das Topic ist noch nicht im Shop sichtbar, es dürften also kaum Links darauf verweisen.</div><div class="lang"><div class="lh"><span class="lab">WERT</span><button type="button" class="copy" data-src="src-34">kopieren</button></div><details class="src" open><summary>Quelltext</summary><pre class="src" id="src-34">aqap-2110-assurance</pre></details></div><div class="chk"><input type="checkbox" data-n="34" id="c34"><label for="c34">erledigt</label></div></div>
+<div class="e" id="e35"><div class="h"><span class="num">35</span><span class="ttl">Badge-Bilder für alle 7 Zertifikate hinterlegen</span><span class="tag action">Handlung</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/90ad5707-f27f-4462-9c02-1aa31bdbd870" target="_blank" rel="noopener"><code>90ad5707-f27f-4462-9c02-1aa31bdbd870</code></a></span><span>Feld <code>badge_image_template</code></span></div><div class="note"><code>badge_image_template</code> und <code>image</code> sind bei <strong>allen sieben</strong> Zertifikaten leer. Bei den drei ausgebauten Vorbild-Topics ist <code>badge_image_template</code> auf jedem Zertifikat gesetzt. Das ist eine Bilddatei je Zertifikat, kein Textfeld — wer sie erstellt, ist hier nicht festgelegt. Betrifft: Quality Manager, Quality Auditor, QMS &amp; AQAP Expert, FND, PRO, UPDATE, AQAP 2110 Assurance.</div><div class="chk"><input type="checkbox" data-n="35" id="c35"><label for="c35">erledigt</label></div></div>
+<div class="e" id="e36"><div class="h"><span class="num">36</span><span class="ttl">Shop-Produkte anlegen und verknüpfen</span><span class="tag blocked">offene Frage</span></div><div class="meta"><span>certificate <a href="https://www.ico-cert.org/editor/sqms/certificate/90ad5707-f27f-4462-9c02-1aa31bdbd870" target="_blank" rel="noopener"><code>90ad5707-f27f-4462-9c02-1aa31bdbd870</code></a></span><span>Feld <code>product</code></span></div><div class="note"><code>product</code> ist bei allen sieben Zertifikaten <code>null</code>. Bei den im Shop sichtbaren Topics ist es überwiegend gesetzt (ISMS 6 von 7, AIMS 4 von 6, CMS 3 von 3) — es ist also die Regel, aber keine ausnahmslose Pflicht.<br><br><strong>Offen:</strong> ob das Produkt im Editor verknüpft wird oder im Shop entsteht und von dort kommt. Bitte so vorgehen, wie es bei ISMS 27001 gemacht wurde, und zurückmelden, welcher Weg es war.</div><div class="chk"><input type="checkbox" data-n="36" id="c36"><label for="c36">erledigt</label></div></div>
+<div class="e" id="e37"><div class="h"><span class="num">37</span><span class="ttl">Zuletzt: Topic im Shop sichtbar schalten</span><span class="tag action">Handlung</span></div><div class="meta"><span>topic <a href="https://www.ico-cert.org/editor/sqms/topics/ae7551f0-24dd-4245-b5d2-ed07ec7ef8ac" target="_blank" rel="noopener"><code>ae7551f0-24dd-4245-b5d2-ed07ec7ef8ac</code></a></span><span>Feld <code>is_visible_in_shop</code></span></div><div class="note"><strong>Erst ganz am Ende</strong>, wenn alle übrigen Einträge erledigt sind. Der Zusammenhang ist im Bestand eindeutig: alle drei im Shop sichtbaren Topics haben <code>badge_image_template</code> und <code>tags</code> auf jedem Zertifikat gefüllt, beide unsichtbaren Topics haben sie durchgängig leer. Das Flag ist der Abschluss, nicht der Anfang.</div><div class="chk"><input type="checkbox" data-n="37" id="c37"><label for="c37">erledigt</label></div></div>
+</div>
+<script>
+(function(){
+  var m=(new URLSearchParams(location.search)).get('lang');
+  if(m==='de'||m==='en'||m==='both'){var r=document.getElementById('m-'+m);if(r)r.checked=true;}
+
+  // The payload is the MARKUP, not the rendered text: copy the <pre> verbatim.
+  function copy(text,btn){
+    function ok(){var o=btn.textContent;btn.textContent='kopiert';btn.classList.add('done');
+      setTimeout(function(){btn.textContent=o;btn.classList.remove('done');},1400);}
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(ok);return;}
+    var a=document.createElement('textarea');a.value=text;a.style.position='fixed';a.style.opacity='0';
+    document.body.appendChild(a);a.select();
+    try{document.execCommand('copy');ok();}finally{a.remove();}
+  }
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.addEventListener('click',function(ev){
+      ev.preventDefault();
+      var src=document.getElementById(b.getAttribute('data-src'));
+      if(src)copy(src.textContent,b);
+    });
+  });
+
+  // Ticking an entry off survives a reload on this browser; it is a convenience, nothing more.
+  var KEY='ico-todo-'+(document.body.getAttribute('data-topic')||'x');
+  var done={};
+  try{done=JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){done={};}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}}
+  document.querySelectorAll('.chk input').forEach(function(c){
+    var id=c.getAttribute('data-n');
+    if(done[id]){c.checked=true;c.closest('.e').classList.add('done');}
+    c.addEventListener('change',function(){
+      done[id]=c.checked;save();
+      c.closest('.e').classList.toggle('done',c.checked);
+      count();
+    });
+  });
+  function count(){
+    var all=document.querySelectorAll('.chk input').length;
+    var d=document.querySelectorAll('.chk input:checked').length;
+    var el=document.getElementById('progress');
+    if(el)el.textContent=d+' / '+all+' erledigt';
+  }
+  count();
+})();
+</script>
+</body></html>
